@@ -1,0 +1,22 @@
+PokedexTypeSearchStrings: ; 40fe4
+; entries correspond with PokedexTypeSearchConversionTable (see data/types/search_types.asm)
+	db "  ----  @"
+	db " Normale@"
+	db "  Fuoco @"
+	db "  Acqua @"
+	db "  Erba  @"
+	db " Elettro@"
+	db "Ghiaccio@"
+	db "  Lotta @"
+	db " Veleno @"
+	db "  Terra @"
+	db " Volante@"
+	db "  Psico @"
+	db "Coleott.@"
+	db " Roccia @"
+	db " Spettro@"
+	db "  Drago @"
+	db "  Buio  @"
+	db " Acciaio@"
+	db "Folletto@"
+; 41086
