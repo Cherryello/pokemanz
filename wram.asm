@@ -2041,9 +2041,9 @@ wTilesetBlocksBank:: db ; d1dc
 wTilesetBlocksAddress:: dw ; d1dd
 wTilesetCollisionBank:: db ; d1df
 wTilesetCollisionAddress:: dw ; d1e0
+wTilesetAttributesBank:: db
+wTilesetAttributesAddress:: dw
 wTilesetAnim:: dw ; bank 3f ; d1e2
-	ds 2 ; unused ; d1e4
-wTilesetPalettes:: dw ; bank 3f ; d1e6
 wTilesetEnd::
 
 wEvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
@@ -2099,7 +2099,10 @@ wOtherDecoration::    db
 wCurEnemyItem:: db
 ENDU ; d1f7
 
-	ds 3
+wOtherTrainerType:: db
+wTrainerGroupBank:: db
+
+	ds 1
 
 wLinkBattleRNs:: ds 10 ; d1fa
 
@@ -2152,6 +2155,9 @@ wBaseDefense:: db ; d239
 wBaseSpeed:: db ; d23a
 wBaseSpecialAttack:: db ; d23b
 wBaseSpecialDefense:: db ; d23c
+wBaseEVs::
+wBaseHPAtkDefSpdEVs:: db
+wBaseSpAtkSpDefEVs:: db
 wBaseType:: ; d23d
 wBaseType1:: db ; d23d
 wBaseType2:: db ; d23e
@@ -2161,9 +2167,7 @@ wBaseItems:: ; d241
 wBaseItem1:: db ; d241
 wBaseItem2:: db ; d242
 wBaseGender:: db ; d243
-wBaseUnknown1:: db ; d244
 wBaseEggSteps:: db ; d245
-wBaseUnknown2:: db ; d246
 wBasePicSize:: db ; d247
 wBasePadding:: ds 4 ; d248
 wBaseGrowthRate:: db ; d24c
@@ -2398,7 +2402,7 @@ wObjectStructsEnd:: ; d6de
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
-	ds 40
+	ds 6
 
 wMapObjects:: ; d71e
 wPlayerObject:: map_object wPlayer
@@ -2417,6 +2421,8 @@ wMap12Object::  map_object wMap12
 wMap13Object::  map_object wMap13
 wMap14Object::  map_object wMap14
 wMap15Object::  map_object wMap15
+wMap16Object::  map_object wMap16
+wMap17Object::  map_object wMap17
 wMapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
@@ -2969,6 +2975,11 @@ w3_dfec:: ds $10
 w3_dffc:: ds 4
 
 
+SECTION "Surrounding Attributes", WRAMX
+
+wSurroundingAttributes:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
+
+
 SECTION "GBC Video", WRAMX
 
 ; eight 4-color palettes each
@@ -3081,8 +3092,7 @@ wScratchTileMap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 wScratchAttrMap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
 
 NEXTU ; d000
-wDecompressScratch:: ds $80 tiles
-wDecompressEnemyFrontpic:: ds $80 tiles
+wDecompressScratch:: ds $100 tiles
 ENDU ; e000
 
 

@@ -1,8 +1,8 @@
 ; Every Pokémon sorted in New Pokédex Order.
 
 NewPokedexOrder: ; 0x40d60
-	db CHIKORITA
-	db BAYLEEF
+	db DUCKY
+	db DUCKLY
 	db DUCKLEAF
 	db CYNDAQUIL
 	db QUILAVA

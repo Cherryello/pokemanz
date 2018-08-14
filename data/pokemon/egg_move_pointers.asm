@@ -154,7 +154,7 @@ endc
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw ChikoritaEggMoves
+	dw DuckyEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw CyndaquilEggMoves

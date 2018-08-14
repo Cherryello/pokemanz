@@ -11,7 +11,6 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db ARIADOS
 	db ARTICUNO
 	db AZUMARILL
-	db BAYLEEF
 	db BEEDRILL
 	db BELLOSSOM
 	db BELLSPROUT
@@ -25,7 +24,6 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db CHARIZARD
 	db CHARMANDER
 	db CHARMELEON
-	db CHIKORITA
 	db CHINCHOU
 	db CLEFABLE
 	db CLEFAIRY
@@ -48,6 +46,8 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db DRATINI
 	db DROWZEE
 	db DUCKLEAF
+	db DUCKLY
+	db DUCKY
 	db DUGTRIO
 	db DUNSPARCE
 	db EEVEE

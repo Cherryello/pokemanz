@@ -127,22 +127,6 @@ Timer:: ; 3e93
 	reti
 ; 3ed7
 
-Unreferenced_Function3ed7:: ; 3ed7
-	ld [$dc02], a
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function114243)
-	rst Bankswitch
-
-	call Function114243
-	pop bc
-	ld a, b
-	rst Bankswitch
-
-	ld a, [$dc02]
-	ret
-; 3eea
-
 Function3eea:: ; 3eea
 	push hl
 	push bc
@@ -158,17 +142,6 @@ Function3eea:: ; 3eea
 	call MobileHome_PlaceBox
 	ret
 ; 3efd
-
-Unreferenced_Function3efd:: ; 3efd
-	push hl
-	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
-	call .fill_attr
-	pop hl
-	call PrintTextBoxText
-	ret
-; 3f0d
 
 .fill_attr
 	push hl

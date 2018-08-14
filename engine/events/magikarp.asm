@@ -78,20 +78,7 @@ CheckMagikarpLength: ; fbb32
 	db "@"
 ; 0xfbbae
 
-Magikarp_LoadFeetInchesChars: ; fbbae
-	ld hl, vTiles2 tile "′" ; $6e
-	ld de, .feetinchchars
-	lb bc, BANK(.feetinchchars), 2
-	call Request2bpp
-	ret
-; fbbbb
-
-.feetinchchars ; fbbb
-INCBIN "gfx/font/feet_inches.2bpp"
-; fbbdb
-
 PrintMagikarpLength: ; fbbdb
-	call Magikarp_LoadFeetInchesChars
 	ld hl, wStringBuffer1
 	ld de, wMagikarpLength
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
@@ -286,12 +273,9 @@ CalcMagikarpLength: ; fbbfc
 ; fbc9a
 
 .BCLessThanDE: ; fbc9a
-; Intention: Return bc < de.
-; Reality: Return b < d.
 	ld a, b
 	cp d
 	ret c
-	ret nc ; whoops
 	ld a, c
 	cp e
 	ret

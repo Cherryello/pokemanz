@@ -2072,8 +2072,8 @@ MewEvosAttacks:
 	db 50, ANCIENTPOWER
 	db 0 ; no more level-up moves
 
-ChikoritaEvosAttacks:
-	db EVOLVE_LEVEL, 16, BAYLEEF
+DuckyEvosAttacks:
+	db EVOLVE_LEVEL, 16, DUCKLY
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, GROWL
@@ -2087,7 +2087,7 @@ ChikoritaEvosAttacks:
 	db 50, SOLARBEAM
 	db 0 ; no more level-up moves
 
-BayleefEvosAttacks:
+DucklyEvosAttacks:
 	db EVOLVE_LEVEL, 32, DUCKLEAF
 	db 0 ; no more evolutions
 	db 1, TACKLE

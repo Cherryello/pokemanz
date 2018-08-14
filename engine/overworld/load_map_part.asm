@@ -15,6 +15,34 @@ _LoadMapPart:: ; 4d15b
 
 .left_column
 	decoord 0, 0
+	call .copy
+
+	ld hl, wSurroundingAttributes
+	ld a, [wMetatileStandingY]
+	and a
+	jr z, .top_row2
+	ld bc, SURROUNDING_WIDTH * 2
+	add hl, bc
+
+.top_row2
+	ld a, [wMetatileStandingX]
+	and a
+	jr z, .left_column2
+	inc hl
+	inc hl
+
+.left_column2
+	decoord 0, 0, wAttrMap
+	ld a, [rSVBK]
+	push af
+	ld a, BANK(wSurroundingAttributes)
+	ld [rSVBK], a
+	call .copy
+	pop af
+	ld [rSVBK], a
+	ret
+
+.copy:
 	ld b, SCREEN_HEIGHT
 .loop
 	ld c, SCREEN_WIDTH

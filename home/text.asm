@@ -1016,19 +1016,6 @@ Text_PlaySound:: ; 1500
 	ret
 ; 1522
 
-Unreferenced_Function1522:: ; 1522
-; TX_CRY
-	push de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	call PlayMonCry
-	pop de
-	pop hl
-	pop bc
-	ret
-; 152d
-
 TextSFX:: ; 152d
 	dbw TX_SOUND_DEX_FANFARE_50_79,  SFX_DEX_FANFARE_50_79
 	dbw TX_SOUND_FANFARE,            SFX_FANFARE

@@ -481,7 +481,7 @@ DratiniEggMoves:
 	db SUPERSONIC
 	db -1 ; end
 
-ChikoritaEggMoves:
+DuckyEggMoves:
 	db VINE_WHIP
 	db LEECH_SEED
 	db COUNTER

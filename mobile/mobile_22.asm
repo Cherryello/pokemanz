@@ -2179,7 +2179,6 @@ Function89d0d: ; 89d0d (22:5d0d)
 	ld [rSVBK], a
 
 	call SetPalettes
-	farcall PrintMail_
 	call Mobile22_SetBGMapMode1
 	ld c, 24
 	call DelayFrames

@@ -1,6 +1,7 @@
 	db DUCKLEAF ; 154
 
 	db  80, 115,  75,  90,  60,  75
+	evs  0,   3,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, FLYING ; type
@@ -8,9 +9,7 @@
 	db 208 ; base exp
 	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
-	db 100 ; unknown 1
-	db 10 ; step cycles to hatch
-	db 5 ; unknown 2
+	db 2 ; step cycles to hatch
 	INCBIN "gfx/pokemon/duckleaf/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db GROWTH_MEDIUM_SLOW ; growth rate

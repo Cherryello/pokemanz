@@ -705,8 +705,8 @@ DayCare_InitBreeding: ; 16a3b
 	ld a, [hMultiplicand + 2]
 	ld [hl], a
 	xor a
-	ld b, wEggMonDVs - wEggMonStatExp
-	ld hl, wEggMonStatExp
+	ld b, wEggMonDVs - wEggMonEVs
+	ld hl, wEggMonEVs
 .loop2
 	ld [hli], a
 	dec b

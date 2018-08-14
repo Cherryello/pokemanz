@@ -1,5 +1,3 @@
-HALLOFFAME_COLON EQU $63
-
 HallOfFame:: ; 0x8640e
 	call HallOfFame_FadeOutMusic
 	ld a, [wStatusFlags]
@@ -376,7 +374,7 @@ _HallOfFamePC: ; 86650
 	pop hl
 	call DisplayHOFMon
 	ld a, [wHallOfFameTempWinCount]
-	cp HOF_MASTER_COUNT + 1 ; should be HOF_MASTER_COUNT
+	cp HOF_MASTER_COUNT
 	jr c, .print_num_hof
 	ld de, .HOFMaster
 	hlcoord 1, 2
@@ -533,10 +531,6 @@ DisplayHOFMon: ; 86748
 
 HOF_AnimatePlayerPic: ; 86810
 	call ClearBGPalettes
-	ld hl, vTiles2 tile HALLOFFAME_COLON
-	ld de, FontExtra + 13 tiles ; "<COLON>"
-	lb bc, BANK(FontExtra), 1
-	call Request2bpp
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
@@ -606,7 +600,7 @@ HOF_AnimatePlayerPic: ; 86810
 	ld de, wGameTimeHours
 	lb bc, 2, 3
 	call PrintNum
-	ld [hl], HALLOFFAME_COLON
+	ld [hl], ":"
 	inc hl
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
@@ -617,6 +611,6 @@ HOF_AnimatePlayerPic: ; 86810
 ; 868ed
 
 .PlayTime:
-	db "PLAY TIME@"
+	db "Tempo@"
 ; 868f7
 

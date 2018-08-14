@@ -61,14 +61,7 @@ RuinsOfAlphResearchCenterScientist3Script:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, .PrinterAvailable
 	writetext RuinsOfAlphResearchCenterScientist3Text
-	waitbutton
-	closetext
-	end
-
-.PrinterAvailable:
-	writetext RuinsOfAlphResearchCenterScientist3_PrinterAvailable
 	waitbutton
 	closetext
 	end
@@ -148,25 +141,6 @@ RuinsOfAlphResearchCenterComputer:
 	closetext
 	end
 
-RuinsOfAlphResearchCenterPrinter:
-	opentext
-	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	iftrue .SkipChecking
-	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, .PrinterAvailable
-.SkipChecking:
-	writetext RuinsOfAlphResearchCenterPrinterText_DoesntWork
-	waitbutton
-	closetext
-	end
-
-.PrinterAvailable:
-	writetext RuinsOfAlphResearchCenterUnownPrinterText
-	waitbutton
-	special UnownPrinter
-	closetext
-	end
-
 RuinsOfAlphResearchCenterPhoto:
 ; unreferenced
 	jumptext RuinsOfAlphResearchCenterProfSilktreePhotoText
@@ -218,21 +192,6 @@ RuinsOfAlphResearchCenterScientist3Text:
 
 	para "Check to see how"
 	line "many kinds exist."
-	done
-
-RuinsOfAlphResearchCenterScientist3_PrinterAvailable:
-	text "You caught all the"
-	line "UNOWN variations?"
-
-	para "That's a great"
-	line "achievement!"
-
-	para "I've set up the"
-	line "printer here for"
-	cont "handling UNOWN."
-
-	para "Feel free to use"
-	line "it anytime."
 	done
 
 RuinsOfAlphResearchCenterScientist1Text:
@@ -363,16 +322,6 @@ RuinsOfAlphResearchCenterComputerText_GotAllUnown:
 	line "kinds found."
 	done
 
-RuinsOfAlphResearchCenterPrinterText_DoesntWork:
-	text "This doesn't seem"
-	line "to work yet."
-	done
-
-RuinsOfAlphResearchCenterUnownPrinterText:
-	text "UNOWN may be"
-	line "printed out."
-	done
-
 RuinsOfAlphResearchCenterProfSilktreePhotoText:
 ; unused
 	text "It's a photo of"
@@ -400,10 +349,9 @@ RuinsOfAlphResearchCenter_MapEvents:
 
 	db 0 ; coord events
 
-	db 3 ; bg events
+	db 2 ; bg events
 	bg_event  6,  5, BGEVENT_READ, RuinsOfAlphResearchCenterBookshelf
 	bg_event  3,  4, BGEVENT_READ, RuinsOfAlphResearchCenterComputer
-	bg_event  7,  1, BGEVENT_READ, RuinsOfAlphResearchCenterPrinter
 
 	db 3 ; object events
 	object_event  4,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist1Script, -1

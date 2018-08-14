@@ -1846,15 +1846,15 @@ NoRadioName: ; 918a9 (24:58a9)
 
 ; 918bf
 
-OaksPKMNTalkName:     db "OAK's <PK><MN> Talk@"
-PokedexShowName:      db "#DEX Show@"
-PokemonMusicName:     db "#MON Music@"
+OaksPKMNTalkName:     db "Oak's <PK><MN> Talk@"
+PokedexShowName:      db "Italia - Francia@"
+PokemonMusicName:     db "#mon Music@"
 LuckyChannelName:     db "Lucky Channel@"
 UnownStationName:     db "?????@"
 
 PlacesAndPeopleName:  db "Places & People@"
 LetsAllSingName:      db "Let's All Sing!@"
-PokeFluteStationName: db "# FLUTE@"
+PokeFluteStationName: db "# Flute@"
 ; 9191c
 
 _TownMap: ; 9191c
@@ -2080,13 +2080,13 @@ PlayRadio: ; 91a53
 	lb bc, 4, 18
 	call TextBox
 	hlcoord 1, 14
-	ld [hl], $72
+	ld [hl], "“"
 	pop de
 	hlcoord 2, 14
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld [hl], $73
+	ld [hl], "”"
 	call WaitBGMap
 	ret
 

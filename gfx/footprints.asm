@@ -341,7 +341,7 @@ INCBIN "gfx/footprints/dragonair.1bpp",  footprint_top
 INCBIN "gfx/footprints/dragonite.1bpp",  footprint_top
 INCBIN "gfx/footprints/mewtwo.1bpp",     footprint_top
 INCBIN "gfx/footprints/mew.1bpp",        footprint_top
-INCBIN "gfx/footprints/chikorita.1bpp",  footprint_top
+INCBIN "gfx/footprints/ducky.1bpp",  footprint_top
 ; 145-152 bottom halves
 INCBIN "gfx/footprints/zapdos.1bpp",     footprint_bottom
 INCBIN "gfx/footprints/moltres.1bpp",    footprint_bottom
@@ -350,9 +350,9 @@ INCBIN "gfx/footprints/dragonair.1bpp",  footprint_bottom
 INCBIN "gfx/footprints/dragonite.1bpp",  footprint_bottom
 INCBIN "gfx/footprints/mewtwo.1bpp",     footprint_bottom
 INCBIN "gfx/footprints/mew.1bpp",        footprint_bottom
-INCBIN "gfx/footprints/chikorita.1bpp",  footprint_bottom
+INCBIN "gfx/footprints/ducky.1bpp",  footprint_bottom
 ; 153-160 top halves
-INCBIN "gfx/footprints/bayleef.1bpp",    footprint_top
+INCBIN "gfx/footprints/duckly.1bpp",    footprint_top
 INCBIN "gfx/footprints/duckleaf.1bpp",   footprint_top
 INCBIN "gfx/footprints/cyndaquil.1bpp",  footprint_top
 INCBIN "gfx/footprints/quilava.1bpp",    footprint_top
@@ -361,7 +361,7 @@ INCBIN "gfx/footprints/totodile.1bpp",   footprint_top
 INCBIN "gfx/footprints/croconaw.1bpp",   footprint_top
 INCBIN "gfx/footprints/feraligatr.1bpp", footprint_top
 ; 153-160 bottom halves
-INCBIN "gfx/footprints/bayleef.1bpp",    footprint_bottom
+INCBIN "gfx/footprints/duckly.1bpp",     footprint_bottom
 INCBIN "gfx/footprints/duckleaf.1bpp",   footprint_bottom
 INCBIN "gfx/footprints/cyndaquil.1bpp",  footprint_bottom
 INCBIN "gfx/footprints/quilava.1bpp",    footprint_bottom

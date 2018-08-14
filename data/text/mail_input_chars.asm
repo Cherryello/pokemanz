@@ -13,7 +13,7 @@ MailEntry_Lowercase: ; 1224f
 	db "a b c d e f g h i j"
 	db "k l m n o p q r s t"
 	db "u v w x y z   . - /"
-	db "à è ì ò ù * · & ( )"
+	db "à è ì ò ù * ▼ & ( )"
 	db "“ ” [ ] ' : ;      "
 	db "MAIUS  Canc  Fine  "
 ; 122c1

@@ -73,12 +73,14 @@ MON_ITEM               EQUS "(wPartyMon1Item - wPartyMon1)"
 MON_MOVES              EQUS "(wPartyMon1Moves - wPartyMon1)"
 MON_ID                 EQUS "(wPartyMon1ID - wPartyMon1)"
 MON_EXP                EQUS "(wPartyMon1Exp - wPartyMon1)"
-MON_STAT_EXP           EQUS "(wPartyMon1StatExp - wPartyMon1)"
-MON_HP_EXP             EQUS "(wPartyMon1HPExp - wPartyMon1)"
-MON_ATK_EXP            EQUS "(wPartyMon1AtkExp - wPartyMon1)"
-MON_DEF_EXP            EQUS "(wPartyMon1DefExp - wPartyMon1)"
-MON_SPD_EXP            EQUS "(wPartyMon1SpdExp - wPartyMon1)"
-MON_SPC_EXP            EQUS "(wPartyMon1SpcExp - wPartyMon1)"
+MON_EVS                EQUS "(wPartyMon1EVs - wPartyMon1)"
+MON_HP_EV              EQUS "(wPartyMon1HPEV - wPartyMon1)"
+MON_ATK_EV             EQUS "(wPartyMon1AtkEV - wPartyMon1)"
+MON_DEF_EV             EQUS "(wPartyMon1DefEV - wPartyMon1)"
+MON_SPD_EV             EQUS "(wPartyMon1SpdEV - wPartyMon1)"
+MON_SAT_EV             EQUS "(wPartyMon1SpclAtkEV - wPartyMon1)"
+MON_SDF_EV             EQUS "(wPartyMon1SpclDefEV - wPartyMon1)"
+MON_PADDING            EQUS "(wPartyMon1Padding - wPartyMon1)"
 MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
 MON_PP                 EQUS "(wPartyMon1PP - wPartyMon1)"
 MON_HAPPINESS          EQUS "(wPartyMon1Happiness - wPartyMon1)"
@@ -114,7 +116,7 @@ CAUGHT_BY_UNKNOWN EQU 0
 CAUGHT_BY_GIRL    EQU 1
 CAUGHT_BY_BOY     EQU 2
 
-CAUGHT_EGG_LEVEL EQU 1
+CAUGHT_EGG_LEVEL  EQU 1
 
 
 ; maximum number of party pokemon
@@ -205,9 +207,9 @@ const_value = 1
 	const HAPPINESS_GAINLEVELATHOME   ; 13
 
 ; significant happiness values
-BASE_HAPPINESS        EQU 70
-FRIEND_BALL_HAPPINESS EQU 200
-HAPPINESS_TO_EVOLVE   EQU 220
+BASE_HAPPINESS        EQU 90
+FRIEND_BALL_HAPPINESS EQU 140
+HAPPINESS_TO_EVOLVE   EQU 150
 HAPPINESS_THRESHOLD_1 EQU 100
 HAPPINESS_THRESHOLD_2 EQU 200
 
@@ -216,3 +218,6 @@ HAPPINESS_THRESHOLD_2 EQU 200
 PP_UP_MASK EQU %11000000
 PP_UP_ONE  EQU %01000000
 PP_MASK    EQU %00111111
+
+; significant EV values
+MAX_EV EQU 252

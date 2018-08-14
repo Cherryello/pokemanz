@@ -156,9 +156,9 @@ PokemonCries:: ; f2787
 	mon_cry CRY_BULBASAUR,   $03c,  $140 ; DRAGONITE
 	mon_cry CRY_PARAS,       $099,  $17f ; MEWTWO
 	mon_cry CRY_PARAS,       $0ee,  $17f ; MEW
-	mon_cry CRY_CHIKORITA,  -$010,  $0b0 ; CHIKORITA
-	mon_cry CRY_CHIKORITA,  -$022,  $120 ; BAYLEEF
-	mon_cry CRY_CHIKORITA,  -$0b7,  $200 ; DUCKLEAF
+	mon_cry CRY_PSYDUCK,     $020,  $0e0 ; DUCKY
+	mon_cry CRY_PSYDUCK,     $060,  $0c0 ; DUCKLY
+	mon_cry CRY_PSYDUCK,     $099,  $17f ; DUCKLEAF
 	mon_cry CRY_CYNDAQUIL,   $347,  $080 ; CYNDAQUIL
 	mon_cry CRY_CYNDAQUIL,   $321,  $120 ; QUILAVA
 	mon_cry CRY_TYPHLOSION,  $f00,  $0d4 ; TYPHLOSION

@@ -151,8 +151,8 @@ PokedexDataPointerTable: ; 0x44378
 	dw DragonitePokedexEntry
 	dw MewtwoPokedexEntry
 	dw MewPokedexEntry
-	dw ChikoritaPokedexEntry
-	dw BayleefPokedexEntry
+	dw DuckyPokedexEntry
+	dw DucklyPokedexEntry
 	dw DuckleafPokedexEntry
 	dw CyndaquilPokedexEntry
 	dw QuilavaPokedexEntry

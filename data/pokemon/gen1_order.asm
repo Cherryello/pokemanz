@@ -190,8 +190,8 @@ Pokered_MonIndices: ; fb91c
 	db WEEPINBELL
 	db VICTREEBEL
 
-	db CHIKORITA
-	db BAYLEEF
+	db DUCKY
+	db DUCKLY
 	db DUCKLEAF
 	db CYNDAQUIL
 	db QUILAVA

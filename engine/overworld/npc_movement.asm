@@ -8,7 +8,7 @@ CanObjectMoveInDirection: ; 6ec1
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit NOCLIP_TILES_F, [hl] ; lost, uncomment next line to fix
-	; jr nz, .noclip_tiles
+	jr nz, .noclip_tiles
 	push hl
 	push bc
 	call WillObjectBumpIntoLand

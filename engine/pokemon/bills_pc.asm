@@ -2498,21 +2498,6 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	cp $2
 	jr z, .Name
 	cp $3
-	jr z, .Print
-	and a
-	ret
-
-.Print:
-	call GetBoxCount
-	and a
-	jr z, .EmptyBox
-	ld e, l
-	ld d, h
-	ld a, [wMenuSelection]
-	dec a
-	ld c, a
-	farcall PrintPCBox
-	call BillsPC_ClearTilemap
 	and a
 	ret
 

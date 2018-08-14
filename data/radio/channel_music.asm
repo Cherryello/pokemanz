@@ -1,7 +1,7 @@
 RadioChannelSongs:
 ; entries correspond to radio channel ids
 	dw MUSIC_POKEMON_TALK
-	dw MUSIC_POKEMON_CENTER
+	dw MUSIC_MONDIALI_06
 	dw MUSIC_TITLE
 	dw MUSIC_GAME_CORNER
 	dw MUSIC_BUENAS_PASSWORD

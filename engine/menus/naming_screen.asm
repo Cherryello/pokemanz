@@ -1,8 +1,8 @@
 NAMINGSCREEN_CURSOR     EQU $7e
 
-NAMINGSCREEN_BORDER     EQUS "\"■\"" ; $60
+NAMINGSCREEN_BORDER     EQUS "\"■\"" ; $d7
 NAMINGSCREEN_MIDDLELINE EQUS "\"→\"" ; $eb
-NAMINGSCREEN_UNDERLINE  EQUS "\"<DOT>\"" ; $f2
+NAMINGSCREEN_UNDERLINE  EQUS "\"☎\"" ; $d9
 
 _NamingScreen: ; 0x116b7
 	call DisableSpriteUpdates
@@ -99,7 +99,8 @@ NamingScreen: ; 116c1
 	rst FarCall ;  ; indirect jump to LoadMenuMonIcon (8e83f (23:683f))
 	ld a, [wCurPartySpecies]
 	ld [wd265], a
-	call GetPokemonName
+	ld de, .NicknameStrings
+	call PlaceString
 	hlcoord 5, 2
 	call PlaceString
 	ld l, c
@@ -124,8 +125,8 @@ NamingScreen: ; 116c1
 ; 11780 (4:5780)
 
 .NicknameStrings: ; 11780
-	db ",@"
-	db "che soprannome?@"
+	db "Che soprannome@"
+	db "vuoi dargli?@"
 
 ; 1178d
 
@@ -906,7 +907,7 @@ LoadNamingScreenGFX: ; 11c51
 	lb bc, BANK(NamingScreenGFX_UnderLine), 1
 	call Get1bpp
 
-	ld de, vTiles2 tile NAMINGSCREEN_BORDER
+	ld de, vTiles0 tile NAMINGSCREEN_BORDER
 	ld hl, NamingScreenGFX_Border
 	ld bc, 1 tiles
 	ld a, BANK(NamingScreenGFX_Border)

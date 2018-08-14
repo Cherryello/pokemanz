@@ -83,7 +83,7 @@ ClairGroup:
 Rival1Group:
 	; RIVAL1 (1)
 	db "?@", TRAINERTYPE_NORMAL
-	db  5, CHIKORITA
+	db  5, DUCKY
 	db -1 ; end
 
 	; RIVAL1 (2)
@@ -100,7 +100,7 @@ Rival1Group:
 	db "?@", TRAINERTYPE_NORMAL
 	db 12, GASTLY
 	db 14, ZUBAT
-	db 16, BAYLEEF
+	db 16, DUCKLY
 	db -1 ; end
 
 	; RIVAL1 (5)
@@ -122,7 +122,7 @@ Rival1Group:
 	db 20, HAUNTER,    LICK, SPITE, MEAN_LOOK, CURSE
 	db 18, MAGNEMITE,  TACKLE, THUNDERSHOCK, SUPERSONIC, SONICBOOM
 	db 20, ZUBAT,      LEECH_LIFE, SUPERSONIC, BITE, CONFUSE_RAY
-	db 22, BAYLEEF,    GROWL, REFLECT, RAZOR_LEAF, POISONPOWDER
+	db 22, DUCKLY,    GROWL, REFLECT, RAZOR_LEAF, POISONPOWDER
 	db -1 ; end
 
 	; RIVAL1 (8)
@@ -216,14 +216,14 @@ WillGroup:
 PKMNTrainerGroup:
 	; CAL (1)
 	db "CAL@", TRAINERTYPE_NORMAL
-	db 10, CHIKORITA
+	db 10, DUCKY
 	db 10, CYNDAQUIL
 	db 10, TOTODILE
 	db -1 ; end
 
 	; CAL (2)
 	db "CAL@", TRAINERTYPE_NORMAL
-	db 30, BAYLEEF
+	db 30, DUCKLY
 	db 30, QUILAVA
 	db 30, CROCONAW
 	db -1 ; end

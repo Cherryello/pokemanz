@@ -56,15 +56,6 @@ INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
 INCLUDE "home/flag.asm"
 
-Unreferenced_Function2ebb::
-	ld a, [wMonStatusFlags]
-	bit 1, a
-	ret z
-
-	ld a, [hJoyDown]
-	bit B_BUTTON_F, a
-	ret
-
 xor_a::
 	xor a
 	ret
@@ -72,13 +63,6 @@ xor_a::
 xor_a_dec_a::
 	xor a
 	dec a
-	ret
-
-Unreferenced_Function2ecb::
-	push hl
-	ld hl, wMonStatusFlags
-	bit 1, [hl]
-	pop hl
 	ret
 
 INCLUDE "home/sprite_updates.asm"

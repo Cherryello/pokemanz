@@ -304,10 +304,10 @@ PokemonPicPointers::
 	dba MewtwoBackpic
 	dba MewFrontpic
 	dba MewBackpic
-	dba ChikoritaFrontpic
-	dba ChikoritaBackpic
-	dba BayleefFrontpic
-	dba BayleefBackpic
+	dba DuckyFrontpic
+	dba DuckyBackpic
+	dba DucklyFrontpic
+	dba DucklyBackpic
 	dba DuckleafFrontpic
 	dba DuckleafBackpic
 	dba CyndaquilFrontpic

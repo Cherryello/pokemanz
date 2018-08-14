@@ -1,4 +1,4 @@
-; MeganiumPokedexEntry: ; 0x1cca54
+; DuckleafPokedexEntry: ; 0x1cca54
 	db "Paperba@" ; species name
 	dw 150, 407 ; height, width
 

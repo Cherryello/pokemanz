@@ -23,22 +23,15 @@ Unreferenced_Functionfb43f: ; fb43f
 _LoadStandardFont:: ; fb449
 	ld de, Font
 	ld hl, vTiles1
-	lb bc, BANK(Font), 128 ; "A" to "9"
-	ld a, [rLCDC]
-	bit rLCDC_ENABLE, a
-	jp z, Copy1bpp
-
-	ld de, Font
-	ld hl, vTiles1
 	lb bc, BANK(Font), 32 ; "A" to "]"
 	call Get1bpp_2
 	ld de, Font + 32 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $20
-	lb bc, BANK(Font), 32 ; "a" to $bf
+	lb bc, BANK(Font), 26 ; "a" to "z" (skip "┌" to "┘")
 	call Get1bpp_2
 	ld de, Font + 64 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $40
-	lb bc, BANK(Font), 32 ; "Ä" to "←"
+	lb bc, BANK(Font), 32 ; $c0 to "←"
 	call Get1bpp_2
 	ld de, Font + 96 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $60
@@ -48,27 +41,10 @@ _LoadStandardFont:: ; fb449
 ; fb48a
 
 _LoadFontsExtra1:: ; fb48a
-	ld de, FontsExtra_SolidBlackGFX
-	ld hl, vTiles2 tile "■" ; $60
-	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
-	call Get1bpp_2
-	ld de, PokegearPhoneIconGFX
-	ld hl, vTiles2 tile "☎" ; $62
-	lb bc, BANK(PokegearPhoneIconGFX), 1
-	call Get2bpp_2
-	ld de, FontExtra + 3 tiles ; "<BOLD_D>"
-	ld hl, vTiles2 tile "<BOLD_D>"
-	lb bc, BANK(FontExtra), 22 ; "<BOLD_D>" to "ぉ"
-	call Get2bpp_2
 	jr LoadFrame
 ; fb4b0
 
 _LoadFontsExtra2:: ; fb4b0
-	ld de, FontsExtra2_UpArrowGFX
-	ld hl, vTiles2 tile "▲" ; $61
-	ld b, BANK(FontsExtra2_UpArrowGFX)
-	ld c, 1
-	call Get2bpp_2
 	ret
 ; fb4be
 
@@ -88,7 +64,7 @@ LoadFrame: ; fb4cc
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, vTiles2 tile "┌" ; $79
+	ld hl, vTiles0 tile "┌" ; $ba
 	lb bc, BANK(Frames), 6 ; "┌" to "┘"
 	call Get1bpp_2
 	ld hl, vTiles2 tile " " ; $7f

@@ -102,14 +102,14 @@ Text_ABoostedStringBuffer2ExpPoints::
 	text_start
 	line "la bellezza di"
 	cont "@"
-	deciram wStringBuffer2, 2, 4
+	deciram wStringBuffer2, 2, 5
 	text " Punti ESP.!"
 	prompt
 
 Text_StringBuffer2ExpPoints::
 	text_start
 	line "@"
-	deciram wStringBuffer2, 2, 4
+	deciram wStringBuffer2, 2, 5
 	text " Punti ESP.!"
 	prompt
 

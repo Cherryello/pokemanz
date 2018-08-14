@@ -115,13 +115,6 @@ OverworldTownMap: ; c2c0
 	ret
 ; c2cd
 
-UnownPrinter: ; c2cd
-	call FadeToMenu
-	farcall _UnownPrinter
-	call ExitAllMenus
-	ret
-; c2da
-
 DisplayLinkRecord: ; c2da
 	call FadeToMenu
 	farcall _DisplayLinkRecord
@@ -455,13 +448,6 @@ Diploma: ; c49f
 	call ExitAllMenus
 	ret
 ; c4ac
-
-PrintDiploma: ; c4ac
-	call FadeToMenu
-	farcall _PrintDiploma
-	call ExitAllMenus
-	ret
-; c4b9
 
 TrainerHouse: ; 0xc4b9
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)

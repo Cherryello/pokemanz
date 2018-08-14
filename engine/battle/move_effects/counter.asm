@@ -39,7 +39,7 @@ BattleCommand_Counter: ; 35813
 	ld hl, wCurDamage
 	ld a, [hli]
 	or [hl]
-	ret z
+	jp z, .failed
 
 	ld a, [hl]
 	add a
@@ -58,3 +58,10 @@ BattleCommand_Counter: ; 35813
 	ret
 
 ; 35864
+
+.failed
+	ld a, 1
+	ld [wEffectFailed], a
+	and a
+	ret
+	

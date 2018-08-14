@@ -26,55 +26,54 @@ _OakText7::
 	done
 
 UnknownText_0x1c40e6::
-	text "The clock's time"
-	line "may be wrong."
+	text "L'ora potrebbe non"
+	line "essere corretta."
 
-	para "Please reset the"
-	line "time."
+	para "Regola di nuovo"
+	line "l'orologio."
 	prompt
 
 UnknownText_0x1c411c::
-	text "Set with the"
-	line "Control Pad."
+	text "Regola con la"
+	line "pulsantiera di"
+	cont "comando."
 
-	para "Confirm: A Button"
-	line "Cancel:  B Button"
+	para "Conferma: A"
+	line "Annulla: B"
 	done
 
 UnknownText_0x1c415b::
-	text "Is this OK?"
+	text "Va bene?"
 	done
 
 UnknownText_0x1c4168::
-	text "The clock has been"
-	line "reset."
+	text "Hai regolato"
+	line "l'ora."
 	done
 
 UnknownText_0x1c4183::
-	text "Too much time has"
-	line "elapsed. Please"
-	cont "try again."
+	text "È scaduto il"
+	line "tempo. Riprova."
 	prompt
 
 UnknownText_0x1c41b1::
-	text "If you trade that"
-	line "#MON, you won't"
-	cont "be able to battle."
+	text "Se scambi quel"
+	line "#mon, non"
+	cont "potrai combattere."
 	prompt
 
 UnknownText_0x1c41e6::
-	text "Your friend's"
-	line "@"
+	text "@"
 	text_from_ram wStringBuffer1
-	text " appears"
-	cont "to be abnormal!"
+	text " del tuo"
+	cont "amico è corrotto!"
 	prompt
 
 UnknownText_0x1c4212::
-	text "Trade @"
+	text "Scambi @"
 	text_from_ram wd004
 	text_start
-	line "for @"
+	line "per @"
 	text_from_ram wStringBuffer1
 	text "?"
 	done

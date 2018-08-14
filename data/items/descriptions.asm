@@ -375,8 +375,8 @@ LuckyPunchDesc:
 	next "ratio of CHANSEY.@"
 
 CalciumDesc:
-	db   "Ups SPECIAL stats"
-	next "of one #MON.@"
+	db   "Aumenta l'Att. Sp."
+	next "di un #mon.@"
 
 RareCandyDesc:
 	db   "Raises level of a"

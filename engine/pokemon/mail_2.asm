@@ -59,7 +59,6 @@ ReadAnyMail: ; b9237
 .pressed_start
 	ld a, [wJumptableIndex]
 	push af
-	callfar PrintMail ; printer
 	pop af
 	ld [wJumptableIndex], a
 	jr .loop

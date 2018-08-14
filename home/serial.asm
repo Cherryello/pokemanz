@@ -11,8 +11,6 @@ Serial:: ; 6ef
 	jr nz, .mobile
 
 	ld a, [wPrinterConnectionOpen]
-	bit 0, a
-	jr nz, .printer
 
 	ld a, [hSerialConnectionStatus]
 	inc a ; is it equal to CONNECTION_NOT_ESTABLISHED?
@@ -36,10 +34,6 @@ Serial:: ; 6ef
 
 .mobile
 	call MobileReceive
-	jr .end
-
-.printer
-	call PrinterReceive
 	jr .end
 
 .establish_connection
@@ -399,18 +393,3 @@ LinkDataReceived:: ; 908
 	ld [rSC], a
 	ret
 ; 919
-
-Unreferenced_Function919:: ; 919
-	ld a, [wLinkMode]
-	and a
-	ret nz
-	ld a, USING_INTERNAL_CLOCK
-	ld [rSB], a
-	xor a
-	ld [hSerialReceive], a
-	ld a, 0 << rSC_ON
-	ld [rSC], a
-	ld a, 1 << rSC_ON
-	ld [rSC], a
-	ret
-; 92e

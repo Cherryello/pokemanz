@@ -124,7 +124,7 @@ CopyNameFromMenu::
 
 
 YesNoBox:: ; 1dcf
-	lb bc, SCREEN_WIDTH - 6, 7
+	lb bc, SCREEN_WIDTH - 5, 8
 
 PlaceYesNoBox:: ; 1dd2
 	jr _YesNoBox
@@ -150,7 +150,7 @@ _YesNoBox:: ; 1dd9
 .okay
 	ld a, b
 	ld [wMenuBorderLeftCoord], a
-	add 5
+	add 4
 	ld [wMenuBorderRightCoord], a
 	ld a, c
 	ld [wMenuBorderTopCoord], a
@@ -189,8 +189,8 @@ YesNoMenuHeader:: ; 1e1d
 .MenuData: ; 1e25
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
-	db "YES@"
-	db "NO@"
+	db "SÌ@"
+	db "No@"
 ; 1e2e
 
 OffsetMenuHeader:: ; 1e2e
@@ -448,16 +448,6 @@ PlaceNthMenuStrings:: ; 1f8d
 	call PlaceString
 	ret
 ; 1f9e
-
-Unreferenced_Function1f9e:: ; 1f9e
-	call GetMenuDataPointerTableEntry
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a
-	ret
-; 1fa7
 
 MenuJumptable:: ; 1fa7
 	ld a, [wMenuSelection]

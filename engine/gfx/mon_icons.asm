@@ -1,6 +1,7 @@
 LoadOverworldMonIcon: ; 8e82b
 	ld a, e
-	call ReadMonMenuIcon
+	push af
+	ld [wCurIcon], a
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -9,8 +10,8 @@ LoadOverworldMonIcon: ; 8e82b
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld b, BANK(Icons)
-	ld c, 8
+	pop af
+	call GetIconBank
 	ret
 ; 8e83f
 
@@ -281,16 +282,6 @@ FlyFunction_GetMonIcon: ; 8e9bc (23:69bc)
 	ret
 ; 8e9cc (23:69cc)
 
-Unreferenced_GetMonIcon2: ; 8e9cc
-	push de
-	ld a, [wd265]
-	call ReadMonMenuIcon
-	ld [wCurIcon], a
-	pop de
-	call GetIcon_de
-	ret
-; 8e9db
-
 GetMemIconGFX: ; 8e9db (23:69db)
 	ld a, [wCurIconTile]
 GetIconGFX: ; 8e9de
@@ -347,12 +338,20 @@ endr
 	ld d, [hl]
 	pop hl
 
-	lb bc, BANK(Icons), 8
+	call GetIconBank
 	call GetGFXUnlessMobile
 
 	pop hl
 	ret
 ; 8ea3f
+
+GetIconBank:
+	ld a, [wCurIcon]
+	cp TAUROS ; last mon in Icons1
+	lb bc, BANK("Mon Icons 1"), 8
+	ret c
+	ld b, BANK("Mon Icons 2")
+	ret
 
 GetGFXUnlessMobile: ; 8ea3f
 	ld a, [wLinkMode]

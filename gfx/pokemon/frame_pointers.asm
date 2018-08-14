@@ -150,8 +150,8 @@ FramesPointers:
 	dw DragoniteFrames
 	dw MewtwoFrames
 	dw MewFrames
-	dw ChikoritaFrames
-	dw BayleefFrames
+	dw DuckyFrames
+	dw DucklyFrames
 	dw DuckleafFrames
 	dw CyndaquilFrames
 	dw QuilavaFrames

@@ -2995,9 +2995,15 @@ LostBattle: ; 3d38e
 	bit 0, a
 	jr nz, .battle_tower
 
-	ld a, [wBattleType]
-	cp BATTLETYPE_CANLOSE
-	jr nz, .not_canlose
+	ld a, [wBattleMode]
+	dec a ; wild?
+	jr z, .no_loss_text
+
+	ld hl, wLossTextPointer
+	ld a, [hli]
+	ld h, [hl]
+	and h
+	jr z, .no_loss_text
 
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
@@ -3033,7 +3039,7 @@ LostBattle: ; 3d38e
 	call ClearBGPalettes
 	ret
 
-.not_canlose
+.no_loss_text
 	ld a, [wLinkMode]
 	and a
 	jr nz, .LostLinkBattle
@@ -5922,8 +5928,7 @@ CheckPlayerHasUsableMoves: ; 3e786
 	jr .loop
 
 .done
-	; Bug: this will result in a move with PP Up confusing the game.
-	and a ; should be "and PP_MASK"
+	and PP_MASK
 	ret nz
 
 .force_struggle
@@ -6334,7 +6339,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
 	ld a, [wMagikarpLength]
-	cp HIGH(1536) ; should be "cp 5", since 1536 mm = 5'0", but HIGH(1536) = 6
+	cp 5
 	jr nz, .CheckMagikarpArea
 
 ; 5% chance of skipping both size checks
@@ -6343,7 +6348,7 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .CheckMagikarpArea
 ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 3 inches)
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1616) ; should be "cp 3", since 1616 mm = 5'3", but LOW(1616) = 80
+	cp 3
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
@@ -6352,29 +6357,16 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .CheckMagikarpArea
 ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 2 inches)
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1600) ; should be "cp 2", since 1600 mm = 5'2", but LOW(1600) = 64
+	cp 2
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
-; The "jr z" checks are supposed to be "jr nz".
-
-; Instead, all maps in GROUP_LAKE_OF_RAGE (Mahogany area)
-; and Routes 20 and 44 are treated as Lake of Rage.
-
-; This also means Lake of Rage Magikarp can be smaller than ones
-; caught elsewhere rather than the other way around.
-
-; Intended behavior enforces a minimum size at Lake of Rage.
-; The real behavior prevents a minimum size in the Lake of Rage area.
-
-; Moreover, due to the check not being translated to feet+inches, all Magikarp
-; smaller than 4'0" may be caught by the filter, a lot more than intended.
 	ld a, [wMapGroup]
 	cp GROUP_LAKE_OF_RAGE
-	jr z, .Happiness
+	jr nz, .Happiness
 	ld a, [wMapNumber]
 	cp MAP_LAKE_OF_RAGE
-	jr z, .Happiness
+	jr nz, .Happiness
 ; 40% chance of not flooring
 	call Random
 	cp 40 percent - 2
@@ -6396,7 +6388,7 @@ LoadEnemyMon: ; 3e8eb
 ; Fill stats
 	ld de, wEnemyMonMaxHP
 	ld b, FALSE
-	ld hl, wEnemyMonDVs - (MON_DVS - MON_STAT_EXP + 1) ; wLinkBattleRNs + 7 ; ?
+	ld hl, wEnemyMonDVs - (MON_DVS - MON_EVS + 1) ; wLinkBattleRNs + 7 ; ?
 	predef CalcMonStats
 
 ; If we're in a trainer battle,
@@ -7201,60 +7193,62 @@ GiveExperiencePoints: ; 3ee3b
 	pop bc
 	jp z, .skip_stats
 
-; give stat exp
-	ld hl, MON_STAT_EXP + 1
+; Give EVs
+; e = 0 for no Pokerus, 1 for Pokerus
+	ld e, 0
+	ld hl, MON_PKRUS
 	add hl, bc
-	ld d, h
-	ld e, l
-	ld hl, wEnemyMonBaseStats - 1
-	push bc
-	ld c, $5
-.loop1
-	inc hl
-	ld a, [de]
-	add [hl]
-	ld [de], a
-	jr nc, .okay1
-	dec de
-	ld a, [de]
-	inc a
-	jr z, .next
-	ld [de], a
-	inc de
-
-.okay1
-	push hl
-	push bc
-	ld a, MON_PKRUS
-	call GetPartyParamLocation
 	ld a, [hl]
 	and a
-	pop bc
-	pop hl
-	jr z, .skip
-	ld a, [de]
+	jr z, .no_pokerus
+	inc e
+.no_pokerus
+	ld hl, MON_EVS
+	add hl, bc
+	push bc
+	ld a, [wEnemyMonSpecies]
+	ld [wCurSpecies], a
+	call GetBaseData
+; EV yield format: %hhaaddss %ttff0000
+; h = hp, a = atk, d = def, s = spd
+; t = sat, f = sdf, 0 = unused bits
+	ld a, [wBaseHPAtkDefSpdEVs]
+	ld b, a
+	ld c, 6 ; six EVs
+.ev_loop
+	rlc b
+	rlc b
+	ld a, b
+	and %11
+	bit 0, e
+	jr z, .no_pokerus_boost
+	add a
+.no_pokerus_boost
 	add [hl]
-	ld [de], a
-	jr nc, .skip
-	dec de
-	ld a, [de]
-	inc a
-	jr z, .next
-	ld [de], a
-	inc de
-	jr .skip
-
-.next
-	ld a, $ff
-	ld [de], a
-	inc de
-	ld [de], a
-
-.skip
-	inc de
-	inc de
+	jr c, .ev_overflow
+	cp MAX_EV + 1
+	jr c, .got_ev
+.ev_overflow
+	ld a, MAX_EV
+.got_ev
+	ld [hli], a
 	dec c
-	jr nz, .loop1
+	jr z, .evs_done
+; Use the second byte for Sp.Atk and Sp.Def
+	ld a, c
+	cp 2 ; two stats left, Sp.Atk and Sp.Def
+	jr nz, .ev_loop
+	ld a, [wBaseSpAtkSpDefEVs]
+	ld b, a
+	jr .ev_loop
+.evs_done
+	pop bc
+	ld hl, MON_LEVEL
+	add hl, bc
+	ld a, [hl]
+	cp MAX_LEVEL
+	jp nc, .skip_stats
+	push bc
 	xor a
 	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a
@@ -7315,7 +7309,7 @@ GiveExperiencePoints: ; 3ee3b
 	push bc
 	call LoadTileMapToTempTileMap
 	pop bc
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EVS - 1
 	add hl, bc
 	ld d, [hl]
 	ld a, [hQuotient + 2]
@@ -7347,7 +7341,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld d, MAX_LEVEL
 	callfar CalcExpAtLevel
 	pop bc
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EVS - 1
 	add hl, bc
 	push bc
 	ld a, [hQuotient]
@@ -7406,7 +7400,7 @@ GiveExperiencePoints: ; 3ee3b
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EVS - 1
 	add hl, bc
 	push bc
 	ld b, TRUE
@@ -7553,10 +7547,30 @@ GiveExperiencePoints: ; 3ee3b
 	ld c, PARTY_LENGTH
 	ld d, 0
 .count_loop
+	push bc
+	push de
+	ld a, [wPartyCount]
+	cp c
+	jr c, .no_mon
+	ld a, c
+	dec a
+	ld hl, wPartyMon1Level
+	call GetPartyLocation
+	ld a, [hl]
+.no_mon
+	cp MAX_LEVEL
+	pop de
+	pop bc
+	jr nz, .gains_exp
+	srl b
+	ld a, d
+	jr .no_exp
+.gains_exp
 	xor a
 	srl b
 	adc d
 	ld d, a
+.no_exp
 	dec c
 	jr nz, .count_loop
 	cp 2

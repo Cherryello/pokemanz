@@ -1,6 +1,3 @@
-FontExtra:
-INCBIN "gfx/font/font_extra.2bpp"
-
 Font:
 INCBIN "gfx/font/font.1bpp"
 
@@ -41,10 +38,6 @@ TownMapGFX: ; f8ba0
 INCBIN "gfx/pokegear/town_map.2bpp.lz"
 ; f8ea4
 
-PokegearPhoneIconGFX: ; f8f24
-INCBIN "gfx/font/phone_icon.2bpp"
-; f8f34
-
 UnusedBoldFontGFX: ; unused bold letters + unown chars
 INCBIN "gfx/font/unused_bold_font.1bpp"
 ; f9204
@@ -52,10 +45,6 @@ INCBIN "gfx/font/unused_bold_font.1bpp"
 TextBoxSpaceGFX: ; f9204
 INCBIN "gfx/frames/space.1bpp"
 ; f9214
-
-FontsExtra_SolidBlackGFX: ; f9214
-INCBIN "gfx/font/black.1bpp"
-; f921c
 
 UnusedUpArrowGFX: ; unused up arrow + whitespace
 INCBIN "gfx/font/unused_up_arrow.1bpp"
@@ -68,10 +57,6 @@ INCBIN "gfx/mobile/phone_tiles.2bpp"
 MapEntryFrameGFX: ; f9344
 INCBIN "gfx/frames/map_entry_sign.2bpp"
 ; f9424
-
-FontsExtra2_UpArrowGFX: ; f9424
-INCBIN "gfx/font/up_arrow.2bpp"
-; f9434
 
 Footprints: ; f9434
 INCLUDE "gfx/footprints.asm"

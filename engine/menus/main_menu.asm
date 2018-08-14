@@ -48,25 +48,16 @@ MainMenu: ; 49cdc
 	db "Continua@"
 	db "Nuovo gioco@"
 	db "Opzioni@"
-	db "Dono Segreto@"
-	db "Cellulare@"
-	db "Mobile Stadium@"
 
 .Jumptable: ; 0x49d60
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
 	dw MainMenu_Options
-	dw MainMenu_MysteryGift
-	dw MainMenu_Mobile
-	dw MainMenu_MobileStudium
 ; 0x49d6c
 
 CONTINUE       EQU 0
 NEW_GAME       EQU 1
 OPTION         EQU 2
-MYSTERY_GIFT   EQU 3
-MOBILE         EQU 4
-MOBILE_STUDIUM EQU 5
 
 MainMenuItems:
 
@@ -83,68 +74,6 @@ ContinueMenu: ; 0x49d70
 	db OPTION
 	db -1
 
-MobileMysteryMenu: ; 0x49d75
-	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE
-	db -1
-
-MobileMenu: ; 0x49d7c
-	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE
-	db -1
-
-MobileStudiumMenu: ; 0x49d82
-	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE
-	db MOBILE_STUDIUM
-	db -1
-
-MysteryMobileStudiumMenu: ; 0x49d89
-	db 6
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE
-	db MOBILE_STUDIUM
-	db -1
-
-MysteryMenu: ; 0x49d91
-	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db -1
-
-MysteryStudiumMenu: ; 0x49d97
-	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE_STUDIUM
-	db -1
-
-StudiumMenu: ; 0x49d9e
-	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE_STUDIUM
-	db -1
-
-
 MainMenu_GetWhichMenu: ; 49da4
 	nop
 	nop
@@ -160,15 +89,8 @@ MainMenu_GetWhichMenu: ; 49da4
 	cp $1
 	ld a, $1
 	ret nz
-	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
-	call GetSRAMBank
-	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp -1
 	call CloseSRAM
-	jr nz, .mystery_gift
-	; This check makes no difference.
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F, a
 	ld a, $1 ; Continue
 	jr z, .ok
 	jr .ok
@@ -179,21 +101,6 @@ MainMenu_GetWhichMenu: ; 49da4
 .ok2
 	ld a, $1 ; Continue
 	ret
-
-.mystery_gift
-	; This check makes no difference.
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F, a
-	jr z, .ok3
-	jr .ok3
-
-.ok3
-	jr .ok4
-
-.ok4
-	ld a, $6 ; Mystery Gift
-	ret
-; 49de4
 
 MainMenuJoypadLoop: ; 49de4
 	call SetUpMenu
@@ -355,8 +262,3 @@ MainMenu_Continue: ; 49eee
 	farcall Continue
 	ret
 ; 49ef5
-
-MainMenu_MysteryGift: ; 49ef5
-	farcall MysteryGift
-	ret
-; 49efc

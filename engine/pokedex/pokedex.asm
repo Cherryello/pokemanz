@@ -432,7 +432,6 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	dw Pokedex_Page
 	dw .Area
 	dw .Cry
-	dw .Print
 
 .Area: ; 402fa
 	call Pokedex_BlackOutBG
@@ -466,40 +465,8 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	ret
 
 .Cry: ; 40340
-	call Pokedex_GetSelectedMon
-	ld a, [wd265]
-	call GetCryIndex
-	ld e, c
-	ld d, b
-	call PlayCry
-	ret
-
-.Print: ; 4034f
-	call Pokedex_ApplyPrintPals
-	xor a
-	ld [hSCX], a
-	ld a, [wPrevDexEntryBackup]
-	push af
-	ld a, [wPrevDexEntryJumptableIndex]
-	push af
-	ld a, [wJumptableIndex]
-	push af
-	farcall PrintDexEntry
-	pop af
-	ld [wJumptableIndex], a
-	pop af
-	ld [wPrevDexEntryJumptableIndex], a
-	pop af
-	ld [wPrevDexEntryBackup], a
-	call ClearBGPalettes
-	call DisableLCD
-	call Pokedex_LoadInvertedFont
-	call Pokedex_RedisplayDexEntry
-	call EnableLCD
-	call WaitBGMap
-	ld a, POKEDEX_SCX
-	ld [hSCX], a
-	call Pokedex_ApplyUsualPals
+	ld a, [wCurPartySpecies]
+	call PlayMonCry
 	ret
 
 Pokedex_RedisplayDexEntry: ; 4038d

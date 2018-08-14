@@ -2260,6 +2260,8 @@ BattleCommand_FailureText: ; 35023
 	jr z, .multihit
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multihit
+	cp EFFECT_BEAT_UP
+	jr z, .multihit
 	jp EndMoveEffect
 
 .multihit
@@ -2736,6 +2738,17 @@ DittoMetalPowder: ; 352b1
 .done
 	scf
 	rr c
+
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp b
+	jr c, .cap
+	ld a, LOW(MAX_STAT_VALUE)
+	cp c
+	ret nc
+
+.cap
+	ld b, HIGH(MAX_STAT_VALUE)
+	ld c, LOW(MAX_STAT_VALUE)
 	ret
 
 ; 352dc
@@ -2927,9 +2940,6 @@ TruncateHL_BC: ; 3534d
 	inc l
 
 .finish
-	ld a, [wLinkMode]
-	cp 3
-	jr z, .done
 ; If we go back to the loop point,
 ; it's the same as doing this exact
 ; same check twice.
@@ -2937,7 +2947,6 @@ TruncateHL_BC: ; 3534d
 	or b
 	jr nz, .loop
 
-.done
 	ld b, l
 	ret
 
@@ -3073,6 +3082,17 @@ SpeciesItemBoost: ; 353d1
 ; Double the stat
 	sla l
 	rl h
+
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+
+.cap
+	ld h, HIGH(MAX_STAT_VALUE)
+	ld l, LOW(MAX_STAT_VALUE)
 	ret
 
 ; 353f6
@@ -5699,8 +5719,7 @@ BattleCommand_EndLoop: ; 369b6
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
 	res SUBSTATUS_IN_LOOP, [hl]
-	call BattleCommand_BeatUpFailText
-	jp EndMoveEffect
+	ret
 
 .not_triple_kick
 	call BattleRandom
@@ -7171,12 +7190,8 @@ INCLUDE "engine/battle/move_effects/future_sight.asm"
 
 INCLUDE "engine/battle/move_effects/thunder.asm"
 
-
-CheckHiddenOpponent: ; 37daa
-; BUG: This routine should account for Lock-On and Mind Reader.
-	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVar
-	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+CheckHiddenOpponent:
+	xor a
 	ret
 
 ; 37db2

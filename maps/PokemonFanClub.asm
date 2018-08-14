@@ -107,7 +107,7 @@ PokemonFanClubClefairyDollScript:
 PokemonFanClubBayleefScript:
 	opentext
 	writetext FanClubBayleefText
-	cry BAYLEEF
+	cry DUCKY
 	waitbutton
 	closetext
 	end
@@ -264,7 +264,7 @@ UnknownText_0x191d58:
 
 PokemonFanClubTeacherText:
 	text "Look at my darling"
-	line "BAYLEEF!"
+	line "Ducky!"
 
 	para "The leaf on its"
 	line "head is so cute!"
@@ -280,7 +280,7 @@ ClefairyDollText:
 	done
 
 FanClubBayleefText:
-	text "BAYLEEF: Li liif!"
+	text "Ducky: Li liif!"
 	done
 
 PokemonFanClubListenSignText:

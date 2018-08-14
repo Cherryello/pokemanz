@@ -1,7 +1,7 @@
 JohtoFrames: ; used only for BANK(JohtoFrames)
 
-ChikoritaFrames:  INCLUDE "gfx/pokemon/chikorita/frames.asm"
-BayleefFrames:    INCLUDE "gfx/pokemon/bayleef/frames.asm"
+DuckyFrames:      INCLUDE "gfx/pokemon/ducky/frames.asm"
+DucklyFrames:     INCLUDE "gfx/pokemon/duckly/frames.asm"
 DuckleafFrames:   INCLUDE "gfx/pokemon/duckleaf/frames.asm"
 CyndaquilFrames:  INCLUDE "gfx/pokemon/cyndaquil/frames.asm"
 QuilavaFrames:    INCLUDE "gfx/pokemon/quilava/frames.asm"

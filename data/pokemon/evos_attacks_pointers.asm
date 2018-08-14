@@ -152,8 +152,8 @@ EvosAttacksPointers:: ; 0x425b1
 	dw DragoniteEvosAttacks
 	dw MewtwoEvosAttacks
 	dw MewEvosAttacks
-	dw ChikoritaEvosAttacks
-	dw BayleefEvosAttacks
+	dw DuckyEvosAttacks
+	dw DucklyEvosAttacks
 	dw DuckleafEvosAttacks
 	dw CyndaquilEvosAttacks
 	dw QuilavaEvosAttacks

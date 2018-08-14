@@ -1,3 +1,8 @@
+evs: MACRO
+	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
+	db (\5 << 6) | (\6 << 4)
+ENDM
+
 tmhm: MACRO
 ; used in data/pokemon/base_stats/*.asm
 tms1 = 0 ; TM01-TM24 (24)
@@ -183,8 +188,8 @@ INCLUDE "data/pokemon/base_stats/dragonair.asm"
 INCLUDE "data/pokemon/base_stats/dragonite.asm"
 INCLUDE "data/pokemon/base_stats/mewtwo.asm"
 INCLUDE "data/pokemon/base_stats/mew.asm"
-INCLUDE "data/pokemon/base_stats/chikorita.asm"
-INCLUDE "data/pokemon/base_stats/bayleef.asm"
+INCLUDE "data/pokemon/base_stats/ducky.asm"
+INCLUDE "data/pokemon/base_stats/duckly.asm"
 INCLUDE "data/pokemon/base_stats/duckleaf.asm"
 INCLUDE "data/pokemon/base_stats/cyndaquil.asm"
 INCLUDE "data/pokemon/base_stats/quilava.asm"
