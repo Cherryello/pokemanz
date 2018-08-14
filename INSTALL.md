@@ -3,7 +3,7 @@
 I file sorgente sono assemblati in una ROM usando [**rgbds**](https://github.com/rednex/rgbds).
 In questa pagina ti verrà spiegato come impostare i programmi necessari alla compilazione.
 
-Semmai dovessi avere un problema, puoi chiedere aiuto su IRC o Discord (vedi in Pokémon Crystal nel [README.md](README.md)).
+Semmai dovessi avere un problema, puoi chiedere aiuto su IRC o Discord (vedi in pokecrystal nel [README.md](README.md)).
 
 ## Linux
 
