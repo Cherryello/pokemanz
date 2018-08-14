@@ -53,7 +53,7 @@ make
 
 Scarica [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** per Windows a 64 bit, **setup-x86.exe** per quello a 32 bit.
 
-Avvia il setup a lascia le impostazioni di default. In "Select Packages", imposta da installare i seguenti:
+Avvia il setup e lascia le impostazioni di default. In "Select Packages", scegli di installare le seguenti funzioni:
 
 - `make`
 - `git`
@@ -61,7 +61,8 @@ Avvia il setup a lascia le impostazioni di default. In "Select Packages", impost
 
 Quindi scarica [**rgbds**](https://github.com/rednex/rgbds/releases/): vai per l'ultima release di **win64.tar.gz** o **win32.tar.gz**. Estraine il contenuto e metti tutti gli `exe` e i `dll` in **C:\Cygwin64\usr\local\bin**.
 
-**N.B. Se hai un vecchio rgbds, aggiorna alla 0.3.3 o successiva.** Ignora questo avvertimento se non hai mai scaricato rgbds.
+**N.B. Se hai una vecchia versione di rgbds, aggiorna alla 0.3.3 o successiva.** Ignora questo avvertimento se non hai mai scaricato rgbds.
+
 Nel **terminale di Cygwin**, digita questi comandi:
 
 ```bash
