@@ -238,27 +238,11 @@ BillsPCDepositMenuHeader: ; 0xe253d (38:653d)
 .MenuData: ; 0xe2545 (38:6545)
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "DEPOSIT@"
-	db "STATS@"
-	db "RELEASE@"
-	db "CANCEL@"
+	db "Deposita@"
+	db "Info@"
+	db "Libera@"
+	db "Esci@"
 ; 0xe2564 (38:6564)
-
-Unreferenced_BillsPCClearThreeBoxes: ; e2564
-	hlcoord 0, 0
-	ld b,  4
-	ld c,  8
-	call ClearBox
-	hlcoord 0, 4
-	ld b, 10
-	ld c,  9
-	call ClearBox
-	hlcoord 0, 14
-	ld b,  2
-	ld c,  8
-	call ClearBox
-	ret
-; e2583
 
 _WithdrawPKMN: ; e2583 (38:6583)
 	ld hl, wOptions
@@ -1582,23 +1566,6 @@ endr
 	db -1
 ; e2ed5
 
-Unreferenced_BillsPC_FillBox: ; e2ed5
-.row
-	push bc
-	push hl
-.col
-	ld [hli], a
-	dec c
-	jr nz, .col
-	pop hl
-	ld bc, SCREEN_WIDTH
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .row
-	ret
-; e2ee5
-
 BillsPC_CheckSpaceInDestination: ; e2ee5
 ; If moving within a box, no need to be here.
 	ld hl, wBillsPC_LoadedBox
@@ -2015,7 +1982,8 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 ; e3233
 
 .Saving_LeaveOn:
-	db "Saving… Leave ON!@"
+	db	 "Salvando i dati…"
+	line "Non spegnere!@"
 ; e3245
 
 .Jumptable: ; e3245
@@ -2273,16 +2241,16 @@ PCSelectLZ: INCBIN "gfx/pc/pc.2bpp.lz"
 PCMailGFX:  INCBIN "gfx/pc/pc_mail.2bpp"
 ; e34dd
 
-PCString_ChooseaPKMN: db "Choose a <PK><MN>.@"
+PCString_ChooseaPKMN: db "Scegli un <PK><MN>.@"
 PCString_WhatsUp: db "What's up?@"
-PCString_ReleasePKMN: db "Release <PK><MN>?@"
-PCString_MoveToWhere: db "Move to where?@"
-PCString_ItsYourLastPKMN: db "It's your last <PK><MN>!@"
-PCString_TheresNoRoom: db "There's no room!@"
+PCString_ReleasePKMN: db "Liberi <PK><MN>?@"
+PCString_MoveToWhere: db "Dove lo sposti?@"
+PCString_ItsYourLastPKMN: db "Non hai altri <PK><MN>!@"
+PCString_TheresNoRoom: db "Non c'è spazio!@"
 PCString_NoMoreUsablePKMN: db "No more usable <PK><MN>!@"
 PCString_RemoveMail: db "Remove MAIL.@"
-PCString_ReleasedPKMN: db "Released <PK><MN>.@"
-PCString_Bye: db "Bye,@"
+PCString_ReleasedPKMN: db "Liberi <PK><MN>.@"
+PCString_Bye: db "Ciao,@"
 PCString_Stored: db "Stored @"
 PCString_Got: db "Got @"
 PCString_Non: db "Non.@"
@@ -2396,7 +2364,7 @@ BillsPC_PrintBoxCountAndCapacity: ; e3632
 ; e3663
 
 .Pokemon: ; e3663
-	db "#MON@"
+	db "#mon@"
 ; e3668
 
 .out_of_20 ; e3668
@@ -2551,10 +2519,10 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 .MenuData: ; 0xe3783
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "SWITCH@"
-	db "NAME@"
-	db "PRINT@"
-	db "QUIT@"
+	db "Cambia@"
+	db "Nome@"
+	db "Null@"
+	db "Esci@"
 ; 0xe379c
 
 BillsPC_PlaceChooseABoxString: ; e379c (38:779c)
@@ -2563,7 +2531,7 @@ BillsPC_PlaceChooseABoxString: ; e379c (38:779c)
 ; e37a1 (38:77a1)
 
 .ChooseABox: ; e37a1
-	db "Choose a BOX.@"
+	db "Scegli un box.@"
 ; e37af
 
 BillsPC_PlaceWhatsUpString: ; e37af (38:77af)
@@ -2587,7 +2555,7 @@ BillsPC_PlaceEmptyBoxString_SFX: ; e37be (38:77be)
 ; e37d3 (38:77d3)
 
 .NoMonString: ; e37d3
-	db "There's no #MON.@"
+	db "Nessun #mon.@"
 ; e37e3
 
 BillsPC_PlaceChangeBoxString: ; e37e3 (38:77e3)

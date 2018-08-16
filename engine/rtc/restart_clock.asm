@@ -219,14 +219,6 @@ RestartClock: ; 20021 (8:4021)
 	ret
 ; 20160 (8:4160)
 
-.unreferenced ; 20160
-; unused
-	ld a, [wBuffer3]
-	ld b, a
-	call Coord2Tile
-	ret
-; 20168
-
 .PlaceChars: ; 20168 (8:4168)
 	push de
 	call RestartClock_GetWraparoundTime
@@ -241,13 +233,3 @@ RestartClock: ; 20021 (8:4021)
 	ld [hl], e
 	ret
 ; 2017c (8:417c)
-
-UnreferencedString_HourJP: ; 2017c
-; unused
-	db "じ@" ; HR
-; 2017e
-
-UnreferencedString_MinuteJP: ; 2017e
-; unused
-	db "ふん@" ; MIN
-; 20181

@@ -426,22 +426,8 @@ TMHMPocket_GetCurrentLineCoord: ; 2ca86 (b:4a86)
 	ret
 ; 2ca95 (b:4a95)
 
-Unreferenced_Function2ca95: ; 2ca95
-	pop hl
-	ld bc, 3
-	add hl, bc
-	predef GetTMHMMove
-	ld a, [wd265]
-	ld [wPutativeTMHMMove], a
-	call GetMoveName
-	push hl
-	call PlaceString
-	pop hl
-	ret
-; 2caae
-
 TMHM_String_Cancel: ; 2caae
-	db "CANCEL@"
+	db "Esci@"
 ; 2cab5
 
 TMHM_GetCurrentPocketPosition: ; 2cab5 (b:4ab5)
@@ -476,16 +462,6 @@ TMHM_PlaySFX_ReadText2: ; 2cad6 (b:4ad6)
 	pop de
 	ret
 ; 2cadf (b:4adf)
-
-Unreferenced_Function2cadf: ; 2cadf
-	call ConvertCurItemIntoCurTMHM
-	call .CheckHaveRoomForTMHM
-	ld hl, .NoRoomText
-	jr nc, .print
-	ld hl, .ReceivedText
-.print
-	jp PrintText
-; 2caf0
 
 .NoRoomText: ; 0x2caf0
 	; You have no room for any more @ S.

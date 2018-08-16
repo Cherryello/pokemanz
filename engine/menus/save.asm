@@ -415,17 +415,6 @@ EraseHallOfFame: ; 14d06
 	jp CloseSRAM
 ; 14d18
 
-Unreferenced_Function14d18: ; 14d18
-; copy .Data to SRA4:a007
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call GetSRAMBank
-	ld hl, .Data
-	ld de, $a007 ; address of MBC30 bank
-	ld bc, .DataEnd - .Data
-	call CopyBytes
-	jp CloseSRAM
-; 14d2c
-
 .Data: ; 14d2c
 	db $0d, $02, $00, $05, $00, $00
 	db $22, $02, $01, $05, $00, $00
@@ -450,42 +439,6 @@ SaveData: ; 14d68
 	call _SaveData
 	ret
 ; 14d6c
-
-Unreferenced_Function14d6c: ; 14d6c
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call GetSRAMBank
-	ld a, [$a60b] ; address of MBC30 bank
-	ld b, $0
-	and a
-	jr z, .ok
-	ld b, $2
-
-.ok
-	ld a, b
-	ld [$a60b], a ; address of MBC30 bank
-	call CloseSRAM
-	ret
-; 14d83
-
-Unreferenced_Function14d83: ; 14d83
-	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call GetSRAMBank
-	xor a
-	ld [$a60c], a ; address of MBC30 bank
-	ld [$a60d], a ; address of MBC30 bank
-	call CloseSRAM
-	ret
-; 14d93
-
-Unreferenced_Function14d93: ; 14d93
-	ld a, 7 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call GetSRAMBank
-	xor a
-	ld [$a000], a ; address of MBC30 bank
-	call CloseSRAM
-	ret
-; 14da0
-
 
 HallOfFame_InitSaveIfNeeded: ; 14da0
 	ld a, [wSavedAtLeastOnce]

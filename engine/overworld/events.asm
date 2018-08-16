@@ -994,13 +994,6 @@ CountStep: ; 96b79
 	ret
 ; 96bd3
 
-; unused
-.unreferenced ; 96bd3
-	ld a, 7
-	scf
-	ret
-; 96bd7
-
 DoRepelStep: ; 96bd7
 	ld a, [wRepelEffect]
 	and a

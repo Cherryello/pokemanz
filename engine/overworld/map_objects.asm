@@ -420,20 +420,6 @@ UpdatePlayerStep: ; 4738
 	ret
 ; 4759
 
-Unreferenced_Function4759: ; 4759
-	push bc
-	ld e, a
-	ld d, 0
-	ld hl, OBJECT_MAP_OBJECT_INDEX
-	add hl, bc
-	ld a, [hl]
-	call GetMapObject
-	add hl, de
-	ld a, [hl]
-	pop bc
-	ret
-; 4769
-
 RestoreDefaultMovement: ; 4769
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc

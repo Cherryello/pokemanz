@@ -825,16 +825,6 @@ NamePlayer: ; 0x6074
 	db "Kris@@@@@@@"
 ; 60e9
 
-Unreferenced_Function60e9:
-	call LoadMenuHeader
-	call VerticalMenu
-	ld a, [wMenuCursorY]
-	dec a
-	call CopyNameFromMenu
-	call CloseWindow
-	ret
-; 60fa
-
 StorePlayerName: ; 60fa
 	ld a, "@"
 	ld bc, NAME_LENGTH
@@ -1093,18 +1083,6 @@ RunTitleScreen: ; 627b
 	ret
 ; 6292
 
-Unreferenced_Function6292: ; 6292
-	ld a, [hVBlankCounter]
-	and $7
-	ret nz
-	ld hl, wLYOverrides + $5f
-	ld a, [hl]
-	dec a
-	ld bc, 2 * SCREEN_WIDTH
-	call ByteFill
-	ret
-; 62a3
-
 TitleScreenScene: ; 62a3
 	ld e, a
 	ld d, 0
@@ -1123,13 +1101,6 @@ TitleScreenScene: ; 62a3
 	dw TitleScreenMain
 	dw TitleScreenEnd
 ; 62b7
-
-.Unreferenced_NextScene:
-	ld hl, wJumptableIndex
-	inc [hl]
-	ret
-; 62bc
-
 
 TitleScreenEntrance: ; 62bc
 
@@ -1327,39 +1298,6 @@ ResetClock: ; 6392
 	farcall _ResetClock
 	jp Init
 ; 639b
-
-Unreferenced_Function639b:
-	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
-	ld a, [wTitleScreenTimer]
-	and %00000011
-	ret nz
-	ld bc, wSpriteAnim10
-	ld hl, SPRITEANIMSTRUCT_FRAME
-	add hl, bc ; over-the-top compicated way to load wc3ae into hl
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld de, .Data63ca
-	add hl, de
-	; If bit 2 of [wTitleScreenTimer] is set, get the second dw; else, get the first dw
-	ld a, [wTitleScreenTimer]
-	and %00000100
-	srl a
-	srl a
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	and a
-	ret z
-	ld e, a
-	ld d, [hl]
-	ld a, SPRITE_ANIM_INDEX_GS_TITLE_TRAIL
-	call _InitSpriteAnimStruct
-	ret
-; 63ca
 
 .Data63ca: ; 63ca
 ; frame 0 y, x; frame 1 y, x

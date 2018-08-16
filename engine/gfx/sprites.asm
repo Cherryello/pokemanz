@@ -527,29 +527,6 @@ GetFrameOAMPointer: ; 8d1a2
 	ret
 ; 8d1ac
 
-Unreferenced_BrokenGetStdGraphics: ; 8d1ac
-	push hl
-	ld l, a
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld de, BrokenStdGFXPointers ; broken 2bpp pointers
-	add hl, de
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	pop hl
-	push bc
-	call Request2bpp
-	pop bc
-	ret
-; 8d1c4
-
-
 INCLUDE "data/sprite_anims/sequences.asm"
 
 INCLUDE "engine/gfx/sprite_anims.asm"

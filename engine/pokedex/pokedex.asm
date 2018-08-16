@@ -1136,14 +1136,12 @@ Pokedex_DrawDexEntryScreenBG: ; 407fd
 	call Pokedex_PlaceFrontpicTopLeftCorner
 	ret
 
-.Unused: ; 4084f
-	db $5c, $5d, -1 ; No.
 .Height: ; 40852
 	db "h   ?", $f4, "??", $ac, -1 ; h   ?.??"
 .Weight: ; 4085c
 	db "P    ???kg", -1 ; P    ???kg
 .MenuItems: ; 40867
-	db $3b, " Pag. Zona Ver Stmp", -1
+	db $3b, " Pag. Zona Ver Null", -1
 
 Pokedex_DrawOptionScreenBG: ; 4087c (10:487c)
 	call Pokedex_FillBackgroundColor2
@@ -1440,6 +1438,7 @@ Pokedex_PrintListing: ; 40b0f (10:4b0f)
 .okay
 	ld c, 11
 ; End useless check
+; Ma se lo cancello si sminchia il Pokédex.
 
 .resume
 ; Clear (2 * [wDexListingHeight] + 1) by 11 box starting at 0,1

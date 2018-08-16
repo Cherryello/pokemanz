@@ -1574,39 +1574,6 @@ TradeAnim_WaitAnim2: ; 29886
 
 ; 29893
 
-
-Unreferenced_DebugTrade: ; 29893
-; This function is not referenced.
-; It was meant for use in Japanese versions, so the
-; constant used for copy length was changed by accident.
-
-	ld hl, .DebugTradeData
-
-	ld a, [hli]
-	ld [wPlayerTrademonSpecies], a
-	ld de, wPlayerTrademonSenderName
-	ld c, NAME_LENGTH + 2 ; JP: NAME_LENGTH_JAPANESE + 2
-.loop1
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop1
-
-	ld a, [hli]
-	ld [wOTTrademonSpecies], a
-	ld de, wOTTrademonSenderName
-	ld c, NAME_LENGTH + 2 ; JP: NAME_LENGTH_JAPANESE + 2
-.loop2
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop2
-	ret
-
-; 298b5
-
 debugtrade: MACRO
 ; species, ot name, ot id (?)
 	db \1, \2

@@ -280,43 +280,6 @@ WillObjectBumpIntoSomeoneElse: ; 7009
 	jr IsNPCAtCoord
 ; 7015
 
-Unreferenced_Function7015:
-	ld a, [hMapObjectIndexBuffer]
-	call GetObjectStruct
-	call .CheckWillBeFacingNPC
-	call IsNPCAtCoord
-	ret
-
-.CheckWillBeFacingNPC: ; 7021
-	ld hl, OBJECT_NEXT_MAP_X
-	add hl, bc
-	ld d, [hl]
-	ld hl, OBJECT_NEXT_MAP_Y
-	add hl, bc
-	ld e, [hl]
-	call GetSpriteDirection
-	and a
-	jr z, .down
-	cp OW_UP
-	jr z, .up
-	cp OW_LEFT
-	jr z, .left
-	inc d
-	ret
-
-.down
-	inc e
-	ret
-
-.up
-	dec e
-	ret
-
-.left
-	dec d
-	ret
-; 7041
-
 IsNPCAtCoord: ; 7041
 	ld bc, wObjectStructs
 	xor a
@@ -483,13 +446,6 @@ IsObjectMovingOffEdgeOfScreen: ; 70ed
 	ret
 ; 7113
 
-Unreferenced_Function7113:
-	ld a, [wPlayerStandingMapX]
-	ld d, a
-	ld a, [wPlayerStandingMapY]
-	ld e, a
-	ld bc, wObjectStructs
-	xor a
 .loop
 	ld [hObjectStructIndexBuffer], a
 	call DoesObjectHaveASprite
@@ -543,12 +499,6 @@ Unreferenced_Function7113:
 	jr nz, .loop
 	xor a
 	ret
-
-.yes
-	scf
-	ret
-; 7171
-
 
 Function7171: ; 7171
 	ld hl, OBJECT_NEXT_MAP_X
