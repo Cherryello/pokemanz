@@ -3,7 +3,7 @@ Repository di un progetto di un'hackROM di Pokémon Cristallo, basata su [**poke
 
 Thanks to [**pokecrystal tutorials**][2] for their guides!
 
-Se vuoi anche tu modificare Pokémon Cristallo, controlla l'[**INSTALL.md**][3] per averne in copia locale il codice sorgente.
+Se vuoi compilare questo progetto, controlla l'[**INSTALL.md**][3]
 
 [1]: https://github.com/pret/pokecrystal
 [2]: https://github.com/pret/pokecrystal/wiki/Tutorials

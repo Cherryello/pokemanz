@@ -1,9 +1,10 @@
-# Istruzioni
+# Instructions
 
-I file sorgente sono assemblati in una ROM usando [**rgbds**](https://github.com/rednex/rgbds).
-In questa pagina ti verrà spiegato come impostare i programmi necessari alla compilazione.
+The source files are assembled into a ROM using [**rgbds**](https://github.com/rednex/rgbds).
+These instructions explain how to set up the tools required to build.
 
-Semmai dovessi avere un problema, puoi chiedere aiuto su IRC o Discord (vedi in pokecrystal nel [README.md](README.md)).
+If you run into trouble, ask for help on IRC or Discord (see [README.md](README.md)).
+
 
 ## Linux
 
@@ -19,7 +20,7 @@ git clone https://github.com/pret/pokecrystal
 cd pokecrystal
 ```
 
-Per compilare **pokecrystal.gbc**:
+To build **pokecrystal.gbc**:
 
 ```bash
 make
@@ -28,7 +29,7 @@ make
 
 ## Mac
 
-Nel **Terminale**, esegui:
+In **Terminal**, run:
 
 ```bash
 xcode-select --install
@@ -42,7 +43,7 @@ git clone https://github.com/pret/pokecrystal
 cd pokecrystal
 ```
 
-Per compilare **pokecrystal.gbc**:
+To build **pokecrystal.gbc**:
 
 ```bash
 make
@@ -51,32 +52,32 @@ make
 
 ## Windows
 
-Scarica [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** per Windows a 64 bit, **setup-x86.exe** per quello a 32 bit.
+Download [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** for 64-bit Windows, **setup-x86.exe** for 32-bit.
 
-Avvia il setup e lascia le impostazioni di default. In "Select Packages", scegli di installare le seguenti funzioni:
+Run setup and leave the default settings. At "Select Packages", choose to install the following:
 
 - `make`
 - `git`
 - `gcc-core`
 
-Quindi scarica [**rgbds**](https://github.com/rednex/rgbds/releases/): vai per l'ultima release di **win64.tar.gz** o **win32.tar.gz**. Estraine il contenuto e metti tutti gli `exe` e i `dll` in **C:\Cygwin64\usr\local\bin**.
+Then download [**rgbds**](https://github.com/rednex/rgbds/releases/): the latest **win64.tar.gz** or **win32.tar.gz** release. Extract it and put all the `exe` and `dll` files individually in **C:\Cygwin64\usr\local\bin**.
 
-**N.B. Se hai una vecchia versione di rgbds, aggiorna alla 0.3.3 o successiva.** Ignora questo avvertimento se non hai mai scaricato rgbds.
+**Note: If you have an older rgbds, you will need to update to 0.3.3 or newer.** Ignore this if you have never installed rgbds before.
 
-Nel **terminale di Cygwin**, digita questi comandi:
+In the **Cygwin terminal**, enter these commands:
 
 ```bash
 git clone https://github.com/pret/pokecrystal
 cd pokecrystal
 ```
 
-Per compilare **pokecrystal.gbc**:
+To build **pokecrystal.gbc**:
 
 ```bash
 make
 ```
 
-Per compilare **pokecrystal11.gbc**:
+To build **pokecrystal11.gbc**:
 
 ```bash
 make crystal11
