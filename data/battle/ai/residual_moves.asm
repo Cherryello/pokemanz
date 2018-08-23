@@ -10,7 +10,6 @@ ResidualMoves:
 	db BIDE
 	db POISON_GAS
 	db TRANSFORM
-	db CONVERSION
 	db SUBSTITUTE
 	db SPIKES
 	db -1 ; end

@@ -43,62 +43,6 @@ CheckShininess:
 	and a
 	ret
 
-Unused_CheckShininess:
-; Return carry if the DVs at hl are all 10 or higher.
-
-; Attack
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .NotShiny
-
-; Defense
-	ld a, [hli]
-	and $f
-	cp 10
-	jr c, .NotShiny
-
-; Speed
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .NotShiny
-
-; Special
-	ld a, [hl]
-	and $f
-	cp 10
-	jr c, .NotShiny
-
-.Shiny:
-	scf
-	ret
-
-.NotShiny:
-	and a
-	ret
-
-Unreferenced_Function8aa4:
-	push de
-	push bc
-	ld hl, PalPacket_9ce6
-	ld de, wSGBPals
-	ld bc, PALPACKET_LENGTH
-	call CopyBytes
-	pop bc
-	pop de
-	ld a, c
-	ld [wSGBPals + 3], a
-	ld a, b
-	ld [wSGBPals + 4], a
-	ld a, e
-	ld [wSGBPals + 5], a
-	ld a, d
-	ld [wSGBPals + 6], a
-	ld hl, wSGBPals
-	call PushSGBPals_
-	ld hl, BlkPacket_9a86
-	call PushSGBPals_
-	ret
-
 InitPartyMenuPalettes:
 	ld hl, PalPacket_PartyMenu + 1
 	call CopyFourPalettes
@@ -131,110 +75,6 @@ SGB_ApplyPartyMenuHPPals:
 	call AddNTimes
 	pop de
 	ld [hl], e
-	ret
-
-Unreferenced_Function8b07:
-	call CheckCGB
-	ret z
-; CGB only
-	ld hl, .BGPal
-	ld de, wBGPals1
-	ld bc, 1 palettes
-	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-
-	ld hl, .OBPal
-	ld de, wOBPals1
-	ld bc, 1 palettes
-	ld a, BANK(wOBPals1)
-	call FarCopyWRAM
-
-	call ApplyPals
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-
-.BGPal:
-	RGB 31, 31, 31
-	RGB 18, 23, 31
-	RGB 15, 20, 31
-	RGB 00, 00, 00
-
-.OBPal:
-	RGB 31, 31, 31
-	RGB 31, 31, 12
-	RGB 08, 16, 28
-	RGB 00, 00, 00
-
-Unreferenced_Function8b3f:
-	call CheckCGB
-	ret nz
-	ld a, [hSGB]
-	and a
-	ret z
-	ld hl, BlkPacket_9a86
-	jp PushSGBPals_
-
-Unreferenced_Function8b4d:
-	call CheckCGB
-	jr nz, .cgb
-	ld a, [hSGB]
-	and a
-	ret z
-	ld hl, PalPacket_BetaIntroVenusaur
-	jp PushSGBPals_
-
-.cgb
-	ld de, wOBPals1
-	ld a, PREDEFPAL_BETA_INTRO_VENUSAUR
-	call GetPredefPal
-	jp LoadHLPaletteIntoDE
-
-Unreferenced_Function8b67:
-	call CheckCGB
-	jr nz, .cgb
-	ld a, [hSGB]
-	and a
-	ret z
-	ld hl, PalPacket_Pack
-	jp PushSGBPals_
-
-.cgb
-	ld de, wOBPals1
-	ld a, PREDEFPAL_PACK
-	call GetPredefPal
-	jp LoadHLPaletteIntoDE
-
-Unreferenced_Function8b81:
-	call CheckCGB
-	jr nz, .cgb
-	ld a, [hSGB]
-	and a
-	ret z
-	ld a, c
-	push af
-	ld hl, PalPacket_9ce6
-	ld de, wSGBPals
-	ld bc, PALPACKET_LENGTH
-	call CopyBytes
-	pop af
-	call GetMonPalettePointer_
-	ld a, [hli]
-	ld [wSGBPals + 3], a
-	ld a, [hli]
-	ld [wSGBPals + 4], a
-	ld a, [hli]
-	ld [wSGBPals + 5], a
-	ld a, [hl]
-	ld [wSGBPals + 6], a
-	ld hl, wSGBPals
-	jp PushSGBPals_
-
-.cgb
-	ld de, wOBPals1
-	ld a, c
-	call GetMonPalettePointer_
-	call LoadPalette_White_Col1_Col2_Black
 	ret
 
 LoadTrainerClassPaletteAsNthBGPal:
@@ -1332,12 +1172,6 @@ INCLUDE "gfx/diploma/diploma.pal"
 
 PartyMenuOBPals:
 INCLUDE "gfx/stats/party_menu_ob.pal"
-
-UnusedGSTitleBGPals:
-INCLUDE "gfx/title/unused_gs_bg.pal"
-
-UnusedGSTitleOBPals:
-INCLUDE "gfx/title/unused_gs_fg.pal"
 
 MalePokegearPals:
 INCLUDE "gfx/pokegear/pokegear.pal"

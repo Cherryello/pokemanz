@@ -1,12 +1,12 @@
 ; CyndaquilPokedexEntry: ; 0x1ccabd
-	db "FIRE MOUSE@" ; species name
-	dw 108, 170 ; height, width
+	db "Urside@" ; species name
+	dw 108, 253 ; height, width
 
-	db   "The fire that"
-	next "spouts from its"
-	next "back burns hottest"
-	page "when it is angry."
-	next "The flaring flames"
-	next "intimidate foes.@"
+	db   "Lo si trova spesso"
+	next "a mangiare o dor-"
+	next "mire. Dalla natura"
+	page "riservata, tende a"
+	next "essere giocoso con"
+	next "umani e #mon.@"
 ; 0x1ccb33
 

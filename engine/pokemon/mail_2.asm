@@ -724,18 +724,6 @@ MailGFX_PlaceMessage: ; b9803
 	jp PlaceString
 ; b984e
 
-Unreferenced_Functionb984e: ; b984e
-.loop
-	ld a, [hl]
-	xor $ff
-	ld [hli], a
-	dec bc
-	ld a, b
-	or c
-	jr nz, .loop
-	ret
-; b9858
-
 DrawMailBorder: ; b9858
 	hlcoord 0, 0
 	ld a, $31

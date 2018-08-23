@@ -746,36 +746,6 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b39 (4:5b39)
 
-; unused
-	ld a, [wNamingScreenCurrNameLength]
-	and a
-	ret z
-	push hl
-	ld hl, wNamingScreenCurrNameLength
-	dec [hl]
-	call NamingScreen_GetTextCursorPosition
-	ld c, [hl]
-	pop hl
-
-.loop
-	ld a, [hli]
-	cp $ff
-	jr z, NamingScreen_AdvanceCursor_CheckEndOfString
-	cp c
-	jr z, .done
-	inc hl
-	jr .loop
-
-.done
-	ld a, [hl]
-	jr NamingScreen_LoadNextCharacter
-
-; 11b56
-
-INCLUDE "data/text/unused_dakutens.asm"
-
-; 11bbc
-
 NamingScreen_DeleteCharacter: ; 11bbc (4:5bbc)
 	ld hl, wNamingScreenCurrNameLength
 	ld a, [hl]
@@ -949,10 +919,6 @@ INCBIN "gfx/naming_screen/cursor.2bpp"
 INCLUDE "data/text/name_input_chars.asm"
 ; 11e5d
 
-NamingScreenGFX_End: ; unused
-INCBIN "gfx/naming_screen/end.1bpp"
-; 11e6d
-
 NamingScreenGFX_MiddleLine:
 INCBIN "gfx/naming_screen/middle_line.1bpp"
 ; 11e6d
@@ -1043,11 +1009,6 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ret
 
 ; 11f7a (4:5f7a)
-
-.UnusedString11f7a:
-	db "メールを　かいてね@"
-
-; 11f84
 
 .InitCharset: ; 11f84 (4:5f84)
 	call WaitTop
@@ -1426,42 +1387,6 @@ MailComposition_TryAddLastCharacter: ; 121ac (4:61ac)
 	jp MailComposition_TryAddCharacter
 
 ; 121b2 (4:61b2)
-
-; unused
-	ld a, [wNamingScreenCurrNameLength]
-	and a
-	ret z
-	cp $11
-	jr nz, .asm_121c3
-	push hl
-	ld hl, wNamingScreenCurrNameLength
-	dec [hl]
-	dec [hl]
-	jr .asm_121c8
-
-.asm_121c3
-	push hl
-	ld hl, wNamingScreenCurrNameLength
-	dec [hl]
-
-.asm_121c8
-	call NamingScreen_GetTextCursorPosition
-	ld c, [hl]
-	pop hl
-.asm_121cd
-	ld a, [hli]
-	cp $ff
-	jp z, NamingScreen_AdvanceCursor_CheckEndOfString
-	cp c
-	jr z, .asm_121d9
-	inc hl
-	jr .asm_121cd
-
-.asm_121d9
-	ld a, [hl]
-	jp NamingScreen_LoadNextCharacter
-
-; 121dd
 
 INCLUDE "data/text/mail_input_chars.asm"
 

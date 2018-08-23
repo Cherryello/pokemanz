@@ -65,7 +65,6 @@ INCLUDE "engine/events/std_collision.asm"
 INCLUDE "engine/events/bug_contest/judging.asm"
 INCLUDE "engine/events/pokerus/apply_pokerus_tick.asm"
 INCLUDE "engine/events/bug_contest/contest_2.asm"
-INCLUDE "engine/pokemon/correct_party_errors.asm"
 
 
 SECTION "bank5", ROMX
@@ -251,7 +250,6 @@ INCLUDE "engine/events/sacred_ash.asm"
 INCLUDE "engine/pokemon/tempmon.asm"
 INCLUDE "engine/pokemon/types.asm"
 INCLUDE "engine/pokemon/categories.asm"
-INCLUDE "engine/battle/unreferenced_getgen1trainerclassname.asm"
 INCLUDE "engine/pokemon/mon_stats.asm"
 INCLUDE "engine/link/init_list.asm"
 INCLUDE "engine/pokemon/experience.asm"
@@ -488,7 +486,6 @@ INCBIN "gfx/intro/logo.2bpp.lz"
 
 SECTION "Title", ROMX
 
-INCLUDE "engine/movie/unused_title.asm"
 INCLUDE "engine/movie/title.asm"
 
 
@@ -598,8 +595,6 @@ INCLUDE "data/battle_tower/unknown.asm"
 
 
 SECTION "Mobile News Data", ROMX
-
-INCLUDE "mobile/news/news.asm"
 
 
 SECTION "Crystal Events", ROMX

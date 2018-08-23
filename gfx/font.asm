@@ -38,17 +38,9 @@ TownMapGFX: ; f8ba0
 INCBIN "gfx/pokegear/town_map.2bpp.lz"
 ; f8ea4
 
-UnusedBoldFontGFX: ; unused bold letters + unown chars
-INCBIN "gfx/font/unused_bold_font.1bpp"
-; f9204
-
 TextBoxSpaceGFX: ; f9204
 INCBIN "gfx/frames/space.1bpp"
 ; f9214
-
-UnusedUpArrowGFX: ; unused up arrow + whitespace
-INCBIN "gfx/font/unused_up_arrow.1bpp"
-; f9234
 
 MobilePhoneTilesGFX: ; f9234
 INCBIN "gfx/mobile/phone_tiles.2bpp"

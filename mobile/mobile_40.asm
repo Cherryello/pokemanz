@@ -3092,29 +3092,6 @@ Function1013dd: ; 1013dd
 	ret
 ; 1013e1
 
-Unreferenced_Function1013e1: ; 1013e1
-	push de
-	inc de
-	ld b, a
-	ld c, 0
-.asm_1013e6
-	inc c
-	ld a, [hli]
-	ld [de], a
-	inc de
-	and a
-	jr z, .asm_1013f1
-	dec b
-	jr nz, .asm_1013e6
-	scf
-
-.asm_1013f1
-	pop de
-	ld a, c
-	ld [de], a
-	ret
-; 1013f5
-
 Function1013f5: ; 1013f5
 	ld a, [hli]
 	ld [de], a
@@ -3128,13 +3105,6 @@ Function1013f5: ; 1013f5
 	jr nz, .asm_1013f9
 	ret
 ; 101400
-
-Unreferenced_Function101400: ; 101400
-	ld a, [de]
-	inc de
-	cp [hl]
-	jr nz, asm_101416
-	inc hl
 
 Function101406: ; 101406
 	ld c, a
@@ -3316,15 +3286,6 @@ Function101507: ; 101507
 	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10151d
-
-Unreferenced_Function10151d: ; 10151d
-	ld a, $34
-	call Function3e32
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 10152a
 
 Function10152a: ; 10152a
 	ld a, $36
@@ -3511,13 +3472,6 @@ Function101663: ; 101663
 	call Function10163f
 	ret
 ; 101674
-
-Unreferenced_Function101674: ; 101674
-	ld a, $05
-	ld hl, w5_dc00
-	call Function101635
-	ret
-; 10167d
 
 Function10167d: ; 10167d
 	ld a, 0
@@ -4401,12 +4355,6 @@ Function101cbc: ; 101cbc
 	ret
 ; 101cc2
 
-Unreferenced_Function101cc2: ; 101cc2
-	ld a, $02
-	ld [wcd2b], a
-	ret
-; 101cc8
-
 Function101cc8: ; 101cc8
 	ld a, $01
 	ld [wc314], a
@@ -4681,22 +4629,6 @@ Function101e64: ; 101e64
 	ld [wcd2b], a
 	ret
 ; 101e82
-
-Unreferenced_Function101e82: ; 101e82
-	call Function101ecc
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 101e8d
-
-Unreferenced_Function101e8d: ; 101e8d
-	call Function101ed3
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 101e98
 
 Function101e98: ; 101e98
 	call ClearSprites
@@ -6503,14 +6435,6 @@ Function102b4e: ; 102b4e
 	ld [w2DMenuNumRows], a
 	ret
 ; 102b68
-
-Unreferenced_Function102b68: ; 102b68
-	xor a
-	ld hl, wWindowStackPointer
-	ld bc, $10
-	call ByteFill
-	ret
-; 102b73
 
 Unknown_102b73:
 	db 9, 6

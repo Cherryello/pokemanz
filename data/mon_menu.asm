@@ -10,13 +10,13 @@
 
 MonMenuOptionStrings: ; 24caf
 ; entries correspond to MONMENUVALUE_* constants
-	db "STATS@"
-	db "SWITCH@"
-	db "ITEM@"
-	db "CANCEL@"
-	db "MOVE@"
-	db "MAIL@"
-	db "ERROR!@"
+	db "Info@"
+	db "Ordina@"
+	db "Strumento@"
+	db "Esci@"
+	db "Mosse@"
+	db "Messaggio@"
+	db "Errore!@"
 ; 24cd9
 
 MonMenuOptions: ; 24cd9

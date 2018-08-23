@@ -1,6 +1,6 @@
 LoadOverworldMonIcon: ; 8e82b
 	ld a, e
-	push af
+	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	ld l, a
 	ld h, 0
@@ -10,7 +10,6 @@ LoadOverworldMonIcon: ; 8e82b
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	pop af
 	call GetIconBank
 	ret
 ; 8e83f

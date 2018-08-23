@@ -579,8 +579,9 @@ UnknownText_0x1c0b65::
 	done
 
 Text_AnEGGCantHoldAnItem::
-	text "An EGG can't hold"
-	line "an item."
+	text "Un uovo non può"
+	line "tenere uno"
+	cont "strumento."
 	prompt
 
 UnknownText_0x1c0b9a::
@@ -588,12 +589,12 @@ UnknownText_0x1c0b9a::
 	done
 
 UnknownText_0x1c0ba5::
-	text "Quanti vuoi"
-	line "buttarne?"
+	text "Quanti ne vuoi"
+	line "buttare?"
 	done
 
 UnknownText_0x1c0bbb::
-	text "Buttarne @"
+	text "Buttare @"
 	deciram wItemQuantityChangeBuffer, 1, 2
 	text_start
 	line "@"
@@ -602,7 +603,7 @@ UnknownText_0x1c0bbb::
 	done
 
 UnknownText_0x1c0bd8::
-	text "Ne butti via"
+	text "Butti via"
 	line "@"
 	text_from_ram wStringBuffer2
 	text "."
@@ -1352,9 +1353,10 @@ UnknownText_0x1c1adf::
 	prompt
 
 UnknownText_0x1c1b03::
-	text "OAK: <PLAYER>!"
-	line "This isn't the"
-	cont "time to use that!"
+	text "Oak: <PLAYER>!"
+	line "C'è tempo e luogo"
+	cont "per ogni cosa, ma"
+	cont "non ora!"
 	done
 
 UnknownText_0x1c1b2c::

@@ -6,19 +6,9 @@ TypeNames: ; 5097b
 	dw Poison
 	dw Ground
 	dw Rock
-	dw Bird
 	dw Bug
 	dw Ghost
 	dw Steel
-	dw Normal
-	dw Normal
-	dw Normal
-	dw Normal
-	dw Normal
-	dw Normal
-	dw Normal
-	dw Normal
-	dw Normal
 	dw CurseType
 	dw Fire
 	dw Water
@@ -43,7 +33,6 @@ Psychic:   db "Psico@"
 Ice:       db "Ghiaccio@"
 Ground:    db "Terra@"
 Rock:      db "Roccia@"
-Bird:      db "Uccello@"
 Bug:       db "Coleott.@"
 Ghost:     db "Spettro@"
 Steel:     db "Acciaio@"

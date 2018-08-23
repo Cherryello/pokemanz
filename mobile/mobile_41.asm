@@ -252,17 +252,6 @@ StubbedTrainerRankings_StepCount: ; 10602e (41:602e)
 	ld hl, sTrainerRankingStepCount
 	jp StubbedTrainerRankings_Increment4Byte
 
-Unreferenced_StubbedTrainerRankings_BattleTowerWins: ; 106035
-	ret
-	ld a, $5
-	call GetSRAMBank
-	ld a, [$aa8d]
-	and a
-	call CloseSRAM
-	ret nz
-	ld hl, sTrainerRankingBattleTowerWins
-	jp StubbedTrainerRankings_Increment2Byte
-
 StubbedTrainerRankings_TMsHMsTaught: ; 106049
 	ret
 	ld hl, sTrainerRankingTMsHMsTaught
@@ -287,11 +276,6 @@ StubbedTrainerRankings_WildBattles: ; 10605d
 StubbedTrainerRankings_TrainerBattles: ; 10606a
 	ret
 	ld hl, sTrainerRankingTrainerBattles
-	jp StubbedTrainerRankings_Increment3Byte
-
-StubbedTrainerRankings_Unused1: ; 106071
-	ret
-	ld hl, sTrainerRankingUnused1
 	jp StubbedTrainerRankings_Increment3Byte
 
 StubbedTrainerRankings_HallOfFame:: ; 0x106078
@@ -369,11 +353,6 @@ StubbedTrainerRankings_PhoneCalls: ; 1060d3
 	ld hl, sTrainerRankingPhoneCalls
 	jr StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_Unused2: ; 1060df
-	ret
-	ld hl, sTrainerRankingUnused2
-	jr StubbedTrainerRankings_Increment3Byte
-
 StubbedTrainerRankings_LinkBattles: ; 1060df
 	ret
 	ld hl, sTrainerRankingLinkBattles
@@ -391,11 +370,6 @@ StubbedTrainerRankings_Splash: ; 1060e5
 StubbedTrainerRankings_TreeEncounters: ; 1060ef
 	ret
 	ld hl, sTrainerRankingTreeEncounters
-	jr StubbedTrainerRankings_Increment3Byte
-
-StubbedTrainerRankings_Unused3: ; 1060f5
-	ret
-	ld hl, sTrainerRankingUnused3
 	jr StubbedTrainerRankings_Increment3Byte
 
 StubbedTrainerRankings_ColosseumWins: ; win
@@ -443,11 +417,6 @@ StubbedTrainerRankings_Increment2Byte: ; 106123
 	ld bc, 1
 	jr StubbedTrainerRankings_Increment
 ; 106129
-
-; unused
-StubbedTrainerRankings_Increment1Byte: ; 106129
-	push bc
-	ld bc, 0
 
 ; Increments a big-endian value of bc + 1 bytes at hl
 StubbedTrainerRankings_Increment: ; 10612d
@@ -558,18 +527,6 @@ RestoreMobileEventIndex: ; 10619d (41:619d)
 	ret
 ; 1061b3 (41:61b3)
 
-Unreferenced_VerifyTrainerRankingsChecksum: ; 1061b3
-	call CalculateTrainerRankingsChecksum
-	ld hl, sTrainerRankingsChecksum
-	ld a, d
-	cp [hl]
-	ret nz
-	inc hl
-	ld a, e
-	cp [hl]
-	ret
-; 1061c0
-
 DeleteMobileEventIndex: ; 1061c0 (41:61c0)
 	ld a, BANK(sMobileEventIndex)
 	call GetSRAMBank
@@ -578,29 +535,6 @@ DeleteMobileEventIndex: ; 1061c0 (41:61c0)
 	call CloseSRAM
 	ret
 ; 1061cd (41:61cd)
-
-; Used in the Japanese version to initialize Trainer Rankings data
-; for a new save file. Unreferenced in the English version.
-InitializeTrainerRankings:
-	ld hl, sTrainerRankings
-	ld bc, sTrainerRankingsEnd - sTrainerRankings
-	xor a
-	call ByteFill
-
-	; Initialize the shortest Magikarp to 100.0 cm
-	ld hl, sTrainerRankingShortestMagikarp
-	ld a, $3
-	ld [hli], a
-	ld [hl], $e8
-
-	call UpdateTrainerRankingsChecksum
-	ld hl, sTrainerRankings
-	ld de, sTrainerRankingsBackup
-	ld bc, sTrainerRankingsEnd - sTrainerRankings
-	call CopyBytes
-	ret
-; 1061ef
-
 
 _MobilePrintNum:: ; 1061ef
 ; Supports signed 31-bit integers (up to 10 digits)

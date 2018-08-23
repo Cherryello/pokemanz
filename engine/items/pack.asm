@@ -163,7 +163,7 @@ Pack: ; 10000
 ; 10124 (4:4124)
 .MenuHeader1: ; 0x10124
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData_1
 	db 1 ; default option
 ; 0x1012c
@@ -171,8 +171,8 @@ Pack: ; 10000
 .MenuData_1: ; 0x1012c
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
-	db "USE@"
-	db "QUIT@"
+	db "Estrai@"
+	db "Chiudi@"
 ; 0x10137
 
 .Jumptable1: ; 10137
@@ -183,7 +183,7 @@ Pack: ; 10000
 
 .MenuHeader2: ; 0x1013b
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData_2
 	db 1 ; default option
 ; 0x10143
@@ -191,9 +191,9 @@ Pack: ; 10000
 .MenuData_2: ; 0x10143
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
-	db "USE@"
-	db "GIVE@"
-	db "QUIT@"
+	db "Usa@"
+	db "Dai@"
+	db "Chiudi@"
 ; 0x10153
 
 .Jumptable2: ; 10153
@@ -322,7 +322,7 @@ Pack: ; 10000
 ; 10249 (4:4249)
 MenuHeader_UsableKeyItem: ; 0x10249
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 ; 0x10251
@@ -330,11 +330,11 @@ MenuHeader_UsableKeyItem: ; 0x10249
 .MenuData: ; 0x10251
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 5 ; items
-	db "USE@"
-	db "GIVE@"
-	db "TOSS@"
-	db "SEL@"
-	db "QUIT@"
+	db "Usa@"
+	db "Dai@"
+	db "Butta@"
+	db "Selez.@"
+	db "Chiudi@"
 ; 0x1026a
 
 Jumptable_UseGiveTossRegisterQuit: ; 1026a
@@ -347,7 +347,7 @@ Jumptable_UseGiveTossRegisterQuit: ; 1026a
 
 MenuHeader_UsableItem: ; 0x10274
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 ; 0x1027c
@@ -355,10 +355,10 @@ MenuHeader_UsableItem: ; 0x10274
 .MenuData: ; 0x1027c
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
-	db "USE@"
-	db "GIVE@"
-	db "TOSS@"
-	db "QUIT@"
+	db "Usa@"
+	db "Dai@"
+	db "Butta@"
+	db "Chiudi@"
 ; 0x10291
 
 Jumptable_UseGiveTossQuit: ; 10291
@@ -370,7 +370,7 @@ Jumptable_UseGiveTossQuit: ; 10291
 
 MenuHeader_UnusableItem: ; 0x10299
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 ; 0x102a1
@@ -378,8 +378,8 @@ MenuHeader_UnusableItem: ; 0x10299
 .MenuData: ; 0x102a1
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
-	db "USE@"
-	db "QUIT@"
+	db "Usa@"
+	db "Chiudi@"
 ; 0x102ac
 
 Jumptable_UseQuit: ; 102ac
@@ -389,7 +389,7 @@ Jumptable_UseQuit: ; 102ac
 
 MenuHeader_UnusableKeyItem: ; 0x102b0
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 ; 0x102b8
@@ -397,9 +397,9 @@ MenuHeader_UnusableKeyItem: ; 0x102b0
 .MenuData: ; 0x102b8
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
-	db "USE@"
-	db "SEL@"
-	db "QUIT@"
+	db "Usa@"
+	db "Selez.@"
+	db "Chiudi@"
 ; 0x102c7
 
 Jumptable_UseRegisterQuit: ; 102c7
@@ -410,7 +410,7 @@ Jumptable_UseRegisterQuit: ; 102c7
 
 MenuHeader_HoldableKeyItem: ; 0x102cd
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 ; 0x102d5
@@ -418,10 +418,10 @@ MenuHeader_HoldableKeyItem: ; 0x102cd
 .MenuData: ; 0x102d5
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
-	db "GIVE@"
-	db "TOSS@"
-	db "SEL@"
-	db "QUIT@"
+	db "Dai@"
+	db "Butta@"
+	db "Selez.@"
+	db "Chiudi@"
 ; 0x102ea
 
 Jumptable_GiveTossRegisterQuit: ; 102ea
@@ -433,7 +433,7 @@ Jumptable_GiveTossRegisterQuit: ; 102ea
 
 MenuHeader_HoldableItem: ; 0x102f2
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 ; 0x102fa
@@ -441,9 +441,9 @@ MenuHeader_HoldableItem: ; 0x102f2
 .MenuData: ; 0x102fa
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
-	db "GIVE@"
-	db "TOSS@"
-	db "QUIT@"
+	db "Dai@"
+	db "Butta@"
+	db "Chiudi@"
 ; 0x1030b
 
 Jumptable_GiveTossQuit: ; 1030b
@@ -820,7 +820,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 10601 (4:4601)
 .UsableMenuHeader: ; 0x10601
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UsableMenuData
 	db 1 ; default option
 ; 0x10609
@@ -828,8 +828,8 @@ TMHMSubmenu: ; 105dc (4:45dc)
 .UsableMenuData: ; 0x10609
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
-	db "USE@"
-	db "QUIT@"
+	db "Usa@"
+	db "Chiudi@"
 ; 0x10614
 
 .UsableJumptable: ; 10614
@@ -839,7 +839,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 
 .UnusableMenuHeader: ; 0x10618
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 13, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 11, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UnusableMenuData
 	db 1 ; default option
 ; 0x10620
@@ -847,7 +847,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 .UnusableMenuData: ; 0x10620
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 1 ; items
-	db "QUIT@"
+	db "Chiudi@"
 ; 0x10627
 
 .UnusableJumptable: ; 10627

@@ -1870,9 +1870,7 @@ FlareonEvosAttacks:
 PorygonEvosAttacks:
 	db EVOLVE_TRADE, UP_GRADE, PORYGON2
 	db 0 ; no more evolutions
-	db 1, CONVERSION2
 	db 1, TACKLE
-	db 1, CONVERSION
 	db 9, AGILITY
 	db 12, PSYBEAM
 	db 20, RECOVER
@@ -3146,9 +3144,7 @@ DonphanEvosAttacks:
 
 Porygon2EvosAttacks:
 	db 0 ; no more evolutions
-	db 1, CONVERSION2
 	db 1, TACKLE
-	db 1, CONVERSION
 	db 9, AGILITY
 	db 12, PSYBEAM
 	db 20, RECOVER
