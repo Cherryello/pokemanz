@@ -155,12 +155,12 @@ EvosAttacksPointers:: ; 0x425b1
 	dw DuckyEvosAttacks
 	dw DucklyEvosAttacks
 	dw DuckleafEvosAttacks
-	dw CyndaquilEvosAttacks
-	dw QuilavaEvosAttacks
-	dw TyphlosionEvosAttacks
-	dw TotodileEvosAttacks
-	dw CroconawEvosAttacks
-	dw FeraligatrEvosAttacks
+	dw BeaireEvosAttacks
+	dw FiearEvosAttacks
+	dw GrizzlireEvosAttacks
+	dw SquizzyEvosAttacks
+	dw SquashyEvosAttacks
+	dw BatzyEvosAttacks
 	dw SentretEvosAttacks
 	dw FurretEvosAttacks
 	dw HoothootEvosAttacks

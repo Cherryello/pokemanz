@@ -41,7 +41,7 @@ UnknownText_0x1bc0a2::
 	text_from_ram wStringBuffer1
 	text_start
 	line "recovered @"
-	deciram wd1f3, 2, 3
+	deciram wCurHPAnimDeltaHP, 2, 3
 	text "HP!"
 	done
 
@@ -93,7 +93,7 @@ UnknownText_0x1bc14f::
 	line "level @"
 	deciram wCurPartyLevel, 1, 3
 	text "!@"
-	sound_dex_fanfare_50_79
+	sound_dex_fanfare_50_79 ; plays SFX_DEX_FANFARE_50_79, identical to SFX_LEVEL_UP
 	text_waitbutton
 	db "@@"
 
@@ -102,53 +102,6 @@ UnknownText_0x1bc16e::
 	text " came"
 	line "to its senses."
 	done
-
-UnknownText_0x1bc187::
-	text "Please enter any"
-	line "four-digit number."
-	done
-
-UnknownText_0x1bc1ac::
-	text "Enter the same"
-	line "number to confirm."
-	done
-
-UnknownText_0x1bc1cf::
-	text "That's not the"
-	line "same number."
-	done
-
-UnknownText_0x1bc1eb::
-	text "Your PASSCODE has"
-	line "been set."
-
-	para "Enter this number"
-	line "next time to open"
-	cont "the CARD FOLDER."
-
-	para ""
-	done
-
-UnknownText_0x1bc23e::
-	text "0000 is invalid!"
-
-	para ""
-	done
-
-UnknownText_0x1bc251::
-	text "Enter the CARD"
-	next "FOLDER PASSCODE."
-	done
-
-UnknownText_0x1bc272::
-	text "Incorrect"
-	line "PASSCODE!"
-
-	para ""
-	done
-
-UnknownText_0x1bc288::
-	text "CARD FOLDER open.@@"
 
 UnknownText_0x1bc29c::
 	text "<……><……><……><……><……><……>"
@@ -206,56 +159,6 @@ UnknownText_0x1bc369::
 
 UnknownText_0x1bc37a::
 	text ", is it?"
-	done
-
-UnknownText_0x1bc384::
-	text "There is nothing"
-	line "connected."
-	done
-
-UnknownText_0x1bc3a1::
-	text "Check cell phone"
-	line "adapter."
-	done
-
-UnknownText_0x1bc3bc::
-	text "Check CDMA"
-	line "adapter."
-	done
-
-UnknownText_0x1bc3d1::
-	text "Check DOCOMO PHS"
-	line "adapter."
-	done
-
-UnknownText_0x1bc3ec::
-	text "Check DDI PHS"
-	line "adapter."
-	done
-
-UnknownText_0x1bc404::
-	text "Check unlimited"
-	line "battle mobile"
-	cont "adapter."
-	done
-
-UnknownText_0x1bc42c::
-	text "The password is:"
-	line ""
-	done
-
-UnknownText_0x1bc43f::
-	text "Is this OK?"
-	done
-
-UnknownText_0x1bc44c::
-	text "Enter the"
-	line "ID no."
-	done
-
-UnknownText_0x1bc45e::
-	text "Enter the"
-	line "amount."
 	done
 
 UnknownText_0x1bc471::
@@ -432,58 +335,6 @@ UnknownText_0x1bc774::
 	line "@"
 	text_from_ram wPlayerTrademonSpeciesName
 	text "."
-	done
-
-UnknownText_0x1bc787::
-	text_from_ram wPlayerTrademonSenderName
-	text " will"
-	line "trade @"
-	text_from_ram wPlayerTrademonSpeciesName
-	db "@@"
-
-UnknownText_0x1bc79d::
-	text "for @"
-	text_from_ram wOTTrademonSenderName
-	text "'s"
-	line "@"
-	text_from_ram wOTTrademonSpeciesName
-	text "."
-	done
-
-UnknownText_0x1bc7b0::
-	text_from_ram wPlayerTrademonSenderName
-	text "'s"
-	line "@"
-	text_from_ram wPlayerTrademonSpeciesName
-	text " trade…"
-	done
-
-UnknownText_0x1bc7c3::
-	text "Take good care of"
-	line "@"
-	text_from_ram wOTTrademonSpeciesName
-	text "."
-	done
-
-UnknownText_0x1bc7dd::
-	text_from_ram wPlayerTrademonSenderName
-	text "'s"
-	line "@"
-	text_from_ram wPlayerTrademonSpeciesName
-	text " trade…"
-	done
-
-UnknownText_0x1bc7f0::
-	text "Take good care of"
-	line "@"
-	text_from_ram wOTTrademonSpeciesName
-	text "."
-	done
-
-UnknownText_0x1bc80a::
-	text_from_ram wOTTrademonSpeciesName
-	text " came"
-	line "back!"
 	done
 
 ; Oak's Pokémon Talk
@@ -1099,170 +950,6 @@ Text_EnemyUsedOn::
 	text "!"
 	prompt
 
-Text_ThatCantBeUsedRightNow::
-	text "That can't be used"
-	line "right now."
-	prompt
-
-Text_ThatItemCantBePutInThePack::
-	text "That item can't be"
-	line "put in the PACK."
-	done
-
-Text_TheItemWasPutInThePack::
-	text "The @"
-	text_from_ram wStringBuffer1
-	text_start
-	line "was put in the"
-	cont "PACK."
-	done
-
-Text_RemainingTime::
-	text "Remaining Time"
-	done
-
-Text_YourMonsHPWasHealed::
-	text "Your #MON's HP"
-	line "was healed."
-	prompt
-
-Text_Warping::
-	text "Warping…"
-	done
-
-UnknownText_0x1bd05e::
-	text "Which number"
-	line "should be changed?"
-	done
-
-UnknownText_0x1bd07f::
-	text "Will you play with"
-	line "@"
-	text_from_ram wStringBuffer2
-	text "?"
-	done
-
-UnknownText_0x1bd09a::
-	text "You need two #-"
-	line "MON for breeding."
-	prompt
-
-Text_BreedingIsNotPossible::
-	text "Breeding is not"
-	line "possible."
-	prompt
-
-UnknownText_0x1bd0d8::
-	text "The compatibility"
-	line "is @"
-	deciram wd265, 1, 3
-	text "."
-	cont "Should they breed?"
-	done
-
-UnknownText_0x1bd109::
-	text "There is no EGG."
-	line ""
-	prompt
-
-UnknownText_0x1bd11c::
-	text "It's going to"
-	line "hatch!"
-	prompt
-
-UnknownText_0x1bd131::
-	text "Test event"
-	line "@"
-	deciram wStringBuffer2, 1, 2
-	text "?"
-	done
-
-UnknownText_0x1bd145::
-	text "Start!"
-	done
-
-UnknownText_0x1bd14d::
-	text "End!"
-	done
-
-UnknownText_0x1bd153::
-	text "For a boy!"
-	done
-
-UnknownText_0x1bd15f::
-	text "For a girl!"
-	done
-
-UnknownText_0x1bd16c::
-	text "This doesn't"
-	line "concern a boy!"
-	done
-
-UnknownText_0x1bd188::
-	text "The BOX is full!"
-	done
-
-UnknownText_0x1bd19a::
-	text "A new CARD arrived"
-	line "from @"
-	text_from_ram wStringBuffer2
-	text "."
-	done
-
-UnknownText_0x1bd1ba::
-	text "Put this CARD in"
-	line "the CARD FOLDER?"
-	done
-
-UnknownText_0x1bd1dd::
-	text_from_ram wStringBuffer2
-	text "'s CARD was"
-	line "listed as no.@"
-	deciram wStringBuffer1, 1, 2
-	text "."
-	prompt
-
-UnknownText_0x1bd201::
-	text "Starting link."
-	done
-
-UnknownText_0x1bd211::
-	text "Link terminated."
-	done
-
-UnknownText_0x1bd223::
-	text "Closing link."
-	done
-
-UnknownText_0x1bd232::
-	text "Clear the time"
-	line "limit?"
-	done
-
-UnknownText_0x1bd249::
-	text "The time limit was"
-	line "cleared."
-	done
-
-UnknownText_0x1bd266::
-	text "Pick which packet"
-	line "as an error?"
-	done
-
-UnknownText_0x1bd286::
-	text "Trading @"
-	text_from_ram wStringBuffer2
-	text_start
-	line "for @"
-	text_from_ram wStringBuffer1
-	text "…"
-	done
-
-UnknownText_0x1bd2a0::
-	text "Obtained the"
-	line "VOLTORBBADGE!"
-	done
-
 UnknownText_0x1bd2bc::
 	text "Which floor?"
 	done
@@ -1279,19 +966,20 @@ UnknownText_0x1bd2e7::
 	done
 
 UnknownText_0x1bd308::
-	text "REPEL's effect"
-	line "wore off."
-	done
-
-UseAnotherRepelText::
-	text "REPEL's effect"
-	line "wore off."
-
-	para "Use another?"
+	text "È finito l'effetto"
+	line "del Repellente."
 	done
 	
+UseAnotherRepelText::
+	text "È finito l'effetto"
+	line "del Repellente."
+
+	para "Vuoi usarne"
+	line "un altro?"
+	done
+
 UnknownText_0x1bd321::
-	text "<PLAYER> found"
+	text "<PLAYER> trova"
 	line "@"
 	text_from_ram wStringBuffer3
 	text "!"
@@ -1629,10 +1317,6 @@ UnknownText_0x1bda7e::
 UnknownText_0x1bda90::
 	text "Just do what"
 	line "you can."
-	done
-
-UnknownText_0x1bdaa7::
-	text_start
 	done
 
 UnknownText_0x1bdaa9::

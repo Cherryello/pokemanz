@@ -1,4 +1,4 @@
-PokemonPalettes: ; a8ce
+PokemonPalettes:
 ; entries correspond to Pokémon species, two apiece
 
 ; 000
@@ -316,18 +316,18 @@ INCLUDE "gfx/pokemon/duckly/normal.pal"
 INCLUDE "gfx/pokemon/duckly/shiny.pal"
 INCLUDE "gfx/pokemon/duckleaf/normal.pal"
 INCLUDE "gfx/pokemon/duckleaf/shiny.pal"
-INCLUDE "gfx/pokemon/cyndaquil/normal.pal"
-INCLUDE "gfx/pokemon/cyndaquil/shiny.pal"
-INCLUDE "gfx/pokemon/quilava/normal.pal"
-INCLUDE "gfx/pokemon/quilava/shiny.pal"
-INCLUDE "gfx/pokemon/typhlosion/normal.pal"
-INCLUDE "gfx/pokemon/typhlosion/shiny.pal"
-INCLUDE "gfx/pokemon/totodile/normal.pal"
-INCLUDE "gfx/pokemon/totodile/shiny.pal"
-INCLUDE "gfx/pokemon/croconaw/normal.pal"
-INCLUDE "gfx/pokemon/croconaw/shiny.pal"
-INCLUDE "gfx/pokemon/feraligatr/normal.pal"
-INCLUDE "gfx/pokemon/feraligatr/shiny.pal"
+INCLUDE "gfx/pokemon/beaire/normal.pal"
+INCLUDE "gfx/pokemon/beaire/shiny.pal"
+INCLUDE "gfx/pokemon/fiear/normal.pal"
+INCLUDE "gfx/pokemon/fiear/shiny.pal"
+INCLUDE "gfx/pokemon/grizzlire/normal.pal"
+INCLUDE "gfx/pokemon/grizzlire/shiny.pal"
+INCLUDE "gfx/pokemon/squizzy/normal.pal"
+INCLUDE "gfx/pokemon/squizzy/shiny.pal"
+INCLUDE "gfx/pokemon/squashy/normal.pal"
+INCLUDE "gfx/pokemon/squashy/shiny.pal"
+INCLUDE "gfx/pokemon/batzy/normal.pal"
+INCLUDE "gfx/pokemon/batzy/shiny.pal"
 INCLUDE "gfx/pokemon/sentret/normal.pal"
 INCLUDE "gfx/pokemon/sentret/shiny.pal"
 INCLUDE "gfx/pokemon/furret/normal.pal"
@@ -534,5 +534,3 @@ INCLUDE "gfx/pokemon/egg/shiny.pal"
 ; 255 shiny
 	RGB 23, 23, 23
 	RGB 17, 17, 17
-
-; b0ce

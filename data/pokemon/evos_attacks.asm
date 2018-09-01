@@ -2118,8 +2118,8 @@ DuckleafEvosAttacks:
 	db 61, SOLARBEAM
 	db 0 ; no more level-up moves
 
-CyndaquilEvosAttacks:
-	db EVOLVE_LEVEL, 14, QUILAVA
+BeaireEvosAttacks:
+	db EVOLVE_LEVEL, 14, FIEAR
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, LEER
@@ -2131,8 +2131,8 @@ CyndaquilEvosAttacks:
 	db 46, FLAMETHROWER
 	db 0 ; no more level-up moves
 
-QuilavaEvosAttacks:
-	db EVOLVE_LEVEL, 36, TYPHLOSION
+FiearEvosAttacks:
+	db EVOLVE_LEVEL, 36, GRIZZLIRE
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, LEER
@@ -2145,7 +2145,7 @@ QuilavaEvosAttacks:
 	db 54, FLAMETHROWER
 	db 0 ; no more level-up moves
 
-TyphlosionEvosAttacks:
+GrizzlireEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, LEER
@@ -2159,8 +2159,8 @@ TyphlosionEvosAttacks:
 	db 60, FLAMETHROWER
 	db 0 ; no more level-up moves
 
-TotodileEvosAttacks:
-	db EVOLVE_LEVEL, 18, CROCONAW
+SquizzyEvosAttacks:
+	db EVOLVE_LEVEL, 18, SQUASHY
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 1, LEER
@@ -2173,8 +2173,8 @@ TotodileEvosAttacks:
 	db 52, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
-CroconawEvosAttacks:
-	db EVOLVE_LEVEL, 30, FERALIGATR
+SquashyEvosAttacks:
+	db EVOLVE_LEVEL, 30, BATZY
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 1, LEER
@@ -2188,7 +2188,7 @@ CroconawEvosAttacks:
 	db 55, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
-FeraligatrEvosAttacks:
+BatzyEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 1, LEER

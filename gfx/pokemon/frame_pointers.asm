@@ -153,12 +153,12 @@ FramesPointers:
 	dw DuckyFrames
 	dw DucklyFrames
 	dw DuckleafFrames
-	dw CyndaquilFrames
-	dw QuilavaFrames
-	dw TyphlosionFrames
-	dw TotodileFrames
-	dw CroconawFrames
-	dw FeraligatrFrames
+	dw BeaireFrames
+	dw FiearFrames
+	dw GrizzlireFrames
+	dw SquizzyFrames
+	dw SquashyFrames
+	dw BatzyFrames
 	dw SentretFrames
 	dw FurretFrames
 	dw HoothootFrames

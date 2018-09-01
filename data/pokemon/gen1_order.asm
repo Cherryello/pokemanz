@@ -1,4 +1,4 @@
-Pokered_MonIndices: ; fb91c
+Pokered_MonIndices:
 	db RHYDON
 	db KANGASKHAN
 	db NIDORAN_M
@@ -193,12 +193,12 @@ Pokered_MonIndices: ; fb91c
 	db DUCKY
 	db DUCKLY
 	db DUCKLEAF
-	db CYNDAQUIL
-	db QUILAVA
-	db TYPHLOSION
-	db TOTODILE
-	db CROCONAW
-	db FERALIGATR
+	db BEAIRE
+	db FIEAR
+	db GRIZZLIRE
+	db SQUIZZY
+	db SQUASHY
+	db BATZY
 	db SENTRET
 	db FURRET
 	db HOOTHOOT
@@ -252,4 +252,3 @@ Pokered_MonIndices: ; fb91c
 	db QWILFISH
 	db WOBBUFFET
 	db WOBBUFFET
-; fba18

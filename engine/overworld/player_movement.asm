@@ -1,4 +1,4 @@
-DoPlayerMovement:: ; 80000
+DoPlayerMovement::
 
 	call .GetDPad
 	ld a, movement_step_sleep
@@ -30,7 +30,6 @@ DoPlayerMovement:: ; 80000
 	or D_DOWN
 	ld [wCurInput], a
 	ret
-; 8002d
 
 .TranslateIntoMovement:
 	ld a, [wPlayerState]
@@ -112,9 +111,8 @@ DoPlayerMovement:: ; 80000
 	call .StandInPlace
 	xor a
 	ret
-; 800b7
 
-.CheckTile: ; 800b7
+.CheckTile:
 ; Tiles such as waterfalls and warps move the player
 ; in a given direction, overriding input.
 
@@ -227,9 +225,8 @@ DoPlayerMovement:: ; 80000
 	ld a, 5
 	scf
 	ret
-; 80147
 
-.CheckTurning: ; 80147
+.CheckTurning:
 ; If the player is turning, change direction first. This also lets
 ; the player change facing without moving by tapping a direction.
 
@@ -257,10 +254,8 @@ DoPlayerMovement:: ; 80000
 .not_turning
 	xor a
 	ret
-; 8016b
 
-.TryStep: ; 8016b
-
+.TryStep:
 ; Surfing actually calls .TrySurf directly instead of passing through here.
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
@@ -282,7 +277,7 @@ DoPlayerMovement:: ; 80000
 	jr nc, .ice
 
 ; Downhill riding is slower when not moving down.
-    call .RunCheck
+	call .RunCheck
 	jr z, .fast
 	call .BikeCheck
 	jr nz, .walk
@@ -318,17 +313,11 @@ DoPlayerMovement:: ; 80000
 	scf
 	ret
 
-; unused
-	xor a
-	ret
-
 .bump
 	xor a
 	ret
-; 801c0
 
-.TrySurf: ; 801c0
-
+.TrySurf:
 	call .CheckSurfPerms
 	ld [wd040], a
 	jr c, .surf_bump
@@ -361,9 +350,8 @@ DoPlayerMovement:: ; 80000
 .surf_bump
 	xor a
 	ret
-; 801f3
 
-.TryJump: ; 801f3
+.TryJump:
 	ld a, [wPlayerStandingTile]
 	ld e, a
 	and $f0
@@ -401,12 +389,16 @@ DoPlayerMovement:: ; 80000
 	db FACE_DOWN | FACE_LEFT  ; COLL_HOP_DOWN_LEFT
 	db FACE_UP | FACE_RIGHT   ; COLL_HOP_UP_RIGHT
 	db FACE_UP | FACE_LEFT    ; COLL_HOP_UP_LEFT
-; 80226
 
-.CheckWarp: ; 80226
+.CheckWarp:
+; Bug: Since no case is made for STANDING here, it will check
+; [.edgewarps + $ff]. This resolves to $3e at $8035a.
+; This causes wd041 to be nonzero when standing on tile $3e,
+; making bumps silent.
+
 	ld a, [wWalkingDirection]
-	cp STANDING
-	jr z, .not_warp
+	; cp STANDING
+	; jr z, .not_warp
 	ld e, a
 	ld d, 0
 	ld hl, .EdgeWarps
@@ -418,6 +410,9 @@ DoPlayerMovement:: ; 80000
 	ld a, 1
 	ld [wd041], a
 	ld a, [wWalkingDirection]
+	; This is in the wrong place.
+	cp STANDING
+	jr z, .not_warp
 
 	ld e, a
 	ld a, [wPlayerDirection]
@@ -443,7 +438,6 @@ DoPlayerMovement:: ; 80000
 	db COLL_WARP_CARPET_UP
 	db COLL_WARP_CARPET_LEFT
 	db COLL_WARP_CARPET_RIGHT
-; 8025f
 
 .DoStep:
 	ld e, a
@@ -522,27 +516,24 @@ DoPlayerMovement:: ; 80000
 	db $80 + UP
 	db $80 + LEFT
 	db $80 + RIGHT
-; 802b3
 
-.StandInPlace: ; 802b3
+.StandInPlace:
 	ld a, 0
 	ld [wPlayerTurningDirection], a
 	ld a, movement_step_sleep
 	ld [wMovementAnimation], a
 	xor a
 	ret
-; 802bf
 
-._WalkInPlace: ; 802bf
+._WalkInPlace:
 	ld a, 0
 	ld [wPlayerTurningDirection], a
 	ld a, movement_step_bump
 	ld [wMovementAnimation], a
 	xor a
 	ret
-; 802cb
 
-.CheckForced: ; 802cb
+.CheckForced:
 ; When sliding on ice, input is forced to remain in the same direction.
 
 	call CheckStandingOnIce
@@ -565,13 +556,12 @@ DoPlayerMovement:: ; 80000
 
 .forced_dpad
 	db D_DOWN, D_UP, D_LEFT, D_RIGHT
-; 802ec
 
-.GetAction: ; 802ec
+.GetAction:
 ; Poll player input and update movement info.
 
-	ld hl, .table
-	ld de, .table2 - .table1
+	ld hl, .action_table
+	ld de, .action_table_1_end - .action_table_1
 	ld a, [wCurInput]
 	bit D_DOWN_F, a
 	jr nz, .d_down
@@ -605,28 +595,22 @@ DoPlayerMovement:: ; 80000
 	ld [wWalkingTile], a
 	ret
 
-.table
-; struct:
-;	walk direction
-;	facing
-;	x movement
-;	y movement
-;	tile collision pointer
-.table1
-	db STANDING, FACE_CURRENT, 0, 0
-	dw wPlayerStandingTile
-.table2
-	db RIGHT, FACE_RIGHT,  1,  0
-	dw wTileRight
-	db LEFT,  FACE_LEFT,  -1,  0
-	dw wTileLeft
-	db UP,    FACE_UP,     0, -1
-	dw wTileUp
-	db DOWN,  FACE_DOWN,   0,  1
-	dw wTileDown
-; 80341
+player_action: MACRO
+; walk direction, facing, x movement, y movement, tile collision pointer
+	db \1, \2, \3, \4
+	dw \5
+ENDM
 
-.CheckNPC: ; 80341
+.action_table:
+.action_table_1
+	player_action STANDING, FACE_CURRENT, 0,  0, wPlayerStandingTile
+.action_table_1_end
+	player_action RIGHT,    FACE_RIGHT,   1,  0, wTileRight
+	player_action LEFT,     FACE_LEFT,   -1,  0, wTileLeft
+	player_action UP,       FACE_UP,      0, -1, wTileUp
+	player_action DOWN,     FACE_DOWN,    0,  1, wTileDown
+
+.CheckNPC:
 ; Returns 0 if there is an NPC in front that you can't move
 ; Returns 1 if there is no NPC in front
 ; Returns 2 if there is a movable NPC in front
@@ -661,10 +645,8 @@ DoPlayerMovement:: ; 80000
 .no_bump
 	ld a, 2
 	ret
-; 8036f
 
-.CheckStrengthBoulder: ; 8036f
-
+.CheckStrengthBoulder:
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	jr z, .not_boulder
@@ -699,9 +681,8 @@ DoPlayerMovement:: ; 80000
 .not_boulder
 	xor a
 	ret
-; 8039e
 
-.CheckLandPerms: ; 8039e
+.CheckLandPerms:
 ; Return 0 if walking onto land and tile permissions allow it.
 ; Otherwise, return carry.
 
@@ -721,9 +702,8 @@ DoPlayerMovement:: ; 80000
 .NotWalkable:
 	scf
 	ret
-; 803b4
 
-.CheckSurfPerms: ; 803b4
+.CheckSurfPerms:
 ; Return 0 if moving in water, or 1 if moving onto land.
 ; Otherwise, return carry.
 
@@ -743,16 +723,14 @@ DoPlayerMovement:: ; 80000
 .NotSurfable:
 	scf
 	ret
-; 803ca
 
-.BikeCheck: ; 803ca
+.BikeCheck:
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	ret z
 	cp PLAYER_SKATE
 	ret
-; 803d3
-
+	
 .RunCheck:
 	ld a, [wPlayerState]
 	cp PLAYER_NORMAL
@@ -762,7 +740,7 @@ DoPlayerMovement:: ; 80000
 	cp B_BUTTON
 	ret
 
-.CheckWalkable: ; 803d3
+.CheckWalkable:
 ; Return 0 if tile a is land. Otherwise, return carry.
 
 	call GetTileCollision
@@ -770,9 +748,8 @@ DoPlayerMovement:: ; 80000
 	ret z
 	scf
 	ret
-; 803da
 
-.CheckSurfable: ; 803da
+.CheckSurfable:
 ; Return 0 if tile a is water, or 1 if land.
 ; Otherwise, return carry.
 
@@ -798,27 +775,23 @@ DoPlayerMovement:: ; 80000
 .Neither:
 	scf
 	ret
-; 803ee
 
-.BumpSound: ; 803ee
-
+.BumpSound:
 	call CheckSFX
 	ret c
 	ld de, SFX_BUMP
 	call PlaySFX
 	ret
-; 803f9
 
-.GetOutOfWater: ; 803f9
+.GetOutOfWater:
 	push bc
 	ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
 	call ReplaceKrisSprite ; UpdateSprites
 	pop bc
 	ret
-; 80404
 
-CheckStandingOnIce:: ; 80404
+CheckStandingOnIce::
 	ld a, [wPlayerTurningDirection]
 	cp 0
 	jr z, .not_ice
@@ -838,9 +811,8 @@ CheckStandingOnIce:: ; 80404
 .not_ice
 	and a
 	ret
-; 80422
 
-StopPlayerForEvent:: ; 80422
+StopPlayerForEvent::
 	ld hl, wPlayerNextMovement
 	ld a, movement_step_sleep
 	cp [hl]
@@ -850,4 +822,3 @@ StopPlayerForEvent:: ; 80422
 	ld a, 0
 	ld [wPlayerTurningDirection], a
 	ret
-; 80430

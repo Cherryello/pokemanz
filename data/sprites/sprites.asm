@@ -4,7 +4,7 @@ overworld_sprite: MACRO
 	db \2 tiles, BANK(\1), \3, \4
 ENDM
 
-OverworldSprites: ; 14736
+OverworldSprites:
 ; entries correspond to SPRITE_* constants
 	overworld_sprite ChrisSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite ChrisBikeSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
@@ -68,7 +68,6 @@ OverworldSprites: ; 14736
 	overworld_sprite ScientistSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite KimonoGirlSpriteGFX, 12, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite SageSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
-	overworld_sprite UnusedGuySpriteGFX, 12, STANDING_SPRITE, PAL_OW_RED
 	overworld_sprite GentlemanSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BlackBeltSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite ReceptionistSpriteGFX, 12, WALKING_SPRITE, PAL_OW_BLUE

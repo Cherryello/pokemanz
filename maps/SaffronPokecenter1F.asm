@@ -13,12 +13,7 @@ SaffronPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 SaffronPokecenter1FTeacherScript:
-	special Mobile_DummyReturnFalse
-	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x18a4a3
-
-.mobile
-	jumptextfaceplayer UnknownText_0x18a532
 
 SaffronPokecenter1FFisherScript:
 	faceplayer
@@ -53,24 +48,6 @@ UnknownText_0x18a4a3:
 	para "I can go to JOHTO"
 	line "without worrying,"
 	cont "then!"
-	done
-
-UnknownText_0x18a532:
-	text "What are JOHTO's"
-	line "#MON CENTERS"
-	cont "like?"
-
-	para "…Oh, I see."
-	line "So they let you"
-
-	para "link with people"
-	line "far away?"
-
-	para "Then I'll get my"
-	line "friend in JOHTO to"
-
-	para "catch a MARILL and"
-	line "trade it to me!"
 	done
 
 UnknownText_0x18a5d3:

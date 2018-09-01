@@ -1,4 +1,4 @@
-BattleCommand_Conversion2: ; 359e6
+BattleCommand_Conversion2:
 ; conversion2
 
 	ld a, [wAttackMissed]
@@ -18,7 +18,7 @@ BattleCommand_Conversion2: ; 359e6
 	dec a
 	ld hl, Moves + MOVE_TYPE
 	call GetMoveAttr
-	and MOVE_TYPE_MASK
+	and TYPE_MASK
 	ld d, a
 	pop hl
 	cp CURSE_T
@@ -29,6 +29,8 @@ BattleCommand_Conversion2: ; 359e6
 .loop
 	call BattleRandom
 	maskbits NUM_TYPES
+	jr c, .okay
+	jr c, .loop
 	cp TYPES_END
 	jr nc, .loop
 .okay
@@ -37,7 +39,6 @@ BattleCommand_Conversion2: ; 359e6
 	push hl
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
-	and MOVE_TYPE_MASK
 	push af
 	push hl
 	ld a, d
@@ -60,5 +61,3 @@ BattleCommand_Conversion2: ; 359e6
 
 .failed
 	jp FailMove
-
-; 35a53

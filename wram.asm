@@ -1,4 +1,5 @@
 INCLUDE "constants.asm"
+
 INCLUDE "macros/wram.asm"
 
 
@@ -157,11 +158,10 @@ wDisableTextAcceleration:: db
 wPreviousLandmark:: db
 wCurrentLandmark:: db
 wLandmarkSignTimer:: dw
-wLinkMode:: ; c2dc
-; 0 not in link battle
-; 1 link battle
-; 4 mobile battle
-	db
+
+wLinkMode::
+; a LINK_* value for the link type
+	db ; c2dc
 
 wScriptVar:: db ; c2dd
 
@@ -358,7 +358,13 @@ SECTION "Battle", WRAM0
 
 UNION ; c608
 ; unidentified uses
-wc608:: ds 480
+wc608:: ds 53
+wc63d:: ds 5
+wc642:: ds 5
+wc647:: ds 33
+wc668:: ds 32
+wc688:: ds 2
+wc68a:: ds 350
 
 NEXTU ; c608
 ; surrounding tiles
@@ -867,7 +873,18 @@ endc
 
 NEXTU ; c6d0
 ; mobile data
-wc6d0:: ds 126
+wc6d0:: ds 56
+wc708:: db
+wc709:: db
+wc70a:: db
+wc70b:: db
+wc70c:: db
+wc70d:: db
+wc70e:: db
+wc70f:: db
+wc710:: db
+wc711:: db
+wc712:: ds 60
 wc74e:: ds 107
 wc7b9:: ds 1
 wc7ba:: ds 1
@@ -1303,9 +1320,7 @@ wcf5d:: dw
 
 wMonType:: db ; cf5f
 
-wCurSpecies::
-wCurMove::
-	db ; cf60
+wCurSpecies:: db ; cf60
 
 wNamedObjectTypeBuffer:: db
 
@@ -1629,7 +1644,6 @@ wMartItem7BCD:: ds 3
 wMartItem8BCD:: ds 3
 wMartItem9BCD:: ds 3
 wMartItem10BCD:: ds 3
-wMartItemBCDEnd::
 
 NEXTU ; d002
 ; town map data
@@ -1659,11 +1673,7 @@ wRadioTextEnd::
 
 NEXTU ; d002
 ; lucky number show
-wLuckyNumberDigit1Buffer:: db
-wLuckyNumberDigit2Buffer:: db
-wLuckyNumberDigit3Buffer:: db
-wLuckyNumberDigit4Buffer:: db
-wLuckyNumberDigit5Buffer:: db
+wLuckyNumberDigitsBuffer:: ds 5
 
 NEXTU ; d002
 ; movement buffer data
@@ -1685,7 +1695,7 @@ NEXTU ; d002
 ; trainer HUD data
 	ds 1
 wPlaceBallsDirection:: db
-wTrainerHUDTiles:: db
+wTrainerHUDTiles:: ds 4
 
 NEXTU ; d002
 ; mobile participant nicknames
@@ -1715,7 +1725,8 @@ wd003:: db
 wd004:: db
 
 ; mobile?
-	ds 3
+	ds 1
+wd006:: ds 2
 wd008:: ds 2
 	ds 2
 wd00c:: ds 1
@@ -1870,7 +1881,7 @@ wTMHMPocketScrollPosition::     db
 wSwitchMon::
 wSwitchItem::
 wMoveSwapBuffer::
-wd0e3::
+wd0e3:: ; mobile
 	db
 
 wMenuScrollPosition:: ds 4
@@ -2041,9 +2052,9 @@ wTilesetBlocksBank:: db ; d1dc
 wTilesetBlocksAddress:: dw ; d1dd
 wTilesetCollisionBank:: db ; d1df
 wTilesetCollisionAddress:: dw ; d1e0
-wTilesetAttributesBank:: db
-wTilesetAttributesAddress:: dw
 wTilesetAnim:: dw ; bank 3f ; d1e2
+	ds 2 ; unused ; d1e4
+wTilesetPalettes:: dw ; bank 3f ; d1e6
 wTilesetEnd::
 
 wEvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
@@ -2099,10 +2110,7 @@ wOtherDecoration::    db
 wCurEnemyItem:: db
 ENDU ; d1f7
 
-wOtherTrainerType:: db
-wTrainerGroupBank:: db
-
-	ds 1
+	ds 3
 
 wLinkBattleRNs:: ds 10 ; d1fa
 
@@ -2114,7 +2122,6 @@ wEnemyMonBaseStats:: ds 5 ; d226
 wEnemyMonCatchRate:: db ; d22b
 wEnemyMonBaseExp::   db ; d22c
 wEnemyMonEnd::
-
 
 wBattleMode:: ; d22d
 ; 0: overworld
@@ -2188,11 +2195,24 @@ wPutativeTMHMMove:: db
 wInitListType:: db
 wBattleHasJustStarted:: db
 
+; d265 has many different short-term uses
 wNamedObjectIndexBuffer::
-wCurTMHM::
+wDeciramBuffer::
+wTempByteValue::
+wNumSetBits::
 wTypeMatchup::
-wFoundMatchingIDInParty::
-wd265::
+wCurType::
+wTempSpecies::
+wTempIconSpecies::
+wTempTMHM::
+wTempPP::
+wNextBoxOrPartyIndex::
+wChosenCableClubRoom::
+wBreedingCompatibility::
+wMoveGrammar::
+wApplyStatLevelMultipliersToEnemy::
+wUsePPUp::
+wd265:: ; mobile
 	db
 
 wFailedToFlee:: db
@@ -2478,7 +2498,6 @@ wBadges::
 wJohtoBadges:: flag_array NUM_JOHTO_BADGES ; d857
 wKantoBadges:: flag_array NUM_KANTO_BADGES ; d858
 
-
 wTMsHMs:: ds NUM_TMS + NUM_HMS ; d859
 wTMsHMsEnd::
 
@@ -2515,7 +2534,7 @@ wRegisteredItem:: db ; d95c
 wPlayerState:: db ; d95d
 
 wHallOfFameCount:: dw
-wTradeFlags:: flag_array PARTY_LENGTH ; d960
+wTradeFlags:: flag_array NUM_NPC_TRADES ; d960
 	ds 1
 wMooMooBerries:: db ; d962
 wUndergroundSwitchPositions:: db ; d963
@@ -2757,7 +2776,6 @@ wKurtApricornQuantity:: db
 
 wPlayerDataEnd::
 
-
 wCurrMapData::
 
 wVisitedSpawns:: flag_array NUM_SPAWNS ; dca5
@@ -2885,6 +2903,7 @@ wTempTileMap::
 	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
 
 ; PokeAnim data
+wPokeAnimStruct::
 wPokeAnimSceneIndex:: db
 wPokeAnimPointer:: dw
 wPokeAnimSpecies:: db
@@ -2893,7 +2912,6 @@ wPokeAnimSpeciesOrUnown:: db
 wPokeAnimGraphicStartTile:: db
 wPokeAnimCoord:: dw
 wPokeAnimFrontpicHeight:: db
-; PokeAnim Data
 wPokeAnimIdleFlag:: db
 wPokeAnimSpeed:: db
 wPokeAnimPointerBank:: db
@@ -2973,11 +2991,6 @@ w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 
 w3_dfec:: ds $10
 w3_dffc:: ds 4
-
-
-SECTION "Surrounding Attributes", WRAMX
-
-wSurroundingAttributes:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 
 
 SECTION "GBC Video", WRAMX

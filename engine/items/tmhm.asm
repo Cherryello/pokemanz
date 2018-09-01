@@ -1,4 +1,4 @@
-TMHMPocket: ; 2c76f (b:476f)
+TMHMPocket:
 	ld a, $1
 	ld [hInMenu], a
 	call TMHM_PocketLoop
@@ -20,7 +20,7 @@ TMHMPocket: ; 2c76f (b:476f)
 	scf
 	ret
 
-.ConvertItemToTMHMNumber: ; 2c798 (b:4798)
+.ConvertItemToTMHMNumber:
 	ld a, [wCurItem]
 	ld c, a
 	callfar GetNumberedTMHM
@@ -28,20 +28,20 @@ TMHMPocket: ; 2c76f (b:476f)
 	ld [wCurItem], a
 	ret
 
-ConvertCurItemIntoCurTMHM: ; 2c7a7 (b:47a7)
+ConvertCurItemIntoCurTMHM:
 	ld a, [wCurItem]
 	ld c, a
 	callfar GetTMHMNumber
 	ld a, c
-	ld [wCurTMHM], a
+	ld [wTempTMHM], a
 	ret
 
-GetTMHMItemMove: ; 2c7b6 (b:47b6)
+GetTMHMItemMove:
 	call ConvertCurItemIntoCurTMHM
 	predef GetTMHMMove
 	ret
 
-AskTeachTMHM: ; 2c7bf (b:47bf)
+AskTeachTMHM:
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -50,7 +50,7 @@ AskTeachTMHM: ; 2c7bf (b:47bf)
 	cp TM01
 	jr c, .NotTMHM
 	call GetTMHMItemMove
-	ld a, [wCurTMHM]
+	ld a, [wTempTMHM]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	call CopyName1
@@ -70,13 +70,13 @@ AskTeachTMHM: ; 2c7bf (b:47bf)
 	ld [wOptions], a
 	ret
 
-ChooseMonToLearnTMHM: ; 2c7fb
+ChooseMonToLearnTMHM:
 	ld hl, wStringBuffer2
 	ld de, wTMHMMoveNameBackup
 	ld bc, 12
 	call CopyBytes
 	call ClearBGPalettes
-ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
+ChooseMonToLearnTMHM_NoRefresh:
 	farcall LoadPartyMenuGFX
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuGFX
@@ -115,9 +115,8 @@ ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
 	pop de
 	pop hl
 	jr .loopback
-; 2c867
 
-TeachTMHM: ; 2c867
+TeachTMHM:
 	predef CanLearnTMHMMove
 
 	push bc
@@ -146,7 +145,6 @@ TeachTMHM: ; 2c867
 	and a
 	jr z, .nope
 
-	farcall StubbedTrainerRankings_TMsHMsTaught
 	ld a, [wCurItem]
 	call IsHM
 	ret c
@@ -159,39 +157,31 @@ TeachTMHM: ; 2c867
 	and a
 	ret
 
-.unused
-	ld a, 2
-	ld [wItemEffectSucceeded], a
 .learned_move
 	scf
 	ret
-; 2c8bf (b:48bf)
 
-Text_BootedTM: ; 0x2c8bf
+Text_BootedTM:
 	; Booted up a TM.
 	text_jump UnknownText_0x1c0373
 	db "@"
-; 0x2c8c4
 
-Text_BootedHM: ; 0x2c8c4
+Text_BootedHM:
 	; Booted up an HM.
 	text_jump UnknownText_0x1c0384
 	db "@"
-; 0x2c8c9
 
-Text_ItContained: ; 0x2c8c9
+Text_ItContained:
 	; It contained @ . Teach @ to a #MON?
 	text_jump UnknownText_0x1c0396
 	db "@"
-; 0x2c8ce
 
-Text_TMHMNotCompatible: ; 0x2c8ce
+Text_TMHMNotCompatible:
 	; is not compatible with @ . It can't learn @ .
 	text_jump UnknownText_0x1c03c2
 	db "@"
-; 0x2c8d3
 
-TMHM_PocketLoop: ; 2c8d3 (b:48d3)
+TMHM_PocketLoop:
 	xor a
 	ld [hBGMapMode], a
 	call TMHM_DisplayPocketItems
@@ -224,7 +214,7 @@ TMHM_PocketLoop: ; 2c8d3 (b:48d3)
 	ld [wMenuCursorX], a
 	jr TMHM_ShowTMMoveDescription
 
-TMHM_JoypadLoop: ; 2c915 (b:4915)
+TMHM_JoypadLoop:
 	call TMHM_DisplayPocketItems
 	call StaticMenuJoypad
 	ld b, a
@@ -246,7 +236,7 @@ TMHM_JoypadLoop: ; 2c915 (b:4915)
 	jp nz, TMHM_ExitPocket
 	bit D_LEFT_F, a
 	jp nz, TMHM_ExitPocket
-TMHM_ShowTMMoveDescription: ; 2c946 (b:4946)
+TMHM_ShowTMMoveDescription:
 	call TMHM_CheckHoveringOverCancel
 	jp nc, TMHM_ExitPocket
 	hlcoord 0, 12
@@ -256,27 +246,27 @@ TMHM_ShowTMMoveDescription: ; 2c946 (b:4946)
 	ld a, [wCurItem]
 	cp NUM_TMS + NUM_HMS + 1
 	jr nc, TMHM_JoypadLoop
-	ld [wd265], a
+	ld [wTempTMHM], a
 	predef GetTMHMMove
-	ld a, [wd265]
+	ld a, [wTempTMHM]
 	ld [wCurSpecies], a
 	hlcoord 1, 14
 	call PrintMoveDesc
 	jp TMHM_JoypadLoop
 
-TMHM_ChooseTMorHM: ; 2c974 (b:4974)
+TMHM_ChooseTMorHM:
 	call TMHM_PlaySFX_ReadText2
-	call CountTMsHMs ; This stores the count to wd265.
+	call CountTMsHMs ; This stores the count to wTempTMHM.
 	ld a, [wMenuCursorY]
 	dec a
 	ld b, a
 	ld a, [wTMHMPocketScrollPosition]
 	add b
 	ld b, a
-	ld a, [wd265]
+	ld a, [wTempTMHM]
 	cp b
 	jr z, _TMHM_ExitPack ; our cursor was hovering over CANCEL
-TMHM_CheckHoveringOverCancel: ; 2c98a (b:498a)
+TMHM_CheckHoveringOverCancel:
 	call TMHM_GetCurrentPocketPosition
 	ld a, [wMenuCursorY]
 	ld b, a
@@ -296,19 +286,19 @@ TMHM_CheckHoveringOverCancel: ; 2c98a (b:498a)
 	cp -1
 	ret
 
-TMHM_ExitPack: ; 2c9a5 (b:49a5)
+TMHM_ExitPack:
 	call TMHM_PlaySFX_ReadText2
-_TMHM_ExitPack: ; 2c9a8 (b:49a8)
+_TMHM_ExitPack:
 	ld a, $2
 	ld [wMenuJoypad], a
 	and a
 	ret
 
-TMHM_ExitPocket: ; 2c9af (b:49af)
+TMHM_ExitPocket:
 	and a
 	ret
 
-TMHM_ScrollPocket: ; 2c9b1 (b:49b1)
+TMHM_ScrollPocket:
 	ld a, b
 	bit 7, a
 	jr nz, .skip
@@ -338,7 +328,7 @@ TMHM_ScrollPocket: ; 2c9b1 (b:49b1)
 	call TMHM_DisplayPocketItems
 	jp TMHM_ShowTMMoveDescription
 
-TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
+TMHM_DisplayPocketItems:
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
 	jp z, Tutorial_TMHMPocket
@@ -359,16 +349,16 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 	jr z, .loop2
 	ld b, a
 	ld a, c
-	ld [wd265], a
+	ld [wTempTMHM], a
 	push hl
 	push de
 	push bc
 	call TMHMPocket_GetCurrentLineCoord
 	push hl
-	ld a, [wd265]
+	ld a, [wTempTMHM]
 	cp NUM_TMS + 1
 	jr nc, .HM
-	ld de, wd265
+	ld de, wTempTMHM
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	jr .okay
@@ -376,17 +366,17 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 .HM:
 	push af
 	sub NUM_TMS
-	ld [wd265], a
+	ld [wTempTMHM], a
 	ld [hl], "H"
 	inc hl
-	ld de, wd265
+	ld de, wTempTMHM
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	pop af
-	ld [wd265], a
+	ld [wTempTMHM], a
 .okay
 	predef GetTMHMMove
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	pop hl
@@ -412,7 +402,7 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 .done
 	ret
 
-TMHMPocket_GetCurrentLineCoord: ; 2ca86 (b:4a86)
+TMHMPocket_GetCurrentLineCoord:
 	hlcoord 5, 0
 	ld bc, 2 * SCREEN_WIDTH
 	ld a, 6
@@ -424,13 +414,11 @@ TMHMPocket_GetCurrentLineCoord: ; 2ca86 (b:4a86)
 	dec e
 	jr nz, .loop
 	ret
-; 2ca95 (b:4a95)
 
-TMHM_String_Cancel: ; 2caae
-	db "Esci@"
-; 2cab5
+TMHM_String_Cancel:
+	db "CANCEL@"
 
-TMHM_GetCurrentPocketPosition: ; 2cab5 (b:4ab5)
+TMHM_GetCurrentPocketPosition:
 	ld hl, wTMsHMs
 	ld a, [wTMHMPocketScrollPosition]
 	ld b, a
@@ -447,7 +435,7 @@ TMHM_GetCurrentPocketPosition: ; 2cab5 (b:4ab5)
 	dec c
 	ret
 
-Tutorial_TMHMPocket: ; 2caca (b:4aca)
+Tutorial_TMHMPocket:
 	hlcoord 9, 3
 	push de
 	ld de, TMHM_String_Cancel
@@ -455,42 +443,14 @@ Tutorial_TMHMPocket: ; 2caca (b:4aca)
 	pop de
 	ret
 
-TMHM_PlaySFX_ReadText2: ; 2cad6 (b:4ad6)
+TMHM_PlaySFX_ReadText2:
 	push de
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	pop de
 	ret
-; 2cadf (b:4adf)
 
-.NoRoomText: ; 0x2caf0
-	; You have no room for any more @ S.
-	text_jump UnknownText_0x1c03fa
-	db "@"
-; 0x2caf5
-
-.ReceivedText: ; 0x2caf5
-	; You received @ !
-	text_jump UnknownText_0x1c0421
-	db "@"
-; 0x2cafa
-
-.CheckHaveRoomForTMHM: ; 2cafa
-	ld a, [wd265]
-	dec a
-	ld hl, wTMsHMs
-	ld b, 0
-	ld c, a
-	add hl, bc
-	ld a, [hl]
-	inc a
-	cp NUM_TMS * 2
-	ret nc
-	ld [hl], a
-	ret
-; 2cb0c
-
-CountTMsHMs: ; 2cb2a (b:4b2a)
+CountTMsHMs:
 	ld b, 0
 	ld c, NUM_TMS + NUM_HMS
 	ld hl, wTMsHMs
@@ -503,10 +463,10 @@ CountTMsHMs: ; 2cb2a (b:4b2a)
 	dec c
 	jr nz, .loop
 	ld a, b
-	ld [wd265], a
+	ld [wTempTMHM], a
 	ret
 
-PrintMoveDesc: ; 2cb3e
+PrintMoveDesc:
 	push hl
 	ld hl, MoveDescriptions
 	ld a, [wCurSpecies]
@@ -520,4 +480,3 @@ PrintMoveDesc: ; 2cb3e
 	ld d, [hl]
 	pop hl
 	jp PlaceString
-; 2cb52

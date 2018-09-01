@@ -8,7 +8,6 @@ PALETTE_SIZE EQU NUM_PAL_COLORS * PAL_COLOR_SIZE
 
 PALRGB_WHITE EQUS "palred 31 + palgreen 31 + palblue 31" ; $7fff
 
-
 SCREEN_WIDTH  EQU 20 ; tiles
 SCREEN_HEIGHT EQU 18 ; tiles
 SCREEN_WIDTH_PX  EQU SCREEN_WIDTH  * TILE_WIDTH ; pixels
@@ -23,7 +22,6 @@ SCREEN_META_HEIGHT EQU 5 ; metatiles
 SURROUNDING_WIDTH  EQU SCREEN_META_WIDTH * METATILE_WIDTH ; tiles
 SURROUNDING_HEIGHT EQU SCREEN_META_HEIGHT * METATILE_WIDTH ; tiles
 
-
 HP_BAR_LENGTH  EQU 6 ; tiles
 EXP_BAR_LENGTH EQU 8 ; tiles
 HP_BAR_LENGTH_PX  EQU HP_BAR_LENGTH  * TILE_WIDTH ; pixels
@@ -34,7 +32,6 @@ HP_GREEN  EQU 0
 HP_YELLOW EQU 1
 HP_RED    EQU 2
 
-
 ; sprite_oam_struct members (see macros/wram.asm)
 	const_def
 	const SPRITEOAMSTRUCT_YCOORD     ; 0
@@ -44,7 +41,6 @@ HP_RED    EQU 2
 SPRITEOAMSTRUCT_LENGTH EQU const_value
 NUM_SPRITE_OAM_STRUCTS EQU 40 ; see wVirtualOAM
 
-
 ; PokeAnims indexes (see engine/gfx/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
@@ -53,6 +49,6 @@ NUM_SPRITE_OAM_STRUCTS EQU 40 ; see wVirtualOAM
 	const ANIM_MON_TRADE
 	const ANIM_MON_EVOLVE
 	const ANIM_MON_HATCH
-	const ANIM_MON_UNUSED
+	const ANIM_MON_HOF
 	const ANIM_MON_EGG1
 	const ANIM_MON_EGG2

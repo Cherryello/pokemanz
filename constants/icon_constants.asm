@@ -155,12 +155,12 @@
 	const ICON_DUCKY
 	const ICON_DUCKLY
 	const ICON_DUCKLEAF
-	const ICON_CYNDAQUIL
-	const ICON_QUILAVA
-	const ICON_TYPHLOSION
-	const ICON_TOTODILE
-	const ICON_CROCONAW
-	const ICON_FERALIGATR
+	const ICON_BEAIRE
+	const ICON_FIEAR
+	const ICON_GRIZZLIRE
+	const ICON_SQUIZZY
+	const ICON_SQUASHY
+	const ICON_BATZY
 	const ICON_SENTRET
 	const ICON_FURRET
 	const ICON_HOOTHOOT
@@ -253,3 +253,10 @@
 	const ICON_HOOH
 	const ICON_CELEBI
 	const ICON_EGG
+
+; LoadMenuMonIcon.Jumptable indexes (see engine/gfx/mon_icons.asm)
+	const_def
+	const MONICON_PARTYMENU
+	const MONICON_NAMINGSCREEN
+	const MONICON_MOVES
+	const MONICON_TRADE

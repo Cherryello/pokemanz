@@ -153,12 +153,12 @@ AnimationIdlePointers:
 	dw DuckyAnimationIdle
 	dw DucklyAnimationIdle
 	dw DuckleafAnimationIdle
-	dw CyndaquilAnimationIdle
-	dw QuilavaAnimationIdle
-	dw TyphlosionAnimationIdle
-	dw TotodileAnimationIdle
-	dw CroconawAnimationIdle
-	dw FeraligatrAnimationIdle
+	dw BeaireAnimationIdle
+	dw FiearAnimationIdle
+	dw GrizzlireAnimationIdle
+	dw SquizzyAnimationIdle
+	dw SquashyAnimationIdle
+	dw BatzyAnimationIdle
 	dw SentretAnimationIdle
 	dw FurretAnimationIdle
 	dw HoothootAnimationIdle

@@ -1,4 +1,4 @@
-_AnimateHPBar: ; d627
+_AnimateHPBar:
 	call .IsMaximumMoreThan48Pixels
 	jr c, .MoreThan48Pixels
 	call .ComputePixels
@@ -38,9 +38,8 @@ _AnimateHPBar: ; d627
 	pop af
 	jr nc, .LongAnimLoop
 	ret
-; d65f
 
-.IsMaximumMoreThan48Pixels: ; d65f
+.IsMaximumMoreThan48Pixels:
 	ld a, [wCurHPAnimMaxHP + 1]
 	and a
 	jr nz, .player
@@ -53,9 +52,8 @@ _AnimateHPBar: ; d627
 .player
 	scf
 	ret
-; d670
 
-.ComputePixels: ; d670
+.ComputePixels:
 	push hl
 	ld hl, wCurHPAnimMaxHP
 	ld a, [hli]
@@ -127,9 +125,8 @@ _AnimateHPBar: ; d627
 	ld a, e
 	ld [wCurHPAnimDeltaHP + 1], a
 	ret
-; d6e2
 
-ShortAnim_UpdateVariables: ; d6e2
+ShortAnim_UpdateVariables:
 	ld hl, wCurHPBarPixels
 	ld a, [wNewHPBarPixels]
 	cp [hl]
@@ -144,9 +141,8 @@ ShortAnim_UpdateVariables: ; d6e2
 	call ShortHPBar_CalcPixelFrame
 	and a
 	ret
-; d6f5
 
-LongAnim_UpdateVariables: ; d6f5
+LongAnim_UpdateVariables:
 .loop
 	ld hl, wCurHPAnimOldHP
 	ld a, [hli]
@@ -194,9 +190,8 @@ LongAnim_UpdateVariables: ; d6f5
 	ld [hl], a
 	and a
 	ret
-; d730
 
-ShortHPBarAnim_UpdateTiles: ; d730
+ShortHPBarAnim_UpdateTiles:
 	call HPBarAnim_UpdateHPRemaining
 	ld d, HP_BAR_LENGTH
 	ld a, [wWhichHPBar]
@@ -210,9 +205,8 @@ ShortHPBarAnim_UpdateTiles: ; d730
 	pop de
 	call HPBarAnim_PaletteUpdate
 	ret
-; d749
 
-LongHPBarAnim_UpdateTiles: ; d749
+LongHPBarAnim_UpdateTiles:
 	call HPBarAnim_UpdateHPRemaining
 	ld a, [wCurHPAnimOldHP]
 	ld c, a
@@ -233,9 +227,8 @@ LongHPBarAnim_UpdateTiles: ; d749
 	pop de
 	call HPBarAnim_PaletteUpdate
 	ret
-; d771
 
-HPBarAnim_RedrawHPBar: ; d771
+HPBarAnim_RedrawHPBar:
 	ld a, [wWhichHPBar]
 	cp $2
 	jr nz, .skip
@@ -248,9 +241,8 @@ HPBarAnim_RedrawHPBar: ; d771
 .skip
 	call DrawBattleHPBar
 	ret
-; d784
 
-HPBarAnim_UpdateHPRemaining: ; d784
+HPBarAnim_UpdateHPRemaining:
 	ld a, [wWhichHPBar]
 	and a
 	ret z
@@ -278,29 +270,16 @@ HPBarAnim_UpdateHPRemaining: ; d784
 	call PrintNum
 	pop hl
 	ret
-; d7b4
 
-HPBarAnim_PaletteUpdate: ; d7b4
-	ld a, [hCGB]
-	and a
-	ret z
+HPBarAnim_PaletteUpdate:
 	ld hl, wCurHPAnimPal
 	call SetHPPal
 	ld a, [wCurHPAnimPal]
 	ld c, a
 	farcall ApplyHPBarPals
 	ret
-; d7c9
 
-HPBarAnim_BGMapUpdate: ; d7c9
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-	call DelayFrame
-	call DelayFrame
-	ret
-
-.cgb
+HPBarAnim_BGMapUpdate:
 	ld a, [wWhichHPBar]
 	and a
 	jr z, .load_0
@@ -364,9 +343,8 @@ HPBarAnim_BGMapUpdate: ; d7c9
 	ld [hBGMapThird], a
 	call DelayFrame
 	ret
-; d839
 
-ShortHPBar_CalcPixelFrame: ; d839
+ShortHPBar_CalcPixelFrame:
 	ld a, [wCurHPAnimMaxHP]
 	ld c, a
 	ld b, 0
@@ -386,7 +364,7 @@ ShortHPBar_CalcPixelFrame: ; d839
 	ld a, h
 	sbc $0
 	ld h, a
-    jr z, .done
+	jr z, .done
 	jr c, .done
 	inc b
 	jr .loop
@@ -425,4 +403,3 @@ ShortHPBar_CalcPixelFrame: ; d839
 	ld a, [wCurHPAnimMaxHP]
 	ld [wCurHPAnimOldHP], a
 	ret
-; d88c

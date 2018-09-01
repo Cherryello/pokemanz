@@ -174,12 +174,12 @@ JOHTO_POKEMON EQU const_value
 	const DUCKY      ; 98
 	const DUCKLY     ; 99
 	const DUCKLEAF   ; 9a
-	const CYNDAQUIL  ; 9b
-	const QUILAVA    ; 9c
-	const TYPHLOSION ; 9d
-	const TOTODILE   ; 9e
-	const CROCONAW   ; 9f
-	const FERALIGATR ; a0
+	const BEAIRE     ; 9b
+	const FIEAR	     ; 9c
+	const GRIZZLIRE  ; 9d
+	const SQUIZZY    ; 9e
+	const SQUASHY    ; 9f
+	const BATZY		 ; a0
 	const SENTRET    ; a1
 	const FURRET     ; a2
 	const HOOTHOOT   ; a3

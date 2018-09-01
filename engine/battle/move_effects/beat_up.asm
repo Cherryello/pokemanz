@@ -1,4 +1,4 @@
-BattleCommand_BeatUp: ; 35461
+BattleCommand_BeatUp:
 ; beatup
 
 	call ResetDamage
@@ -37,7 +37,9 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [wd002]
 	ld c, a
 	ld a, [wCurBattleMon]
-	cp c
+	; BUG: this can desynchronize link battles
+	; Change "cp [hl]" to "cp c" to fix
+	cp [hl]
 	ld hl, wBattleMonStatus
 	jr z, .active_mon
 	ld a, MON_STATUS
@@ -191,32 +193,20 @@ BattleCommand_BeatUp: ; 35461
 	ld d, a
 	ret
 
-; 355b0
-
-
-.beatup_fail ; 355b0
+.beatup_fail
 	ld b, buildopponentrage_command
 	jp SkipToBattleCommand
 
-; 355b5
-
-
-BattleCommand_BeatUpFailText: ; 355b5
+BattleCommand_BeatUpFailText:
 ; beatupfailtext
 
 	ld a, [wBeatUpHitAtLeastOnce]
 	and a
 	ret nz
-	
-	inc a
-	ld [wAttackMissed], a
 
 	jp PrintButItFailed
 
-; 355bd
-
-
-GetBeatupMonLocation: ; 355bd
+GetBeatupMonLocation:
 	push bc
 	ld c, a
 	ld b, 0

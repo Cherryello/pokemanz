@@ -160,8 +160,8 @@ CyndaquilPokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
-	pokepic CYNDAQUIL
-	cry CYNDAQUIL
+	pokepic BEAIRE
+	cry BEAIRE
 	waitbutton
 	closepokepic
 	opentext
@@ -173,12 +173,12 @@ CyndaquilPokeBallScript:
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem CYNDAQUIL, MEM_BUFFER_0
+	pokenamemem BEAIRE, MEM_BUFFER_0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke CYNDAQUIL, 5, BERRY
+	givepoke BEAIRE, 5, BERRY
 	closetext
 	checkcode VAR_FACING
 	ifequal RIGHT, ElmDirectionsScript
@@ -190,8 +190,8 @@ TotodilePokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
-	pokepic TOTODILE
-	cry TOTODILE
+	pokepic SQUIZZY
+	cry SQUIZZY
 	waitbutton
 	closepokepic
 	opentext
@@ -199,16 +199,16 @@ TotodilePokeBallScript:
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear ELMSLAB_POKE_BALL2
-	setevent EVENT_GOT_TOTODILE_FROM_ELM
+	setevent EVENT_GOT_CHIKORITA_FROM_ELM
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem TOTODILE, MEM_BUFFER_0
+	pokenamemem SQUIZZY, MEM_BUFFER_0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	buttonsound
-	givepoke TOTODILE, 5, BERRY
+	givepoke SQUIZZY, 5, BERRY
 	closetext
 	applymovement PLAYER, AfterTotodileMovement
 	jump ElmDirectionsScript
@@ -306,7 +306,6 @@ ElmsLabHealingMachine:
 	end
 
 ElmsLabHealingMachine_HealParty:
-	special StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_NONE
 	writebyte HEALMACHINE_ELMS_LAB
@@ -601,10 +600,6 @@ ElmsLabTrashcan:
 ElmsLabPC:
 	jumptext ElmsLabPCText
 
-ElmsLabTrashcan2:
-; unused
-	jumpstd trashcan
-
 ElmsLabBookshelf:
 	jumpstd difficultbookshelf
 
@@ -858,19 +853,19 @@ LabWhereGoingText:
 
 TakeCyndaquilText:
 	text "ELM: You'll take"
-	line "CYNDAQUIL, the"
+	line "BEAIRE, the"
 	cont "fire #MON?"
 	done
 
 TakeTotodileText:
 	text "ELM: Do you want"
-	line "TOTODILE, the"
+	line "SQUIZZY, the"
 	cont "water #MON?"
 	done
 
 TakeChikoritaText:
 	text "ELM: So, you like"
-	line "Ducky, the"
+	line "DUCKY, the"
 	cont "grass #MON?"
 	done
 
@@ -1207,12 +1202,6 @@ ElmGiveTicketText2:
 
 	para "Give my regards to"
 	line "PROF.OAK in KANTO!"
-	done
-
-ElmsLabSignpostText_Egg:
-	text "It's the #MON"
-	line "EGG being studied"
-	cont "by PROF.ELM."
 	done
 
 AideText_GiveYouPotion:

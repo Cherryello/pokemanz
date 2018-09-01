@@ -10,7 +10,7 @@ GetMoveCategoryName:
 	call GetFarByte
 
 ; Mask out the type
-	and $ff ^ MOVE_TYPE_MASK
+	and $ff ^ TYPE_MASK
 ; Shift the category bits into the range 0-2
 	rlc a
 	rlc a
@@ -27,6 +27,5 @@ GetMoveCategoryName:
 	ld de, wStringBuffer1
 	ld bc, MOVE_NAME_LENGTH
 	jp CopyBytes
-
 
 INCLUDE "data/types/category_names.asm"

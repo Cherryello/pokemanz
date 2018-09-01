@@ -1,6 +1,6 @@
 INCLUDE "gfx/font.asm"
 
-_LoadStandardFont:: ; fb449
+_LoadStandardFont::
 	ld de, Font
 	ld hl, vTiles1
 	lb bc, BANK(Font), 32 ; "A" to "]"
@@ -11,32 +11,28 @@ _LoadStandardFont:: ; fb449
 	call Get1bpp_2
 	ld de, Font + 64 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $40
-	lb bc, BANK(Font), 32 ; $c0 to "←"
+	lb bc, BANK(Font), 32 ; "$c0" to "←"
 	call Get1bpp_2
 	ld de, Font + 96 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $60
 	lb bc, BANK(Font), 32 ; "'" to "9"
 	call Get1bpp_2
 	ret
-; fb48a
 
-_LoadFontsExtra1:: ; fb48a
+_LoadFontsExtra1::
 	jr LoadFrame
-; fb4b0
 
-_LoadFontsExtra2:: ; fb4b0
+_LoadFontsExtra2::
 	ret
-; fb4be
 
-_LoadFontsBattleExtra:: ; fb4be
+_LoadFontsBattleExtra::
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 25
 	call Get2bpp_2
 	jr LoadFrame
-; fb4cc
 
-LoadFrame: ; fb4cc
+LoadFrame:
 	ld a, [wTextBoxFrame]
 	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
@@ -52,9 +48,8 @@ LoadFrame: ; fb4cc
 	lb bc, BANK(TextBoxSpaceGFX), 1
 	call Get1bpp_2
 	ret
-; fb4f2
 
-LoadBattleFontsHPBar: ; fb4f2
+LoadBattleFontsHPBar:
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 12
@@ -65,7 +60,7 @@ LoadBattleFontsHPBar: ; fb4f2
 	call Get2bpp_2
 	call LoadFrame
 
-LoadHPBar: ; fb50d
+LoadHPBar:
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
@@ -78,14 +73,9 @@ LoadHPBar: ; fb50d
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 9
 	call Get2bpp_2
-	ld de, MobilePhoneTilesGFX + 7 tiles ; mobile phone icon
-	ld hl, vTiles2 tile $5e
-	lb bc, BANK(MobilePhoneTilesGFX), 2
-	call Get2bpp_2
 	ret
-; fb53e
 
-StatsScreen_LoadFont: ; fb53e
+StatsScreen_LoadFont:
 	call _LoadFontsBattleExtra
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
@@ -103,10 +93,9 @@ StatsScreen_LoadFont: ; fb53e
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 8
 	call Get2bpp_2
-LoadStatsScreenPageTilesGFX: ; fb571
+LoadStatsScreenPageTilesGFX:
 	ld de, StatsScreenPageTilesGFX
 	ld hl, vTiles2 tile $31
 	lb bc, BANK(StatsScreenPageTilesGFX), 17
 	call Get2bpp_2
 	ret
-; fb57e

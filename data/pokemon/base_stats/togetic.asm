@@ -4,7 +4,7 @@
 	evs  0,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
-	db FAIRY, FLYING ; type
+	db FAIRYT, FLYING ; type
 	db 75 ; catch rate
 	db 114 ; base exp
 	db NO_ITEM, NO_ITEM ; items

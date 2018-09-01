@@ -490,7 +490,7 @@ DuckyEggMoves:
 	db SWORDS_DANCE
 	db -1 ; end
 
-CyndaquilEggMoves:
+BeaireEggMoves:
 	db FURY_SWIPES
 	db QUICK_ATTACK
 	db REVERSAL
@@ -501,7 +501,7 @@ if _CRYSTAL
 endc
 	db -1 ; end
 
-TotodileEggMoves:
+SquizzyEggMoves:
 	db CRUNCH
 	db THRASH
 	db HYDRO_PUMP

@@ -13,12 +13,20 @@
 	const ROUTE36NATIONALPARKGATE_OFFICER2
 
 Route36NationalParkGate_MapScripts:
-	db 1 ; scene scripts
+	db 3 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_ROUTE36NATIONALPARKGATE_NOTHING
+	scene_script .DummyScene1 ; SCENE_ROUTE36NATIONALPARKGATE_UNUSED
 	scene_script .LeaveContestEarly ; SCENE_ROUTE36NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 
 	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
 	callback MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
+
+.DummyScene0:
+	end
+
+.DummyScene1:
+	end
 
 .LeaveContestEarly:
 	priorityjump .LeavingContestEarly

@@ -8,6 +8,7 @@ sEnemyFrontpicTileCount:: db
 sPaddedEnemyFrontpic:: ds 7 * 7 tiles
 ENDU ; a600
 
+
 SECTION "SRAM Bank 0", SRAM
 
 ; a600
@@ -213,7 +214,7 @@ sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 
 ; team of previous trainer
-sBTMonOfTrainers:: ; 0xbe51
+sBTMonOfTrainers:: ; be51
 sBTMonPrevTrainer1:: db
 sBTMonPrevTrainer2:: db
 sBTMonPrevTrainer3:: db

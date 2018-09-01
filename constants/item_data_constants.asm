@@ -32,7 +32,6 @@ NO_LIMITS   EQU 0
 CANT_SELECT EQU 1 << CANT_SELECT_F
 CANT_TOSS   EQU 1 << CANT_TOSS_F
 
-
 ; pack pockets
 	const_def
 	const ITEM_POCKET     ; 0
@@ -46,24 +45,18 @@ MAX_BALLS     EQU 12
 MAX_KEY_ITEMS EQU 25
 MAX_PC_ITEMS  EQU 50
 
-
 ; mail
 MAIL_LINE_LENGTH   EQU $10
 MAIL_MSG_LENGTH    EQU $20
 MAILBOX_CAPACITY   EQU 10
 MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 
-
 ; held item effects
 	const_def
 	const HELD_NONE
 	const HELD_BERRY
-	const HELD_2
 	const HELD_LEFTOVERS
-	const HELD_4
-	const HELD_5
 	const HELD_RESTORE_PP
-	const HELD_7
 	const HELD_CLEANSE_TAG
 
 	const_def 10
@@ -84,7 +77,6 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 	const HELD_PREVENT_CONFUSE
 
 	const_def 30
-	const HELD_30
 	const HELD_ATTACK_UP
 	const HELD_DEFENSE_UP
 	const HELD_SPEED_UP
@@ -92,11 +84,8 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 	const HELD_SP_DEFENSE_UP
 	const HELD_ACCURACY_UP
 	const HELD_EVASION_UP
-	const HELD_38
 
 	const_def 40
-	const HELD_40
-	const HELD_41
 	const HELD_METAL_POWDER
 	const HELD_EVIOLITE
 
@@ -122,58 +111,10 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 
 	const_def 70
 	const HELD_CATCH_CHANCE
-	const HELD_71
 	const HELD_ESCAPE
 	const HELD_CRITICAL_UP
 	const HELD_QUICK_CLAW
 	const HELD_FLINCH
 	const HELD_AMULET_COIN
 	const HELD_BRIGHTPOWDER
-	const HELD_78
 	const HELD_FOCUS_BAND
-
-
-; mart types (see engine/items/mart.asm)
-	const_def
-	const MARTTYPE_STANDARD
-	const MARTTYPE_BITTER
-	const MARTTYPE_BARGAIN
-	const MARTTYPE_PHARMACY
-	const MARTTYPE_ROOFTOP
-
-; Marts indexes (see data/items/marts.asm)
-	const_def
-	const MART_CHERRYGROVE
-	const MART_CHERRYGROVE_DEX
-	const MART_VIOLET
-	const MART_AZALEA
-	const MART_CIANWOOD
-	const MART_GOLDENROD_2F_1
-	const MART_GOLDENROD_2F_2
-	const MART_GOLDENROD_3F
-	const MART_GOLDENROD_4F
-	const MART_GOLDENROD_5F_1
-	const MART_GOLDENROD_5F_2
-	const MART_GOLDENROD_5F_3
-	const MART_GOLDENROD_5F_4
-	const MART_OLIVINE
-	const MART_ECRUTEAK
-	const MART_MAHOGANY_1
-	const MART_MAHOGANY_2
-	const MART_BLACKTHORN
-	const MART_VIRIDIAN
-	const MART_PEWTER
-	const MART_CERULEAN
-	const MART_LAVENDER
-	const MART_VERMILION
-	const MART_CELADON_2F_1
-	const MART_CELADON_2F_2
-	const MART_CELADON_3F
-	const MART_CELADON_4F
-	const MART_CELADON_5F_1
-	const MART_CELADON_5F_2
-	const MART_FUCHSIA
-	const MART_SAFFRON
-	const MART_MT_MOON
-	const MART_INDIGO_PLATEAU
-	const MART_UNDERGROUND

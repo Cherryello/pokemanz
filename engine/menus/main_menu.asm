@@ -1,8 +1,4 @@
-GFX_49c0c: ; 49c0c
-INCBIN "gfx/unknown/049c0c.2bpp"
-; 49cdc
-
-MainMenu: ; 49cdc
+MainMenu:
 	xor a
 	ld [wDisableTextAcceleration], a
 	call Function49ed0
@@ -27,33 +23,29 @@ MainMenu: ; 49cdc
 
 .quit
 	ret
-; 49d14
 
-.MenuHeader: ; 49d14
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 16, 7
 	dw .MenuData
 	db 1 ; default option
-; 49d1c
 
-.MenuData: ; 49d1c
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw MainMenuItems
 	dw PlaceMenuStrings
 	dw .Strings
-; 49d20
 
-.Strings: ; 49d24
+.Strings:
 	db "Continua@"
 	db "Nuovo gioco@"
 	db "Opzioni@"
 
-.Jumptable: ; 0x49d60
+.Jumptable:
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
 	dw MainMenu_Options
-; 0x49d6c
 
 CONTINUE       EQU 0
 NEW_GAME       EQU 1
@@ -61,23 +53,20 @@ OPTION         EQU 2
 
 MainMenuItems:
 
-NewGameMenu: ; 0x49d6c
+NewGameMenu:
 	db 2
 	db NEW_GAME
 	db OPTION
 	db -1
 
-ContinueMenu: ; 0x49d70
+ContinueMenu:
 	db 3
 	db CONTINUE
 	db NEW_GAME
 	db OPTION
 	db -1
 
-MainMenu_GetWhichMenu: ; 49da4
-	nop
-	nop
-	nop
+MainMenu_GetWhichMenu:
 	ld a, [wSaveFileExists]
 	and a
 	jr nz, .next
@@ -96,13 +85,10 @@ MainMenu_GetWhichMenu: ; 49da4
 	jr .ok
 
 .ok
-	jr .ok2
-
-.ok2
 	ld a, $1 ; Continue
 	ret
 
-MainMenuJoypadLoop: ; 49de4
+MainMenuJoypadLoop:
 	call SetUpMenu
 .loop
 	call MainMenu_PrintCurrentTimeAndDay
@@ -125,9 +111,8 @@ MainMenuJoypadLoop: ; 49de4
 .b_button
 	scf
 	ret
-; 49e09
 
-MainMenu_PrintCurrentTimeAndDay: ; 49e09
+MainMenu_PrintCurrentTimeAndDay:
 	ld a, [wSaveFileExists]
 	and a
 	ret z
@@ -144,10 +129,8 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
-; 49e27
 
-
-.PlaceBox: ; 49e27
+.PlaceBox:
 	call CheckRTCStatus
 	and $80
 	jr nz, .TimeFail
@@ -160,10 +143,8 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 .TimeFail:
 	call SpeechTextBox
 	ret
-; 49e3d
 
-
-.PlaceTime: ; 49e3d
+.PlaceTime:
 	ld a, [wSaveFileExists]
 	and a
 	ret z
@@ -186,30 +167,17 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	call PrintNum
 	ret
 
-.min
-; unused
-	db "min.@"
-; 49e75
-
-.PrintTimeNotSet: ; 49e75
+.PrintTimeNotSet:
 	hlcoord 1, 14
 	ld de, .TimeNotSet
 	call PlaceString
 	ret
-; 49e7f
 
-.TimeNotSet: ; 49e7f
+.TimeNotSet:
 	db   "Orario non"
 	line "impostato@"
-; 49e8c
 
-.UnusedText: ; 49e8c
-	; Clock time unknown
-	text_jump UnknownText_0x1c5182
-	db "@"
-; 49e91
-
-.PlaceCurrentDay: ; 49e91
+.PlaceCurrentDay:
 	push de
 	ld hl, .Days
 	ld a, b
@@ -218,12 +186,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	ld e, l
 	pop hl
 	call PlaceString
-	ld h, b
-	ld l, c
-	ld de, .Day
-	call PlaceString
 	ret
-; 49ea8
 
 .Days:
 	db "Domenica@"
@@ -233,11 +196,8 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	db "Giovedì@"
 	db "Venerdì@"
 	db "Sabato@"
-.Day:
-	db "@"
-; 49ed0
 
-Function49ed0: ; 49ed0
+Function49ed0:
 	xor a
 	ld [hMapAnims], a
 	call ClearTileMap
@@ -245,20 +205,19 @@ Function49ed0: ; 49ed0
 	call LoadStandardFont
 	call ClearWindowData
 	ret
-; 49ee0
 
-
-MainMenu_NewGame: ; 49ee0
+MainMenu_NewGame:
 	farcall NewGame
 	ret
-; 49ee7
 
-MainMenu_Options: ; 49ee7
+MainMenu_Options:
 	farcall OptionsMenu
 	ret
-; 49eee
 
-MainMenu_Continue: ; 49eee
+MainMenu_Continue:
 	farcall Continue
 	ret
-; 49ef5
+
+MainMenu_MysteryGift:
+	farcall MysteryGift
+	ret

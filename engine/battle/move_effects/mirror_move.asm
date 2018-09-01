@@ -1,4 +1,4 @@
-BattleCommand_MirrorMove: ; 373c9
+BattleCommand_MirrorMove:
 ; mirrormove
 
 	call ClearLastMove
@@ -24,7 +24,7 @@ BattleCommand_MirrorMove: ; 373c9
 .use
 	ld a, b
 	ld [hl], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 
 	push af
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -49,4 +49,3 @@ BattleCommand_MirrorMove: ; 373c9
 .done
 	call BattleCommand_MoveDelay
 	jp ResetTurn
-; 37418

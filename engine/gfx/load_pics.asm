@@ -1,4 +1,4 @@
-GetUnownLetter: ; 51040
+GetUnownLetter:
 ; Return Unown letter in wUnownLetter based on DVs at hl
 
 ; Take the middle 2 bits of each DV and place them in order:
@@ -48,7 +48,7 @@ GetUnownLetter: ; 51040
 	ld [wUnownLetter], a
 	ret
 
-GetMonFrontpic: ; 51077
+GetMonFrontpic:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call IsAPokemon
@@ -60,7 +60,7 @@ GetMonFrontpic: ; 51077
 	ld [rSVBK], a
 	jp CloseSRAM
 
-GetAnimatedFrontpic: ; 5108b
+GetAnimatedFrontpic:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call IsAPokemon
@@ -71,15 +71,15 @@ GetAnimatedFrontpic: ; 5108b
 	ld [hBGMapMode], a
 	call _GetFrontpic
 	ld a, BANK(vTiles3)
-	ld [rVBK], a
+	ldh [rVBK], a
 	call GetAnimatedEnemyFrontpic
 	xor a
-	ld [rVBK], a
+	ldh [rVBK], a
 	pop af
 	ld [rSVBK], a
 	jp CloseSRAM
 
-_GetFrontpic: ; 510a5
+_GetFrontpic:
 	ld a, BANK(sEnemyFrontpicTileCount)
 	call GetSRAMBank
 	push de
@@ -115,7 +115,7 @@ _GetFrontpic: ; 510a5
 	pop hl
 	ret
 
-GetFrontpicPointer: ; 510d7
+GetFrontpicPointer:
 	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .unown
@@ -141,7 +141,7 @@ GetFrontpicPointer: ; 510d7
 	pop bc
 	ret
 
-GetAnimatedEnemyFrontpic: ; 51103
+GetAnimatedEnemyFrontpic:
 	push hl
 	ld de, sPaddedEnemyFrontpic
 	ld c, 7 * 7
@@ -193,14 +193,14 @@ GetAnimatedEnemyFrontpic: ; 51103
 	; ...then load the rest into vTiles4
 	ld de, wDecompressScratch + (127 - 7 * 7) tiles
 	ld hl, vTiles4
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	ld a, [sEnemyFrontpicTileCount]
 	ld c, a
 .finish
 	jp Get2bpp
 
-LoadFrontpicTiles: ; 5114f
+LoadFrontpicTiles:
 	ld hl, wDecompressScratch
 	swap c
 	ld a, c
@@ -227,7 +227,7 @@ LoadFrontpicTiles: ; 5114f
 	jr nz, .loop
 	ret
 
-GetMonBackpic: ; 5116c
+GetMonBackpic:
 	ld a, [wCurPartySpecies]
 	call IsAPokemon
 	ret c
@@ -277,25 +277,7 @@ GetMonBackpic: ; 5116c
 	ld [rSVBK], a
 	ret
 
-Function511ec: ; 511ec
-	ld a, c
-	push de
-	ld hl, PokemonPicPointers
-	dec a
-	ld bc, 6
-	call AddNTimes
-	ld a, BANK(PokemonPicPointers)
-	call GetFarByte
-	push af
-	inc hl
-	ld a, BANK(PokemonPicPointers)
-	call GetFarHalfword
-	pop af
-	pop de
-	call FarDecompress
-	ret
-
-GetTrainerPic: ; 5120d
+GetTrainerPic:
 	ld a, [wTrainerClass]
 	and a
 	ret z
@@ -336,7 +318,7 @@ GetTrainerPic: ; 5120d
 	ld [hBGMapMode], a
 	ret
 
-DecompressGet2bpp: ; 5125d
+DecompressGet2bpp:
 ; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
 
 	ld a, [rSVBK]
@@ -360,7 +342,7 @@ DecompressGet2bpp: ; 5125d
 	ld [rSVBK], a
 	ret
 
-FixBackpicAlignment: ; 5127c
+FixBackpicAlignment:
 	push de
 	push bc
 	ld a, [wBoxAlignment]
@@ -396,7 +378,7 @@ FixBackpicAlignment: ; 5127c
 	pop de
 	ret
 
-PadFrontpic: ; 512ab
+PadFrontpic:
 ; pads frontpic to fill 7x7 box
 	ld a, b
 	cp 6
@@ -405,39 +387,39 @@ PadFrontpic: ; 512ab
 	jr z, .five
 
 .seven_loop
-	ld c, $70
+	ld c, 7 << 4
 	call LoadOrientedFrontpic
 	dec b
 	jr nz, .seven_loop
 	ret
 
 .six
-	ld c, $70
+	ld c, 7 << 4
 	xor a
 	call .Fill
 .six_loop
-	ld c, $10
+	ld c, (7 - 6) << 4
 	xor a
 	call .Fill
-	ld c, $60
+	ld c, 6 << 4
 	call LoadOrientedFrontpic
 	dec b
 	jr nz, .six_loop
 	ret
 
 .five
-	ld c, $70
+	ld c, 7 << 4
 	xor a
 	call .Fill
 .five_loop
-	ld c, $20
+	ld c, (7 - 5) << 4
 	xor a
 	call .Fill
-	ld c, $50
+	ld c, 5 << 4
 	call LoadOrientedFrontpic
 	dec b
 	jr nz, .five_loop
-	ld c, $70
+	ld c, 7 << 4
 	xor a
 	call .Fill
 	ret
@@ -448,7 +430,7 @@ PadFrontpic: ; 512ab
 	jr nz, .Fill
 	ret
 
-LoadOrientedFrontpic: ; 512f2
+LoadOrientedFrontpic:
 	ld a, [wBoxAlignment]
 	and a
 	jr nz, .x_flip

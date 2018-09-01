@@ -1,4 +1,4 @@
-CheckMagikarpLength: ; fbb32
+CheckMagikarpLength:
 	; Returns 3 if you select a Magikarp that beats the previous record.
 	; Returns 2 if you select a Magikarp, but the current record is longer.
 	; Returns 1 if you press B in the Pokemon selection menu.
@@ -28,7 +28,6 @@ CheckMagikarpLength: ; fbb32
 	ld c, l
 	call CalcMagikarpLength
 	call PrintMagikarpLength
-	farcall StubbedTrainerRankings_MagikarpLength
 	ld hl, .MeasureItText
 	call PrintText
 
@@ -36,7 +35,7 @@ CheckMagikarpLength: ; fbb32
 	ld hl, wMagikarpLength
 	ld de, wBestMagikarpLengthFeet
 	ld c, 2
-	call StringCmp
+	call CompareBytes
 	jr nc, .not_long_enough
 
 	; NEW RECORD!!! Let's save that.
@@ -70,15 +69,13 @@ CheckMagikarpLength: ; fbb32
 	xor a ; MAGIKARPLENGTH_NOT_MAGIKARP
 	ld [wScriptVar], a
 	ret
-; fbba9
 
-.MeasureItText: ; 0xfbba9
+.MeasureItText:
 	; Let me measure that MAGIKARP. …Hm, it measures @ .
 	text_jump UnknownText_0x1c1203
 	db "@"
-; 0xfbbae
 
-PrintMagikarpLength: ; fbbdb
+PrintMagikarpLength:
 	ld hl, wStringBuffer1
 	ld de, wMagikarpLength
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
@@ -92,9 +89,8 @@ PrintMagikarpLength: ; fbbdb
 	inc hl
 	ld [hl], "@"
 	ret
-; fbbfc
 
-CalcMagikarpLength: ; fbbfc
+CalcMagikarpLength:
 ; Return Magikarp's length (in feet and inches) at wMagikarpLength (big endian).
 ;
 ; input:
@@ -130,7 +126,6 @@ CalcMagikarpLength: ; fbbfc
 ; if b = 244-251:  x = 64710,  y =  20,  z = 12
 ; if b = 252-253:  x = 65210,  y =   5,  z = 13
 ; if b = 254:      x = 65410,  y =   2,  z = 14
-
 
 	; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
@@ -178,7 +173,7 @@ CalcMagikarpLength: ; fbbfc
 
 	ld hl, MagikarpLengths
 	ld a, 2
-	ld [wd265], a
+	ld [wTempByteValue], a
 
 .read
 	ld a, [hli]
@@ -207,7 +202,7 @@ CalcMagikarpLength: ; fbbfc
 	ld [hMultiplicand + 1], a
 	ld a, 100
 	ld [hMultiplicand + 2], a
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	ld [hMultiplier], a
 	call Multiply
 	ld b, 0
@@ -221,9 +216,9 @@ CalcMagikarpLength: ; fbbfc
 
 .next
 	inc hl ; align to next triplet
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	inc a
-	ld [wd265], a
+	ld [wTempByteValue], a
 	cp 16
 	jr c, .read
 
@@ -270,18 +265,19 @@ CalcMagikarpLength: ; fbbfc
 	inc hl
 	ld [hl], e ; in
 	ret
-; fbc9a
 
-.BCLessThanDE: ; fbc9a
+.BCLessThanDE:
+; Intention: Return bc < de.
+; Reality: Return b < d.
 	ld a, b
 	cp d
 	ret c
+	ret nc ; whoops
 	ld a, c
 	cp e
 	ret
-; fbca1
 
-.BCMinusDE: ; fbca1
+.BCMinusDE:
 ; bc -= de
 	ld a, c
 	sub e
@@ -290,13 +286,10 @@ CalcMagikarpLength: ; fbbfc
 	sbc d
 	ld b, a
 	ret
-; fbca8
 
 INCLUDE "data/events/magikarp_lengths.asm"
 
-
-
-MagikarpHouseSign: ; fbcd2
+MagikarpHouseSign:
 	ld a, [wBestMagikarpLengthFeet]
 	ld [wMagikarpLength], a
 	ld a, [wBestMagikarpLengthInches]
@@ -305,10 +298,8 @@ MagikarpHouseSign: ; fbcd2
 	ld hl, .CurrentRecordtext
 	call PrintText
 	ret
-; fbce8
 
-.CurrentRecordtext: ; 0xfbce8
+.CurrentRecordtext:
 	; "CURRENT RECORD"
 	text_jump UnknownText_0x1c123a
 	db "@"
-; 0xfbced

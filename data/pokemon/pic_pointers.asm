@@ -310,18 +310,18 @@ PokemonPicPointers::
 	dba DucklyBackpic
 	dba DuckleafFrontpic
 	dba DuckleafBackpic
-	dba CyndaquilFrontpic
-	dba CyndaquilBackpic
-	dba QuilavaFrontpic
-	dba QuilavaBackpic
-	dba TyphlosionFrontpic
-	dba TyphlosionBackpic
-	dba TotodileFrontpic
-	dba TotodileBackpic
-	dba CroconawFrontpic
-	dba CroconawBackpic
-	dba FeraligatrFrontpic
-	dba FeraligatrBackpic
+	dba BeaireFrontpic
+	dba BeaireBackpic
+	dba FiearFrontpic
+	dba FiearBackpic
+	dba GrizzlireFrontpic
+	dba GrizzlireBackpic
+	dba SquizzyFrontpic
+	dba SquizzyBackpic
+	dba SquashyFrontpic
+	dba SquashyBackpic
+	dba BatzyFrontpic
+	dba BatzyBackpic
 	dba SentretFrontpic
 	dba SentretBackpic
 	dba FurretFrontpic

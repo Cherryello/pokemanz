@@ -1,7 +1,7 @@
-CheckForLuckyNumberWinners: ; 4d87a
+CheckForLuckyNumberWinners:
 	xor a
 	ld [wScriptVar], a
-	ld [wFoundMatchingIDInParty], a
+	ld [wTempByteValue], a
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -34,8 +34,8 @@ CheckForLuckyNumberWinners: ; 4d87a
 	jr z, .SkipOpenBoxMon
 	call .CompareLuckyNumberToMonID
 	jr nc, .SkipOpenBoxMon
-	ld a, 1
-	ld [wFoundMatchingIDInParty], a
+	ld a, TRUE
+	ld [wTempByteValue], a
 
 .SkipOpenBoxMon:
 	push bc
@@ -81,8 +81,8 @@ CheckForLuckyNumberWinners: ; 4d87a
 
 	call .CompareLuckyNumberToMonID ; sets wScriptVar and wCurPartySpecies appropriately
 	jr nc, .SkipBoxMon
-	ld a, 1
-	ld [wFoundMatchingIDInParty], a
+	ld a, TRUE
+	ld [wTempByteValue], a
 
 .SkipBoxMon:
 	push bc
@@ -103,8 +103,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 	ld a, [wScriptVar]
 	and a
 	ret z ; found nothing
-	farcall StubbedTrainerRankings_LuckyNumberShow
-	ld a, [wFoundMatchingIDInParty]
+	ld a, [wTempByteValue]
 	and a
 	push af
 	ld a, [wCurPartySpecies]
@@ -118,7 +117,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 .print
 	jp PrintText
 
-.CompareLuckyNumberToMonID: ; 4d939
+.CompareLuckyNumberToMonID:
 	push bc
 	push de
 	push hl
@@ -127,14 +126,14 @@ CheckForLuckyNumberWinners: ; 4d87a
 	ld hl, wBuffer1
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	ld hl, wLuckyNumberDigit1Buffer
+	ld hl, wLuckyNumberDigitsBuffer
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ld b, 5
 	ld c, 0
-	ld hl, wLuckyNumberDigit5Buffer
-	ld de, wBuffer5
+	ld hl, wLuckyNumberDigitsBuffer + 4
+	ld de, wBuffer1 + 4
 .loop
 	ld a, [de]
 	cp [hl]
@@ -190,7 +189,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 	and a
 	ret
 
-.BoxBankAddresses: ; 4d99f
+.BoxBankAddresses:
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -206,17 +205,17 @@ CheckForLuckyNumberWinners: ; 4d87a
 	dba sBox13
 	dba sBox14
 
-.FoundPartymonText: ; 0x4d9c9
+.FoundPartymonText:
 	; Congratulations! We have a match with the ID number of @  in your party.
 	text_jump UnknownText_0x1c1261
 	db "@"
 
-.FoundBoxmonText: ; 0x4d9ce
+.FoundBoxmonText:
 	; Congratulations! We have a match with the ID number of @  in your PC BOX.
 	text_jump UnknownText_0x1c12ae
 	db "@"
 
-PrintTodaysLuckyNumber: ; 4d9d3
+PrintTodaysLuckyNumber:
 	ld hl, wStringBuffer3
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5

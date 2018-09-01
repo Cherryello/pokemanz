@@ -9,7 +9,6 @@ INCLUDE "engine/overworld/map_objects.asm"
 INCLUDE "engine/menus/intro_menu.asm"
 INCLUDE "engine/overworld/init_map.asm"
 INCLUDE "engine/pokemon/learn.asm"
-INCLUDE "engine/pokemon/correct_nick_errors.asm"
 INCLUDE "engine/math/math.asm"
 INCLUDE "data/items/attributes.asm"
 INCLUDE "engine/overworld/npc_movement.asm"
@@ -81,6 +80,8 @@ INCLUDE "engine/events/money.asm"
 INCLUDE "data/items/marts.asm"
 INCLUDE "engine/events/mom.asm"
 INCLUDE "engine/events/daycare.asm"
+INCLUDE "engine/events/print_unown.asm"
+INCLUDE "engine/events/print_photo.asm"
 INCLUDE "engine/pokemon/breeding.asm"
 INCLUDE "gfx/tilesets.asm"
 
@@ -113,10 +114,8 @@ INCLUDE "engine/events/prof_oaks_pc.asm"
 INCLUDE "engine/overworld/decorations.asm"
 INCLUDE "engine/pokemon/level_up_happiness.asm"
 INCLUDE "engine/battle/read_trainer_dvs.asm"
-INCLUDE "data/trainers/dvs.asm"
 INCLUDE "engine/battle/returntobattle_useball.asm"
 INCLUDE "engine/battle/consume_held_item.asm"
-INCLUDE "data/moves/effects_pointers.asm"
 INCLUDE "data/moves/effects.asm"
 INCLUDE "engine/events/kurt_selectquantity_interpretjoypad.asm"
 
@@ -125,12 +124,11 @@ SECTION "bankA", ROMX
 
 INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
-INCLUDE "engine/battle/link_result.asm"
 
-ChrisBackpic: ; 2ba1a
+ChrisBackpic:
 INCBIN "gfx/player/chris_back.2bpp.lz"
 
-DudeBackpic: ; 2bbaa
+DudeBackpic:
 INCBIN "gfx/battle/dude.2bpp.lz"
 
 
@@ -158,10 +156,7 @@ SECTION "Enemy Trainers", ROMX
 INCLUDE "engine/battle/ai/items.asm"
 INCLUDE "engine/battle/ai/scoring.asm"
 INCLUDE "engine/battle/read_trainer_attributes.asm"
-INCLUDE "data/trainers/attributes.asm"
 INCLUDE "engine/battle/read_trainer_party.asm"
-INCLUDE "data/trainers/party_pointers.asm"
-INCLUDE "data/trainers/parties.asm"
 
 
 SECTION "Battle Core", ROMX
@@ -182,7 +177,6 @@ SECTION "bank11", ROMX
 INCLUDE "engine/events/fruit_trees.asm"
 INCLUDE "engine/battle/ai/move.asm"
 INCLUDE "engine/pokedex/pokedex_2.asm"
-INCLUDE "data/pokemon/dex_entry_pointers.asm"
 INCLUDE "engine/pokemon/mail.asm"
 
 
@@ -194,10 +188,14 @@ INCLUDE "engine/events/move_tutor.asm"
 INCLUDE "engine/gfx/crystal_layouts.asm"
 INCLUDE "engine/events/celebi.asm"
 INCLUDE "engine/menus/main_menu.asm"
-INCLUDE "mobile/mobile_menu.asm"
 INCLUDE "engine/pokemon/search.asm"
-INCLUDE "mobile/mobile_12_2.asm"
 INCLUDE "engine/events/buena_menu.asm"
+
+
+SECTION "Tileset Palettes", ROMX
+
+INCLUDE "engine/tilesets/map_palettes.asm"
+INCLUDE "gfx/tileset_palette_maps.asm"
 
 
 SECTION "bank13", ROMX
@@ -205,15 +203,14 @@ SECTION "bank13", ROMX
 INCLUDE "data/collision_permissions.asm"
 INCLUDE "engine/menus/empty_sram.asm"
 INCLUDE "engine/menus/savemenu_copytilemapatonce.asm"
-INCLUDE "engine/events/checksave.asm"
 INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/overworld/load_map_part.asm"
 INCLUDE "engine/phone/phonering_copytilemapatonce.asm"
 
-Shrink1Pic: ; 4d249
+Shrink1Pic:
 INCBIN "gfx/new_game/shrink1.2bpp.lz"
 
-Shrink2Pic: ; 4d2d9
+Shrink2Pic:
 INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
 INCLUDE "engine/link/link_2.asm"
@@ -230,9 +227,7 @@ INCLUDE "engine/pokemon/stats_screen.asm"
 INCLUDE "engine/events/catch_tutorial.asm"
 INCLUDE "engine/movie/evolution_animation.asm"
 INCLUDE "engine/movie/init_hof_credits.asm"
-INCLUDE "engine/events/battle_tower/get_trainer_class.asm"
 INCLUDE "engine/battle/sliding_intro.asm"
-INCLUDE "mobile/print_opp_message.asm"
 INCLUDE "engine/battle/check_battle_scene.asm"
 INCLUDE "engine/movie/gbc_only.asm"
 INCLUDE "engine/events/poke_seer.asm"
@@ -259,10 +254,6 @@ INCLUDE "engine/pokemon/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 
-UnknownEggPic:: ; 53d9c
-; Another egg pic. This is shifted up a few pixels.
-INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
-
 
 SECTION "Crystal Phone Text", ROMX
 
@@ -275,11 +266,12 @@ INCLUDE "engine/overworld/player_movement.asm"
 INCLUDE "engine/events/engine_flags.asm"
 INCLUDE "engine/overworld/variables.asm"
 INCLUDE "data/text/battle.asm"
-INCLUDE "engine/menus/debug.asm"
 
 
 SECTION "bank21", ROMX
 
+INCLUDE "engine/printer/printer_serial.asm"
+INCLUDE "engine/printer/printer.asm"
 INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
 
@@ -288,12 +280,10 @@ SECTION "Crystal Features 2", ROMX
 
 INCLUDE "engine/events/kurt.asm"
 INCLUDE "engine/gfx/player_gfx.asm"
-INCLUDE "mobile/mobile_22.asm"
 INCLUDE "engine/events/unown_walls.asm"
 INCLUDE "engine/events/buena.asm"
 INCLUDE "engine/events/dratini.asm"
 INCLUDE "engine/events/battle_tower/rules.asm"
-INCLUDE "mobile/mobile_22_2.asm"
 
 
 SECTION "bank23", ROMX
@@ -368,7 +358,7 @@ INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
-TheEndGFX:: ; cbd2e
+TheEndGFX::
 INCBIN "gfx/credits/theend.2bpp"
 
 
@@ -423,15 +413,15 @@ INCLUDE "gfx/pokemon/unown_frames.asm"
 
 SECTION "bank38", ROMX
 
+INCLUDE "engine/events/print_unown_2.asm"
 INCLUDE "engine/games/card_flip.asm"
 INCLUDE "engine/games/unown_puzzle.asm"
-INCLUDE "engine/games/dummy_game.asm"
 INCLUDE "engine/pokemon/bills_pc.asm"
 
 
 SECTION "bank39", ROMX
 
-CopyrightGFX:: ; e4000
+CopyrightGFX::
 INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/menus/options_menu.asm"
@@ -473,14 +463,9 @@ INCLUDE "mobile/mobile_41.asm"
 INCLUDE "engine/gfx/load_overworld_font.asm"
 
 
-SECTION "Mobile 42", ROMX
-
-INCLUDE "mobile/mobile_42.asm"
-
-
 SECTION "Intro Logo", ROMX
 
-IntroLogoGFX: ; 109407
+IntroLogoGFX:
 INCBIN "gfx/intro/logo.2bpp.lz"
 
 
@@ -502,13 +487,12 @@ INCLUDE "engine/events/battle_tower/trainer_text.asm"
 
 SECTION "bank5B", ROMX
 
-INCLUDE "mobile/mobile_5b.asm"
 INCLUDE "engine/link/link_trade.asm"
 
 
 SECTION "Mobile 5C", ROMX
 
-INCLUDE "mobile/mobile_5c.asm"
+INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 
 SECTION "Crystal Phone Text 2", ROMX
@@ -519,11 +503,6 @@ INCLUDE "data/phone/text/extra2.asm"
 SECTION "UpdateBattleHUDs", ROMX
 
 INCLUDE "engine/battle/update_battle_huds.asm"
-
-
-SECTION "Mobile 5E", ROMX
-
-INCLUDE "mobile/mobile_5e.asm"
 
 
 SECTION "Mobile 5F", ROMX
@@ -559,15 +538,16 @@ SECTION "Miscellaneous Text", ROMX
 
 INCLUDE "data/items/names.asm"
 INCLUDE "engine/items/print_item_description.asm"
-INCLUDE "data/items/descriptions.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
 
 
 SECTION "bank77", ROMX
 
-UnownFont: ; 1dc000
+UnownFont:
 INCBIN "gfx/font/unown_font.2bpp"
+
+INCLUDE "engine/printer/print_party.asm"
 
 
 SECTION "bank77_2", ROMX
@@ -578,7 +558,7 @@ INCLUDE "engine/pokedex/pokedex_3.asm"
 INCLUDE "engine/events/catch_tutorial_input.asm"
 INCLUDE "engine/pokegear/townmap_convertlinebreakcharacters.asm"
 
-PokegearGFX: ; 1de2e4
+PokegearGFX:
 INCBIN "gfx/pokegear/pokegear.2bpp.lz"
 
 INCLUDE "engine/pokemon/european_mail.asm"
@@ -594,19 +574,7 @@ SECTION "Battle Tower Trainer Data", ROMX
 INCLUDE "data/battle_tower/unknown.asm"
 
 
-SECTION "Mobile News Data", ROMX
-
-
 SECTION "Crystal Events", ROMX
 
 INCLUDE "engine/events/battle_tower/load_trainer.asm"
 INCLUDE "engine/events/odd_egg.asm"
-
-
-SECTION "Mobile Stadium 2", ROMX
-
-if DEF(_CRYSTAL11)
-INCBIN "mobile/stadium/stadium2_2.bin"
-else
-INCBIN "mobile/stadium/stadium2_1.bin"
-endc

@@ -157,10 +157,10 @@ endc
 	dw DuckyEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw CyndaquilEggMoves
+	dw BeaireEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw TotodileEggMoves
+	dw SquizzyEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw SentretEggMoves

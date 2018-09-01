@@ -1,11 +1,10 @@
-DisplayUsedMoveText: ; 105db0
+DisplayUsedMoveText:
 ; battle command 03
 	ld hl, UsedMoveText
 	call BattleTextBox
 	jp WaitBGMap
-; 105db9
 
-UsedMoveText: ; 105db9
+UsedMoveText:
 ; this is a stream of text and asm from 105db9 to 105ef6
 	text_jump _ActorNameText
 	start_asm
@@ -27,7 +26,7 @@ UsedMoveText: ; 105db9
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	ld [wd265], a
+	ld [wTempByteValue], a
 
 	push hl
 	farcall CheckUserIsCharging
@@ -35,7 +34,7 @@ UsedMoveText: ; 105db9
 	jr nz, .ok
 
 	; update last move
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	ld [hl], a
 	ld [de], a
 
@@ -43,7 +42,7 @@ UsedMoveText: ; 105db9
     ld hl, UsedMoveInsteadText
 	ret
 
-UsedMoveInsteadText: ; 105e04
+UsedMoveInsteadText:
 	text_jump _UsedMoveText
 	start_asm
 ; check obedience
@@ -53,7 +52,6 @@ UsedMoveInsteadText: ; 105e04
 ; print "instead,"
 	ld hl, .UsedInsteadText
 	ret
-; 105e1a
 
 .UsedInsteadText:
 	text_jump _UsedInsteadText
@@ -61,14 +59,12 @@ UsedMoveInsteadText: ; 105e04
 .GetMoveNameText:
 	ld hl, MoveNameText
 	ret
-; 105e23
 
-MoveNameText: ; 105e23
+MoveNameText:
 	text_jump _MoveNameText
 	db "@"
-; 105e5c
 
-UpdateUsedMoves: ; 105ed0
+UpdateUsedMoves:
 ; append move a to wPlayerUsedMoves unless it has already been used
 
 	push bc
@@ -122,4 +118,3 @@ UpdateUsedMoves: ; 105ed0
 ; list updated
 	pop bc
 	ret
-; 105ef6

@@ -1,4 +1,4 @@
-_DisappearUser: ; fbd54
+_DisappearUser:
 	xor a
 	ld [hBGMapMode], a
 	ld a, [hBattleTurn]
@@ -12,14 +12,14 @@ _DisappearUser: ; fbd54
 	call ClearBox
 	jr FinishAppearDisappearUser
 
-_AppearUserRaiseSub: ; fbd69 (3e:7d69)
+_AppearUserRaiseSub:
 	farcall BattleCommand_RaiseSubNoAnim
 	jr AppearUser
 
-_AppearUserLowerSub: ; fbd71 (3e:7d71)
+_AppearUserLowerSub:
 	farcall BattleCommand_LowerSubNoAnim
 
-AppearUser: ; fbd77 (3e:7d77)
+AppearUser:
 	xor a
 	ld [hBGMapMode], a
 	ld a, [hBattleTurn]
@@ -34,34 +34,32 @@ AppearUser: ; fbd77 (3e:7d77)
 .okay
 	ld [hGraphicStartTile], a
 	predef PlaceGraphic
-FinishAppearDisappearUser: ; fbd91 (3e:7d91)
+FinishAppearDisappearUser:
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
 
-GetEnemyFrontpicCoords: ; fbd96 (3e:7d96)
+GetEnemyFrontpicCoords:
 	hlcoord 12, 0
 	lb bc, 7, 7
 	ret
 
-GetPlayerBackpicCoords: ; fbd9d (3e:7d9d)
+GetPlayerBackpicCoords:
 	hlcoord 2, 6
 	lb bc, 6, 6
 	ret
 
-
-DoWeatherModifiers: ; fbda4
-
+DoWeatherModifiers:
 	ld de, WeatherTypeModifiers
 	ld a, [wBattleWeather]
 	ld b, a
-	ld a, [wd265] ; move type
+	ld a, [wCurType]
 	ld c, a
 
 .CheckWeatherType:
 	ld a, [de]
 	inc de
-	cp $ff
+	cp -1
 	jr z, .done_weather_types
 
 	cp b
@@ -76,7 +74,6 @@ DoWeatherModifiers: ; fbda4
 	inc de
 	jr .CheckWeatherType
 
-
 .done_weather_types
 	ld de, WeatherMoveModifiers
 
@@ -87,7 +84,7 @@ DoWeatherModifiers: ; fbda4
 .CheckWeatherMove:
 	ld a, [de]
 	inc de
-	cp $ff
+	cp -1
 	jr z, .done
 
 	cp b
@@ -119,7 +116,7 @@ DoWeatherModifiers: ; fbda4
 
 	ld a, 10
 	ld [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 
 	ld a, [hQuotient + 0]
@@ -147,8 +144,7 @@ DoWeatherModifiers: ; fbda4
 
 INCLUDE "data/battle/weather_modifiers.asm"
 
-
-DoBadgeTypeBoosts: ; fbe24
+DoBadgeTypeBoosts:
 	ld a, [wLinkMode]
 	and a
 	ret nz
@@ -180,7 +176,7 @@ DoBadgeTypeBoosts: ; fbe24
 	rr c
 	jr nc, .NextBadge
 
-	ld a, [wd265] ; move type
+	ld a, [wCurType]
 	cp [hl]
 	jr z, .ApplyBoost
 

@@ -36,10 +36,6 @@ GoldenrodBikeShopClerkScript:
 	closetext
 	end
 
-GoldenrodBikeShopJustReleasedCompactBike:
-; unused
-	jumptext GoldenrodBikeShopJustReleasedCompactBikeText
-
 GoldenrodBikeShopBicycle:
 	jumptext GoldenrodBikeShopBicycleText
 
@@ -82,14 +78,6 @@ UnknownText_0x54898:
 	text "…sigh… Oh, for"
 	line "the kindness of"
 	cont "people…"
-	done
-
-; possibly unused
-GoldenrodBikeShopJustReleasedCompactBikeText:
-	text "Just released!"
-
-	para "First-rate compact"
-	line "BICYCLES!"
 	done
 
 GoldenrodBikeShopBicycleText:

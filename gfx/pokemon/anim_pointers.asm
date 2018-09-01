@@ -153,12 +153,12 @@ AnimationPointers:
 	dw DuckyAnimation
 	dw DucklyAnimation
 	dw DuckleafAnimation
-	dw CyndaquilAnimation
-	dw QuilavaAnimation
-	dw TyphlosionAnimation
-	dw TotodileAnimation
-	dw CroconawAnimation
-	dw FeraligatrAnimation
+	dw BeaireAnimation
+	dw FiearAnimation
+	dw GrizzlireAnimation
+	dw SquizzyAnimation
+	dw SquashyAnimation
+	dw BatzyAnimation
 	dw SentretAnimation
 	dw FurretAnimation
 	dw HoothootAnimation

@@ -1,3 +1,5 @@
+INCLUDE "data/moves/effects_pointers.asm"
+
 MoveEffects: ; used only for BANK(MoveEffects)
 
 NormalHit:
@@ -573,6 +575,7 @@ DefenseDownHit:
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
+	effectchance ; bug: duplicate effectchance shouldn't be here
 	defensedown
 	statdownmessage
 	endmove
@@ -1337,13 +1340,6 @@ Sketch:
 	sketch
 	endmove
 
-DefrostOpponent:
-	checkobedience
-	usedmovetext
-	doturn
-	defrostopponent
-	endmove
-
 SleepTalk:
 	checkobedience
 	usedmovetext
@@ -1815,16 +1811,6 @@ SunnyDay:
 	usedmovetext
 	doturn
 	startsun
-	endmove
-
-FakeOut:
-	checkobedience
-	usedmovetext
-	doturn
-	checkhit
-	fakeout
-	moveanim
-	failuretext
 	endmove
 
 BellyDrum:

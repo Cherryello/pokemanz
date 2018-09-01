@@ -1,11 +1,11 @@
-RepelWoreOffScript:: ; 0x13619
+RepelWoreOffScript::
 	opentext
 	writetext .text
 	waitbutton
 	closetext
 	end
 
-.text ; 0x13620
+.text
 	; REPEL's effect wore off.
 	text_jump UnknownText_0x1bd308
 	db "@"
@@ -24,7 +24,7 @@ UseAnotherRepelScript::
 	text_jump UseAnotherRepelText
 	db "@"
 
-HiddenItemScript:: ; 0x13625
+HiddenItemScript::
 	opentext
 	copybytetovar wEngineBuffer3
 	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_0
@@ -36,26 +36,26 @@ HiddenItemScript:: ; 0x13625
 	itemnotify
 	jump .finish
 
-.bag_full ; 0x1363e
+.bag_full
 	buttonsound
 	writetext .no_room_text
 	waitbutton
 
-.finish ; 13643
+.finish
 	closetext
 	end
 
-.found_text ; 0x13645
+.found_text
 	; found @ !
 	text_jump UnknownText_0x1bd321
 	db "@"
 
-.no_room_text ; 0x1364a
+.no_room_text
 	; But   has no space left…
 	text_jump UnknownText_0x1bd331
 	db "@"
 
-SetMemEvent: ; 1364f
+SetMemEvent:
 	ld hl, wEngineBuffer1
 	ld a, [hli]
 	ld d, [hl]

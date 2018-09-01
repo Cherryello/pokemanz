@@ -1,4 +1,4 @@
-GetBaseData:: ; 3856
+GetBaseData::
 	push bc
 	push de
 	push hl
@@ -23,24 +23,10 @@ GetBaseData:: ; 3856
 	jr .end
 
 .egg
-; ????
-	ld de, UnknownEggPic
-
 ; Sprite dimensions
 	ld b, $55 ; 5x5
 	ld hl, wBasePicSize
 	ld [hl], b
-
-; ????
-	ld hl, wBasePadding
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	jr .end
 
 .end
 ; Replace Pokedex # with species
@@ -53,13 +39,12 @@ GetBaseData:: ; 3856
 	pop de
 	pop bc
 	ret
-; 389c
 
-GetCurNick:: ; 389c
+GetCurNick::
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 
-GetNick:: ; 38a2
+GetNick::
 ; Get nickname a from list hl.
 
 	push hl
@@ -72,10 +57,7 @@ GetNick:: ; 38a2
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop de
-
-	callfar CorrectNickErrors
-
+	
 	pop bc
 	pop hl
 	ret
-; 38bb

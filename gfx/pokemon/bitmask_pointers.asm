@@ -153,12 +153,12 @@ BitmasksPointers:
 	dw DuckyBitmasks
 	dw DucklyBitmasks
 	dw DuckleafBitmasks
-	dw CyndaquilBitmasks
-	dw QuilavaBitmasks
-	dw TyphlosionBitmasks
-	dw TotodileBitmasks
-	dw CroconawBitmasks
-	dw FeraligatrBitmasks
+	dw BeaireBitmasks
+	dw FiearBitmasks
+	dw GrizzlireBitmasks
+	dw SquizzyBitmasks
+	dw SquashyBitmasks
+	dw BatzyBitmasks
 	dw SentretBitmasks
 	dw FurretBitmasks
 	dw HoothootBitmasks

@@ -36,7 +36,23 @@ CeladonMansion3FCooltrainerMScript:
 CeladonMansion3FGymGuyScript:
 	faceplayer
 	opentext
+	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
+	iftrue .CanPrintDiploma
 	writetext UnknownText_0x717b4
+	waitbutton
+	closetext
+	end
+
+.CanPrintDiploma:
+	writetext UnknownText_0x717d8
+	yesorno
+	iffalse .Refused
+	special PrintDiploma
+	closetext
+	end
+
+.Refused:
+	writetext UnknownText_0x71830
 	waitbutton
 	closetext
 	end
@@ -96,6 +112,23 @@ UnknownText_0x717b4:
 	line "ARTIST."
 
 	para "I drew you!"
+	done
+
+UnknownText_0x717d8:
+	text "I'm the GRAPHIC"
+	line "ARTIST."
+
+	para "Oh, you completed"
+	line "your #DEX?"
+
+	para "Want me to print"
+	line "out your DIPLOMA?"
+	done
+
+UnknownText_0x71830:
+	text "Give me a shout if"
+	line "you want your"
+	cont "DIPLOMA printed."
 	done
 
 CeladonMansion3FSuperNerdText:

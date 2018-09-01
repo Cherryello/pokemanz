@@ -1,4 +1,4 @@
-PokedexTypeSearchStrings: ; 40fe4
+PokedexTypeSearchStrings:
 ; entries correspond with PokedexTypeSearchConversionTable (see data/types/search_types.asm)
 	db "  ----  @"
 	db " Normale@"
@@ -19,4 +19,3 @@ PokedexTypeSearchStrings: ; 40fe4
 	db "  Buio  @"
 	db " Acciaio@"
 	db "Folletto@"
-; 41086

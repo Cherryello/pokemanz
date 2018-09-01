@@ -246,38 +246,7 @@ UnknownText_0x1c04fa::
 	text_from_ram wMysteryGiftPlayerName
 	text "."
 	prompt
-
-UnknownText_0x1c051a::
-	text "Hai ricevuto"
-	line "la scheda di"
-	cont "@"
-	text_from_ram wc850
-	text "."
-	prompt
-
-UnknownText_0x1c0531::
-	text_from_ram wc850
-	text "'s CARD was"
-	line "listed as no.@"
-	deciram wd265, 1, 2
-	text "."
-	prompt
-
-UnknownText_0x1c0555::
-	text "The CARD was not"
-	line "registered."
-	prompt
-
-UnknownText_0x1c0573::
-	text "The link has been"
-	line "cancelled."
-	prompt
-
-UnknownText_0x1c0591::
-	text "Communication"
-	line "error."
-	prompt
-
+	
 _BadgeRequiredText::
 	text "Ti serve la"
 	line "medaglia adatta."
@@ -437,11 +406,12 @@ UnknownText_0x1c08ac::
 	done
 
 UnknownText_0x1c08bc::
-	text "A #MON could be"
-	line "in this tree."
+	text "Potrebbe esserci"
+	line "un #mon"
+	cont "nell'albero."
 
-	para "Want to HEADBUTT"
-	line "it?"
+	para "Vuoi usare"
+	line "Bottintesta?"
 	done
 
 UnknownText_0x1c08f0::
@@ -470,29 +440,24 @@ UnknownText_0x1c0958::
 
 UnknownText_0x1c0965::
 	text "Nemmeno uno"
-	line "stivale!"
-	prompt
-
-UnknownText_0x1c0979::
-	text "Pare non ci sia"
-	line "nulla qui."
+	line "scarpone!"
 	prompt
 
 UnknownText_0x1c099a::
-	text "You can't get off"
-	line "here!"
+	text "Non puoi scendere"
+	line "adesso!"
 	done
 
 UnknownText_0x1c09b2::
-	text "<PLAYER> got on the"
-	line "@"
+	text "<PLAYER> sale"
+	line "sul @"
 	text_from_ram wStringBuffer2
 	text "."
 	done
 
 UnknownText_0x1c09c7::
-	text "<PLAYER> got off"
-	line "the @"
+	text "<PLAYER> scende"
+	line "dal @"
 	text_from_ram wStringBuffer2
 	text "."
 	done
@@ -546,14 +511,6 @@ UnknownText_0x1c0acc::
 	line "è esausto!"
 	prompt
 
-UnknownText_0x1c0ada::
-	text "<PLAYER> non ha"
-	line "più #mon!"
-
-	para "<PLAYER> ha"
-	line "perso!"
-	prompt
-
 UnknownText_0x1c0b03::
 	text_from_ram wStringBuffer3
 	text " usa"
@@ -561,16 +518,16 @@ UnknownText_0x1c0b03::
 	done
 
 UnknownText_0x1c0b1a::
-	text "Looks like there's"
-	line "nothing here…"
+	text "Pare non ci sia"
+	line "nulla qui…"
 	done
 
 UnknownText_0x1c0b3b::
-	text "<PLAYER> sprinkled"
-	line "water."
+	text "<PLAYER> innaffia"
+	line "il terreno."
 
-	para "But nothing"
-	line "happened…"
+	para "Ma non succede"
+	line "nulla…"
 	done
 
 UnknownText_0x1c0b65::
@@ -583,10 +540,6 @@ Text_AnEGGCantHoldAnItem::
 	line "tenere uno"
 	cont "strumento."
 	prompt
-
-UnknownText_0x1c0b9a::
-	text "Nessuno strumento."
-	done
 
 UnknownText_0x1c0ba5::
 	text "Quanti ne vuoi"
@@ -640,11 +593,6 @@ UnknownText_0x1c0c83::
 	text_start
 	done
 
-Text_YouCantUseItInABattle::
-	text "Non puoi usarlo"
-	line "in battaglia."
-	prompt
-
 Text_AreYouABoyOrAreYouAGirl::
 	text "Sei un ragazzo?"
 	line "O una ragazza?"
@@ -678,8 +626,7 @@ UnknownText_0x1c0cf5::
 	prompt
 
 UnknownText_0x1c0d06::
-	interpret_data
-	text "<SCROLL>cala!"
+	text " cala!"
 	prompt
 
 UnknownText_0x1c0d0e::
@@ -692,7 +639,7 @@ UnknownText_0x1c0d12::
 
 UnknownText_0x1c0d26::
 	text_start
-	line "took in sunlight!"
+	line "assorbe la luce!"
 	prompt
 
 UnknownText_0x1c0d3a::
@@ -756,19 +703,19 @@ UnknownText_0x1c0dd8::
 	done
 
 UnknownText_0x1c0df3::
-	text "It's @"
+	text "È @"
 	text_from_ram wBreedMon2Nick
 	text_start
-	line "that was left with"
-	cont "the DAY-CARE LADY."
+	line "che hai lasciato"
+	cont "alla signora."
 	done
 
 UnknownText_0x1c0e24::
-	text "It's @"
+	text "È @"
 	text_from_ram wBreedMon1
 	text_start
-	line "that was left with"
-	cont "the DAY-CARE MAN."
+	line "che hai lasciato"
+	cont "al signore."
 	done
 
 UnknownText_0x1c0e54::
@@ -777,29 +724,29 @@ UnknownText_0x1c0e54::
 	prompt
 
 UnknownText_0x1c0e6f::
-	text "It has no interest"
-	line "in @"
+	text "Non è interessato"
+	line "da @"
 	text_from_ram wStringBuffer1
 	text "."
 	prompt
 
 UnknownText_0x1c0e8d::
-	text "It appears to care"
-	line "for @"
+	text "Pare gli importi"
+	line "di @"
 	text_from_ram wStringBuffer1
 	text "."
 	prompt
 
 UnknownText_0x1c0eac::
-	text "It's friendly with"
+	text "È amichevole con"
 	line "@"
 	text_from_ram wStringBuffer1
 	text "."
 	prompt
 
 UnknownText_0x1c0ec6::
-	text "It shows interest"
-	line "in @"
+	text "Pare interessato"
+	line "da @"
 	text_from_ram wStringBuffer1
 	text "."
 	prompt
@@ -838,27 +785,6 @@ MailMovedFromBoxText::
 	line "from the MAILBOX."
 	prompt
 
-UnknownText_0x1c0fb3::
-	text "Sì"
-	prompt
-
-UnknownText_0x1c0fb8::
-	text "No"
-	prompt
-
-UnknownText_0x1c0fbc::
-	deciram wcf64, 1, 3
-	text " @"
-	text_from_ram wStringBuffer1
-	text_start
-	line "Animation type @"
-	text_from_ram wStringBuffer2
-	db "@@"
-
-UnknownText_0x1c0fdd::
-	text "№ #mon?"
-	done
-
 Text_WasSentToBillsPC::
 	text_from_ram wStringBuffer1
 	text " inviato"
@@ -882,21 +808,6 @@ UnknownText_0x1c102b::
 	line "MAIL."
 	prompt
 
-UnknownText_0x1c1062::
-	text "You don't have a"
-	line "single #MON!"
-	prompt
-
-UnknownText_0x1c1080::
-	text "You can't deposit"
-	line "your last #MON!"
-	prompt
-
-UnknownText_0x1c10a2::
-	text "You can't take any"
-	line "more #MON."
-	prompt
-
 UnknownText_0x1c10c0::
 	text "Preso! @"
 	text_from_ram wStringBuffer1
@@ -904,12 +815,12 @@ UnknownText_0x1c10c0::
 	prompt
 
 UnknownText_0x1c10cf::
-	text "Switch #MON?"
+	text "Cambi #mon?"
 	done
 
 UnknownText_0x1c10dd::
-	text "You already caught"
-	line "a @"
+	text "Hai già catturato"
+	line "un @"
 	text_from_ram wStringBuffer1
 	text "."
 	prompt
@@ -1074,7 +985,7 @@ _PlayersPCHowManyDepositText::
 	done
 
 _PlayersPCDepositItemsText::
-	text "Deposited @"
+	text "Depositi @"
 	deciram wItemQuantityChangeBuffer, 1, 2
 	text_start
 	line "@"
@@ -1290,35 +1201,6 @@ _OakPCText4::
 	line "OAK's PC closed."
 	done
 
-UnknownText_0x1c19cd::
-	text "Triple-theme"
-	line "trainer ranking!"
-
-	para "The SAVE file you"
-	line "just sent might"
-	cont "make the rankings!"
-
-	para ""
-	done
-
-UnknownText_0x1c1a22::
-	text "There is no"
-	line "ranking data."
-
-	para "Link to obtain"
-	line "ranking data."
-
-	para ""
-	done
-
-UnknownText_0x1c1a5b::
-	text " , yeah!"
-	done
-
-UnknownText_0x1c1a65::
-	text "Darn…"
-	done
-
 UnknownText_0x1c1a6c::
 	text "Would you like to"
 	line "end the Contest?"
@@ -1457,15 +1339,13 @@ UnknownText_0x1c1cc4::
 	prompt
 
 UnknownText_0x1c1ce3::
-	text "Not enough HP!"
+	text "PS insufficienti!"
 	prompt
 
 UnknownText_0x1c1cf3::
-	text "An item in your"
-	line "PACK may be"
-
-	para "registered for use"
-	line "on SELECT Button."
+	text "Puoi assegnare uno"
+	line "strumento base al"
+	cont "tasto Select."
 	done
 
 _OakText1::

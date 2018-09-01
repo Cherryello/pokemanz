@@ -1,15 +1,15 @@
 ; Every Pokémon sorted in New Pokédex Order.
 
-NewPokedexOrder: ; 0x40d60
+NewPokedexOrder:
 	db DUCKY
 	db DUCKLY
 	db DUCKLEAF
-	db CYNDAQUIL
-	db QUILAVA
-	db TYPHLOSION
-	db TOTODILE
-	db CROCONAW
-	db FERALIGATR
+	db BEAIRE
+	db FIEAR
+	db GRIZZLIRE
+	db SQUIZZY
+	db SQUASHY
+	db BATZY
 	db PIDGEY
 	db PIDGEOTTO
 	db PIDGEOT
@@ -252,4 +252,3 @@ NewPokedexOrder: ; 0x40d60
 	db MEWTWO
 	db MEW
 	db CELEBI
-; 0x40e5b

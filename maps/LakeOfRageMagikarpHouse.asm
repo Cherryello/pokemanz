@@ -83,10 +83,6 @@ MagikarpLengthRaterScript:
 	closetext
 	end
 
-LakeOfRageMagikarpHouseUnusedRecordSign:
-; unused
-	jumptext LakeOfRageMagikarpHouseUnusedRecordText
-
 MagikarpHouseBookshelf:
 	jumpstd difficultbookshelf
 
@@ -194,16 +190,6 @@ MagikarpLengthRaterText_Refused:
 	para "enough to show me?"
 	line "Maybe next time."
 	done
-
-LakeOfRageMagikarpHouseUnusedRecordText:
-	text "CURRENT RECORD"
-
-	para "@"
-	text_from_ram wStringBuffer3
-	text " caught by"
-	line "@"
-	text_from_ram wStringBuffer4
-	db "@@"
 
 LakeOfRageMagikarpHouse_MapEvents:
 	db 0, 0 ; filler

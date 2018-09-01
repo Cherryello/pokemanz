@@ -4,7 +4,7 @@
 	evs  0,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
-	db WATER, FAIRY ; type
+	db WATER, FAIRYT ; type
 	db 75 ; catch rate
 	db 153 ; base exp
 	db NO_ITEM, NO_ITEM ; items

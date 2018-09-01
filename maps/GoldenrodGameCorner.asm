@@ -57,7 +57,7 @@ GoldenrodGameCornerTMVendorScript:
 	checkitem COIN_CASE
 	iffalse GoldenrodGameCornerPrizeVendor_NoCoinCaseScript
 	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
-GoldenrodGameCornerTMVendor_LoopScript: ; 056c36
+GoldenrodGameCornerTMVendor_LoopScript:
 	special DisplayCoinCaseBalance
 	loadmenu GoldenrodGameCornerTMVendorMenuHeader
 	verticalmenu
@@ -347,8 +347,8 @@ GoldenrodGameCornerPrizeVendorHereYouGoText:
 	done
 	
 GoldenrodGameCornerPrizeVendorAlreadyHaveTMText:
-	text "But you already"
-	line "have that TM!"
+	text "Ma hai già"
+	line "quell'MT!"
 	done
 
 GoldenrodGameCornerPrizeVendorNeedMoreCoinsText:

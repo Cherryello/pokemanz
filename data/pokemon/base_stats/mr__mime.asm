@@ -4,7 +4,7 @@
 	evs  0,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
-	db PSYCHIC, FAIRY ; type
+	db PSYCHIC, FAIRYT ; type
 	db 45 ; catch rate
 	db 136 ; base exp
 	db NO_ITEM, MYSTERYBERRY ; items

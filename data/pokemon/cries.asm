@@ -3,7 +3,7 @@ mon_cry: MACRO
 	dw \1, \2, \3
 ENDM
 
-PokemonCries:: ; f2787
+PokemonCries::
 ; entries correspond to constants/pokemon_constants.asm
 	mon_cry CRY_BULBASAUR,   $080,  $081 ; BULBASAUR
 	mon_cry CRY_BULBASAUR,   $020,  $100 ; IVYSAUR
@@ -159,12 +159,12 @@ PokemonCries:: ; f2787
 	mon_cry CRY_PSYDUCK,     $020,  $0e0 ; DUCKY
 	mon_cry CRY_PSYDUCK,     $060,  $0c0 ; DUCKLY
 	mon_cry CRY_PSYDUCK,     $099,  $17f ; DUCKLEAF
-	mon_cry CRY_CYNDAQUIL,   $347,  $080 ; CYNDAQUIL
-	mon_cry CRY_CYNDAQUIL,   $321,  $120 ; QUILAVA
-	mon_cry CRY_TYPHLOSION,  $f00,  $0d4 ; TYPHLOSION
-	mon_cry CRY_TOTODILE,    $46c,  $0e8 ; TOTODILE
-	mon_cry CRY_TOTODILE,    $440,  $110 ; CROCONAW
-	mon_cry CRY_TOTODILE,    $3fc,  $180 ; FERALIGATR
+	mon_cry CRY_CYNDAQUIL,   $347,  $080 ; BEAIRE
+	mon_cry CRY_CYNDAQUIL,   $321,  $120 ; FIEAR
+	mon_cry CRY_TYPHLOSION,  $f00,  $0d4 ; GRIZZLIRE
+	mon_cry CRY_TOTODILE,    $46c,  $0e8 ; SQUIZZY
+	mon_cry CRY_TOTODILE,    $440,  $110 ; SQUASHY
+	mon_cry CRY_TOTODILE,    $3fc,  $180 ; BATZY
 	mon_cry CRY_SENTRET,     $08a,  $0b8 ; SENTRET
 	mon_cry CRY_SENTRET,     $06b,  $102 ; FURRET
 	mon_cry CRY_HOOTHOOT,    $091,  $0d8 ; HOOTHOOT
@@ -260,4 +260,3 @@ PokemonCries:: ; f2787
 	mon_cry CRY_NIDORAN_M,      0,     0 ; 253
 	mon_cry CRY_NIDORAN_M,      0,     0 ; 254
 	mon_cry CRY_NIDORAN_M,      0,     0 ; 255
-; f2d81

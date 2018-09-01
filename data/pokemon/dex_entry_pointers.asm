@@ -154,12 +154,12 @@ PokedexDataPointerTable: ; 0x44378
 	dw DuckyPokedexEntry
 	dw DucklyPokedexEntry
 	dw DuckleafPokedexEntry
-	dw CyndaquilPokedexEntry
-	dw QuilavaPokedexEntry
-	dw TyphlosionPokedexEntry
-	dw TotodilePokedexEntry
-	dw CroconawPokedexEntry
-	dw FeraligatrPokedexEntry
+	dw BeairePokedexEntry
+	dw FiearPokedexEntry
+	dw GrizzlirePokedexEntry
+	dw SquizzyPokedexEntry
+	dw SquashyPokedexEntry
+	dw BatzyPokedexEntry
 	dw SentretPokedexEntry
 	dw FurretPokedexEntry
 	dw HoothootPokedexEntry
@@ -251,4 +251,3 @@ PokedexDataPointerTable: ; 0x44378
 	dw LugiaPokedexEntry
 	dw HoOhPokedexEntry
 	dw CelebiPokedexEntry
-; 0x4456e

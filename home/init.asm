@@ -1,4 +1,4 @@
-Reset:: ; 150
+Reset::
 	di
 	call MapSetup_Sound_Off
 	xor a
@@ -17,10 +17,8 @@ Reset:: ; 150
 	call DelayFrames
 
 	jr Init
-; 16e
 
-
-_Start:: ; 16e
+_Start::
 	cp $11
 	jr z, .cgb
 	xor a
@@ -33,11 +31,8 @@ _Start:: ; 16e
 	ld [hCGB], a
 	ld a, $1
 	ld [hSystemBooted], a
-; 17d
 
-
-Init:: ; 17d
-
+Init::
 	di
 
 	xor a
@@ -102,7 +97,6 @@ Init:: ; 17d
 	call ClearSprites
 	call ClearsScratch
 
-
 	ld a, BANK(WriteOAMDMACodeToHRAM)
 	rst Bankswitch
 
@@ -166,16 +160,12 @@ Init:: ; 17d
 
 	call DelayFrame
 
-	predef InitSGBBorder ; SGB init
-
 	call MapSetup_Sound_Off
 	xor a
 	ld [wMapMusic], a
 	jp GameInit
-; 245
 
-
-ClearVRAM:: ; 245
+ClearVRAM::
 ; Wipe VRAM banks 0 and 1
 
 	ld a, 1
@@ -190,9 +180,8 @@ ClearVRAM:: ; 245
 	xor a
 	call ByteFill
 	ret
-; 25a
 
-ClearWRAM:: ; 25a
+ClearWRAM::
 ; Wipe swappable WRAM banks (1-7)
 ; Assumes CGB or AGB
 
@@ -207,11 +196,10 @@ ClearWRAM:: ; 25a
 	pop af
 	inc a
 	cp 8
-	jr c, .bank_loop
+	jr nc, .bank_loop ; Should be jr c
 	ret
-; 270
 
-ClearsScratch:: ; 270
+ClearsScratch::
 ; Wipe the first 32 bytes of sScratch
 
 	ld a, BANK(sScratch)
@@ -222,4 +210,3 @@ ClearsScratch:: ; 270
 	call ByteFill
 	call CloseSRAM
 	ret
-; 283

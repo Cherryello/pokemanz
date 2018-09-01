@@ -1,4 +1,4 @@
-BattleCommand_GetMagnitude: ; 37991
+BattleCommand_GetMagnitude:
 ; getmagnitude
 
 	push bc
@@ -18,7 +18,7 @@ BattleCommand_GetMagnitude: ; 37991
 	push de
 	inc hl
 	ld a, [hl]
-	ld [wTypeMatchup], a
+	ld [wDeciramBuffer], a
 	call BattleCommand_MoveDelay
 	ld hl, MagnitudeText
 	call StdBattleTextBox

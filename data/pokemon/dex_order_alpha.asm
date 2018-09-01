@@ -1,6 +1,6 @@
 ; Every Pokémon sorted alphabetically by name.
 
-AlphabeticalPokedexOrder: ; 0x40c65
+AlphabeticalPokedexOrder:
 	db ABRA
 	db AERODACTYL
 	db AIPOM
@@ -11,6 +11,8 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db ARIADOS
 	db ARTICUNO
 	db AZUMARILL
+	db BATZY
+	db BEAIRE
 	db BEEDRILL
 	db BELLOSSOM
 	db BELLSPROUT
@@ -31,9 +33,7 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db CLOYSTER
 	db CORSOLA
 	db CROBAT
-	db CROCONAW
 	db CUBONE
-	db CYNDAQUIL
 	db DELIBIRD
 	db DEWGONG
 	db DIGLETT
@@ -61,7 +61,7 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db EXEGGUTOR
 	db FARFETCH_D
 	db FEAROW
-	db FERALIGATR
+	db FIEAR
 	db FLAAFFY
 	db FLAREON
 	db FORRETRESS
@@ -79,6 +79,7 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db GRANBULL
 	db GRAVELER
 	db GRIMER
+	db GRIZZLIRE
 	db GROWLITHE
 	db GYARADOS
 	db HAUNTER
@@ -176,7 +177,6 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db PSYDUCK
 	db PUPITAR
 	db QUAGSIRE
-	db QUILAVA
 	db QWILFISH
 	db RAICHU
 	db RAIKOU
@@ -209,7 +209,9 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db SNUBBULL
 	db SPEAROW
 	db SPINARAK
+	db SQUASHY
 	db SQUIRTLE
+	db SQUIZZY
 	db STANTLER
 	db STARMIE
 	db STARYU
@@ -226,8 +228,6 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db TENTACRUEL
 	db TOGEPI
 	db TOGETIC
-	db TOTODILE
-	db TYPHLOSION
 	db TYRANITAR
 	db TYROGUE
 	db UMBREON
@@ -252,4 +252,3 @@ AlphabeticalPokedexOrder: ; 0x40c65
 	db YANMA
 	db ZAPDOS
 	db ZUBAT
-; 0x40d60

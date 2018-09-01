@@ -1,4 +1,4 @@
-PokedexTypeSearchConversionTable: ; 410f6
+PokedexTypeSearchConversionTable:
 ; entries correspond with PokedexTypeSearchStrings (see data/types/search_strings.asm)
 	db NORMAL
 	db FIRE
@@ -17,5 +17,4 @@ PokedexTypeSearchConversionTable: ; 410f6
 	db DRAGON
 	db DARK
 	db STEEL
-	db FAIRY
-; 41107
+	db FAIRYT

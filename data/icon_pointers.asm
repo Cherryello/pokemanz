@@ -155,12 +155,12 @@ IconPointers:
 	dw DuckyIcon
 	dw DucklyIcon
 	dw DuckleafIcon
-	dw CyndaquilIcon
-	dw QuilavaIcon
-	dw TyphlosionIcon
-	dw TotodileIcon
-	dw CroconawIcon
-	dw FeraligatrIcon
+	dw BeaireIcon
+	dw FiearIcon
+	dw GrizzlireIcon
+	dw SquizzyIcon
+	dw SquashyIcon
+	dw BatzyIcon
 	dw SentretIcon
 	dw FurretIcon
 	dw HoothootIcon

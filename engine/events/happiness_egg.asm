@@ -1,4 +1,4 @@
-GetFirstPokemonHappiness: ; 718d
+GetFirstPokemonHappiness:
 	ld hl, wPartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wPartySpecies
@@ -11,17 +11,17 @@ GetFirstPokemonHappiness: ; 718d
 	jr .loop
 
 .done
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld a, [hl]
 	ld [wScriptVar], a
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-CheckFirstMonIsEgg: ; 71ac
+CheckFirstMonIsEgg:
 	ld a, [wPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	cp EGG
-	ld a, 1
+	ld a, TRUE
 	jr z, .egg
 	xor a
 
@@ -30,7 +30,7 @@ CheckFirstMonIsEgg: ; 71ac
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-ChangeHappiness: ; 71c2
+ChangeHappiness:
 ; Perform happiness action c on wCurPartyMon
 
 	ld a, [wCurPartyMon]
@@ -102,11 +102,9 @@ ChangeHappiness: ; 71c2
 	ld [wBattleMonHappiness], a
 	ret
 
-
 INCLUDE "data/events/happiness_changes.asm"
 
-
-StepHappiness:: ; 725a
+StepHappiness::
 ; Raise the party's happiness by 1 point every other step cycle.
 
 	ld hl, wHappinessStepCount
@@ -141,8 +139,7 @@ StepHappiness:: ; 725a
 	jr nz, .loop
 	ret
 
-
-DayCareStep:: ; 7282
+DayCareStep::
 ; Raise the experience of Day-Care Pokémon every step cycle.
 
 	ld a, [wDayCareMan]
@@ -199,15 +196,15 @@ DayCareStep:: ; 7282
 	call Random
 	ld [hl], a
 	callfar CheckBreedmonCompatibility
-	ld a, [wd265]
+	ld a, [wBreedingCompatibility]
 	cp 230
 	ld b, 32 percent - 1
 	jr nc, .okay
-	ld a, [wd265]
+	ld a, [wBreedingCompatibility]
 	cp 170
 	ld b, 16 percent
 	jr nc, .okay
-	ld a, [wd265]
+	ld a, [wBreedingCompatibility]
 	cp 110
 	ld b, 12 percent
 	jr nc, .okay

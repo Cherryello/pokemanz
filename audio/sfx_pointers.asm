@@ -1,6 +1,5 @@
-SFX: ; e927c
+SFX:
 ; entries correspond to SFX_* constants
-
 	dba Sfx_DexFanfare5079
 	dba Sfx_Item
 	dba Sfx_CaughtMon
@@ -8,7 +7,6 @@ SFX: ; e927c
 	dba Sfx_Potion
 	dba Sfx_FullHeal
 	dba Sfx_Menu
-	dba Sfx_ReadText
 	dba Sfx_ReadText2
 	dba Sfx_DexFanfare2049
 	dba Sfx_DexFanfare80109
@@ -18,19 +16,15 @@ SFX: ; e927c
 	dba Sfx_ShutDownPc
 	dba Sfx_ChoosePcOption
 	dba Sfx_EscapeRope
-	dba Sfx_PushButton
 	dba Sfx_SecondPartOfItemfinder
 	dba Sfx_WarpTo
 	dba Sfx_WarpFrom
 	dba Sfx_ChangeDexMode
 	dba Sfx_JumpOverLedge
-	dba Sfx_GrassRustle
 	dba Sfx_Fly
 	dba Sfx_Wrong
-	dba Sfx_Squeak
 	dba Sfx_Strength
 	dba Sfx_Boat
-	dba Sfx_WallOpen
 	dba Sfx_PlacePuzzlePieceDown
 	dba Sfx_EnterDoor
 	dba Sfx_SwitchPokemon
@@ -39,7 +33,6 @@ SFX: ; e927c
 	dba Sfx_ExitBuilding
 	dba Sfx_Bump
 	dba Sfx_Save
-	dba Sfx_Pokeflute
 	dba Sfx_ElevatorEnd
 	dba Sfx_ThrowBall
 	dba Sfx_BallPoof
@@ -96,14 +89,9 @@ SFX: ; e927c
 	dba Sfx_Sing
 	dba Sfx_HyperBeam
 	dba Sfx_Shine
-	dba Sfx_Unknown5F
-	dba Sfx_Unknown60
-	dba Sfx_Unknown61
 	dba Sfx_SwitchPockets
-	dba Sfx_Unknown63
 	dba Sfx_Burn
 	dba Sfx_TitleScreenEntrance
-	dba Sfx_Unknown66
 	dba Sfx_GetCoinFromSlots
 	dba Sfx_PayDay
 	dba Sfx_Metronome
@@ -145,12 +133,9 @@ SFX: ; e927c
 	dba Sfx_MilkDrink
 	dba Sfx_Present
 	dba Sfx_MorningSun
-	dba Sfx_LevelUp
 	dba Sfx_KeyItem
-	dba Sfx_Fanfare2
 	dba Sfx_RegisterPhoneNumber
 	dba Sfx_3RdPlace
-	dba Sfx_GetEggFromDayCareMan
 	dba Sfx_GetEggFromDayCareLady
 	dba Sfx_MoveDeleted
 	dba Sfx_2ndPlace
@@ -168,8 +153,6 @@ SFX: ; e927c
 	dba Sfx_Evolved
 	dba Sfx_MasterBall
 	dba Sfx_EggHatch
-	dba Sfx_GsIntroCharizardFireball
-	dba Sfx_GsIntroPokemonAppears
 	dba Sfx_Flash
 	dba Sfx_GameFreakLogoGs
 	dba Sfx_NotVeryEffective
@@ -190,16 +173,12 @@ SFX: ; e927c
 	dba Sfx_StopSlot
 	dba Sfx_2Boops
 	dba Sfx_GlassTing
-	dba Sfx_GlassTing2
-
-; Crystal adds the following SFX:
-
+; new to Crystal
 	dba Sfx_IntroUnown1
 	dba Sfx_IntroUnown2
 	dba Sfx_IntroUnown3
 	dba Sfx_DittoPopUp
 	dba Sfx_DittoTransform
-	dba Sfx_IntroSuicune1
 	dba Sfx_IntroPichu
 	dba Sfx_IntroSuicune2
 	dba Sfx_IntroSuicune3
@@ -207,8 +186,4 @@ SFX: ; e927c
 	dba Sfx_IntroSuicune4
 	dba Sfx_GameFreakPresents
 	dba Sfx_Tingle
-	dba Sfx_UnknownCB
-	dba Sfx_TwoPcBeeps
-	dba Sfx_4NoteDitty
-	dba Sfx_Twinkle
-; e94e9
+	dba Sfx_IntroWhoosh

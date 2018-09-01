@@ -18,13 +18,13 @@ TypeNames: ; 5097b
 	dw Ice
 	dw Dragon
 	dw Dark
-	dw Fairy
+	dw FairyT
 
 Normal:    db "Normale@"
 Fighting:  db "Lotta@"
 Flying:    db "Volante@"
 Poison:    db "Veleno@"
-CurseType: db "???@"
+CurseType: db "----@"
 Fire:      db "Fuoco@"
 Water:     db "Acqua@"
 Grass:     db "Erba@"
@@ -38,6 +38,4 @@ Ghost:     db "Spettro@"
 Steel:     db "Acciaio@"
 Dragon:    db "Drago@"
 Dark:      db "Buio@"
-Fairy:     db "Folletto@"
-
-; 50a28
+FairyT:    db "Folletto@"

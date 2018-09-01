@@ -1,9 +1,9 @@
-BattleCommand_ThunderAccuracy: ; 37d94
+BattleCommand_ThunderAccuracy:
 ; thunderaccuracy
 
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
-	and MOVE_TYPE_MASK
+	and TYPE_MASK
 	inc hl
 	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
@@ -14,8 +14,6 @@ BattleCommand_ThunderAccuracy: ; 37d94
 	ret
 
 .rain
-	; Redundant with CheckHit guranteeing hit
+	; Redundant with CheckHit guaranteeing hit
 	ld [hl], 100 percent
 	ret
-
-; 37daa

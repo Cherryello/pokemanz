@@ -20,7 +20,6 @@
 	const TILESET_CHAMPIONS_ROOM       ; 12
 	const TILESET_LIGHTHOUSE           ; 13
 	const TILESET_PLAYERS_ROOM         ; 14
-	const TILESET_POKECOM_CENTER       ; 15
 	const TILESET_BATTLE_TOWER         ; 16
 	const TILESET_TOWER                ; 17
 	const TILESET_CAVE                 ; 18
@@ -58,3 +57,4 @@ const_value set $80
 	const PAL_BG_PRIORITY_BROWN  ; 85
 	const PAL_BG_PRIORITY_ROOF   ; 86
 	const PAL_BG_PRIORITY_TEXT   ; 87
+

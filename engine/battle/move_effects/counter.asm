@@ -1,4 +1,4 @@
-BattleCommand_Counter: ; 35813
+BattleCommand_Counter:
 ; counter
 
 	ld a, 1
@@ -36,10 +36,11 @@ BattleCommand_Counter: ; 35813
 	cp SPECIAL
 	ret nc
 
+	; BUG: Move should fail with all non-damaging battle actions
 	ld hl, wCurDamage
 	ld a, [hli]
 	or [hl]
-	jp z, .failed
+	ret z
 
 	ld a, [hl]
 	add a
@@ -56,12 +57,3 @@ BattleCommand_Counter: ; 35813
 	xor a
 	ld [wAttackMissed], a
 	ret
-
-; 35864
-
-.failed
-	ld a, 1
-	ld [wEffectFailed], a
-	and a
-	ret
-	

@@ -26,10 +26,8 @@ prob_total = 0
 ; Tyrogue
 	prob 10
 	prob 1
-; 1fb56e
 
-
-OddEggs: ; 1fb56e
+OddEggs:
 
 OddEgg1:
 	db PICHU
@@ -38,8 +36,8 @@ OddEgg1:
 	dw 02048 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $0, $0 ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 0, 0, 0, 0 ; DVs
 	db 30, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -53,16 +51,16 @@ OddEgg1:
 	bigdw 8 ; SAtk
 	bigdw 8 ; SDef
 	db "Uovo@@@@@@@"
+OddEgg1End:
 
-OddEgg2:
 	db PICHU
 	db NO_ITEM
 	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, 0
 	dw 00256 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $2a, $aa ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 2, 10, 10, 10 ; DVs
 	db 30, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -83,8 +81,8 @@ OddEgg2:
 	dw 04096 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $0, $0 ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 0, 0, 0, 0 ; DVs
 	db 35, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -105,8 +103,8 @@ OddEgg2:
 	dw 00768 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $2a, $aa ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 2, 10, 10, 10 ; DVs
 	db 35, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -127,8 +125,8 @@ OddEgg2:
 	dw 04096 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $0, $0 ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 0, 0, 0, 0 ; DVs
 	db 15, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -149,8 +147,8 @@ OddEgg2:
 	dw 00768 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $2a, $aa ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 2, 10, 10, 10 ; DVs
 	db 15, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -171,8 +169,8 @@ OddEgg2:
 	dw 03584 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $0, $0 ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 0, 0, 0, 0 ; DVs
 	db 35, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -193,8 +191,8 @@ OddEgg2:
 	dw 00512 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $2a, $aa ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 2, 10, 10, 10 ; DVs
 	db 35, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -215,8 +213,8 @@ OddEgg2:
 	dw 02560 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $0, $0 ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 0, 0, 0, 0 ; DVs
 	db 25, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -237,8 +235,8 @@ OddEgg2:
 	dw 00512 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $2a, $aa ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 2, 10, 10, 10 ; DVs
 	db 25, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -259,8 +257,8 @@ OddEgg2:
 	dw 03072 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $0, $0 ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 0, 0, 0, 0 ; DVs
 	db 30, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -281,8 +279,8 @@ OddEgg2:
 	dw 00512 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $2a, $aa ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 2, 10, 10, 10 ; DVs
 	db 30, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -303,8 +301,8 @@ OddEgg2:
 	dw 02560 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $0, $0 ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 0, 0, 0, 0 ; DVs
 	db 35, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -325,8 +323,8 @@ OddEgg2:
 	dw 00256 ; OT ID
 	dt 125 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
- 	db 0, 0, 0, 0 ; padding
-	db $2a, $aa ; DVs
+	db 0, 0, 0, 0 ; padding
+	dn 2, 10, 10, 10 ; DVs
 	db 35, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data

@@ -1,4 +1,4 @@
-CheckBreedmonCompatibility: ; 16e1d
+CheckBreedmonCompatibility:
 	call .CheckBreedingGroupCompatibility
 	ld c, $0
 	jp nc, .done
@@ -81,12 +81,10 @@ CheckBreedmonCompatibility: ; 16e1d
 
 .done
 	ld a, c
-	ld [wd265], a
+	ld [wBreedingCompatibility], a
 	ret
-; 16ebc
 
-
-.CheckDVs: ; 16ebc (5:6ebc)
+.CheckDVs:
 ; If Defense DVs match and the lower 3 bits of the Special DVs match,
 ; avoid breeding
 	ld a, [wBreedMon1DVs]
@@ -103,9 +101,8 @@ CheckBreedmonCompatibility: ; 16e1d
 	and %111
 	cp b
 	ret
-; 16ed6
 
-.CheckBreedingGroupCompatibility: ; 16ed6
+.CheckBreedingGroupCompatibility:
 ; If either mon is in the No Eggs group,
 ; they are not compatible.
 	ld a, [wBreedMon2Species]
@@ -173,9 +170,8 @@ CheckBreedmonCompatibility: ; 16e1d
 .Compatible:
 	scf
 	ret
-; 16f3e
 
-DoEggStep:: ; 16f3e
+DoEggStep::
 	ld de, wPartySpecies
 	ld hl, wPartyMon1Happiness
 	ld c, 0
@@ -198,24 +194,22 @@ DoEggStep:: ; 16f3e
 	add hl, de
 	pop de
 	jr .loop
-; 16f5e
 
-OverworldHatchEgg:: ; 16f5e
+OverworldHatchEgg::
 	call RefreshScreen
 	call LoadStandardMenuHeader
 	call HatchEggs
 	call ExitAllMenus
 	call RestartMapMusic
 	jp CloseText
-; 16f70
 
-HatchEggs: ; 16f70 (5:6f70)
+HatchEggs:
 	ld de, wPartySpecies
 	ld hl, wPartyMon1Happiness
 	xor a
 	ld [wCurPartyMon], a
 
-.loop ; 16f7a (5:6f7a)
+.loop
 	ld a, [de]
 	inc de
 	cp -1
@@ -232,7 +226,6 @@ HatchEggs: ; 16f70 (5:6f70)
 	push de
 
 	farcall SetEggMonCaughtData
-	farcall StubbedTrainerRankings_EggsHatched
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -256,7 +249,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld a, [wCurPartySpecies]
 	dec de
 	ld [de], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [wCurSpecies], a
 	call GetPokemonName
 	xor a
@@ -348,7 +341,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
-.next ; 1707d (5:707d)
+.next
 	ld hl, wCurPartyMon
 	inc [hl]
 	pop hl
@@ -357,11 +350,10 @@ HatchEggs: ; 16f70 (5:6f70)
 	pop de
 	jp .loop
 
-.done ; 1708a (5:708a)
+.done
 	ret
-; 1708b (5:708b)
 
-.Text_HatchEgg: ; 0x1708b
+.Text_HatchEgg:
 	; Huh? @ @
 	text_jump UnknownText_0x1c0db0
 	start_asm
@@ -382,27 +374,23 @@ HatchEggs: ; 16f70 (5:6f70)
 	pop hl
 	ld hl, .CameOutOfItsEgg
 	ret
-; 170b0 (5:70b0)
 
-.ClearTextbox: ; 0x170b0
+.ClearTextbox:
 	;
 	text_jump UnknownText_0x1c0db8
 	db "@"
-; 0x170b5
 
-.CameOutOfItsEgg: ; 0x170b5
+.CameOutOfItsEgg:
 	; came out of its EGG!@ @
 	text_jump UnknownText_0x1c0dba
 	db "@"
-; 0x170ba
 
-.Text_NicknameHatchling: ; 0x170ba
+.Text_NicknameHatchling:
 	; Give a nickname to @ ?
 	text_jump UnknownText_0x1c0dd8
 	db "@"
-; 0x170bf
 
-InitEggMoves: ; 170bf
+InitEggMoves:
 	call GetHeritableMoves
 	ld d, h
 	ld e, l
@@ -431,9 +419,8 @@ InitEggMoves: ; 170bf
 
 .done
 	ret
-; 170e4
 
-GetEggMove: ; 170e4
+GetEggMove:
 	push bc
 	ld a, [wEggMonSpecies]
 	dec a
@@ -526,9 +513,8 @@ GetEggMove: ; 170e4
 	pop bc
 	and a
 	ret
-; 17169
 
-LoadEggMove: ; 17169
+LoadEggMove:
 	push de
 	push bc
 	ld a, [de]
@@ -561,9 +547,8 @@ LoadEggMove: ; 17169
 	pop bc
 	pop de
 	ret
-; 17197
 
-GetHeritableMoves: ; 17197
+GetHeritableMoves:
 	ld hl, wBreedMon2Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -619,9 +604,8 @@ GetHeritableMoves: ; 17197
 	pop af
 	ld [wCurPartySpecies], a
 	ret
-; 1720b
 
-GetBreedmonMovePointer: ; 1720b
+GetBreedmonMovePointer:
 	ld hl, wBreedMon1Moves
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -636,10 +620,8 @@ GetBreedmonMovePointer: ; 1720b
 .ditto
 	ld hl, wBreedMon2Moves
 	ret
-; 17224
 
-
-GetEggFrontpic: ; 17224 (5:7224)
+GetEggFrontpic:
 	push de
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
@@ -649,7 +631,7 @@ GetEggFrontpic: ; 17224 (5:7224)
 	pop de
 	predef_jump GetMonFrontpic
 
-GetHatchlingFrontpic: ; 1723c (5:723c)
+GetHatchlingFrontpic:
 	push de
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
@@ -659,7 +641,7 @@ GetHatchlingFrontpic: ; 1723c (5:723c)
 	pop de
 	predef_jump GetAnimatedFrontpic
 
-Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
+Hatch_UpdateFrontpicBGMapCenter:
 	push af
 	call WaitTop
 	push hl
@@ -681,7 +663,7 @@ Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	call SetPalettes
 	jp WaitBGMap
 
-EggHatch_DoAnimFrame: ; 1727f (5:727f)
+EggHatch_DoAnimFrame:
 	push hl
 	push de
 	push bc
@@ -692,8 +674,8 @@ EggHatch_DoAnimFrame: ; 1727f (5:727f)
 	pop hl
 	ret
 
-EggHatch_AnimationSequence: ; 1728f (5:728f)
-	ld a, [wd265]
+EggHatch_AnimationSequence:
+	ld a, [wNamedObjectIndexBuffer]
 	ld [wJumptableIndex], a
 	ld a, [wCurSpecies]
 	push af
@@ -782,13 +764,13 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	ld [wCurSpecies], a
 	ret
 
-Hatch_LoadFrontpicPal: ; 17363 (5:7363)
+Hatch_LoadFrontpicPal:
 	ld [wPlayerHPPal], a
 	ld b, SCGB_EVOLUTION
 	ld c, $0
 	jp GetSGBLayout
 
-EggHatch_CrackShell: ; 1736d (5:736d)
+EggHatch_CrackShell:
 	ld a, [wFrameCounter]
 	dec a
 	and $7
@@ -808,13 +790,11 @@ EggHatch_CrackShell: ; 1736d (5:736d)
 	ld [hl], $0
 	ld de, SFX_EGG_CRACK
 	jp PlaySFX
-; 17393 (5:7393)
 
-EggHatchGFX: ; 17393
+EggHatchGFX:
 INCBIN "gfx/evo/egg_hatch.2bpp"
-; 173b3
 
-Hatch_InitShellFragments: ; 173b3 (5:73b3)
+Hatch_InitShellFragments:
 	farcall ClearSpriteAnims
 	ld hl, .SpriteData
 .loop
@@ -856,14 +836,13 @@ Hatch_InitShellFragments: ; 173b3 (5:73b3)
 	call PlaySFX
 	call EggHatch_DoAnimFrame
 	ret
-; 173ef (5:73ef)
 
 shell_fragment: MACRO
 ; y tile, y pxl, x tile, x pxl, frameset offset, ???
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
 ENDM
 
-.SpriteData: ; 173ef
+.SpriteData:
 	shell_fragment 10, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $3c
 	shell_fragment 11, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $04
 	shell_fragment 10, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $30
@@ -875,9 +854,8 @@ ENDM
 	shell_fragment 10, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_3, $2a
 	shell_fragment 12, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_4, $16
 	db -1
-; 17418
 
-Hatch_ShellFragmentLoop: ; 17418 (5:7418)
+Hatch_ShellFragmentLoop:
 	ld c, 129
 .loop
 	call EggHatch_DoAnimFrame
@@ -885,7 +863,7 @@ Hatch_ShellFragmentLoop: ; 17418 (5:7418)
 	jr nz, .loop
 	ret
 
-DayCareMon1: ; 17421
+DayCareMon1:
 	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
@@ -898,7 +876,7 @@ DayCareMon1: ; 17421
 	call DayCareMonCompatibilityText
 	jp PrintText
 
-DayCareMon2: ; 17440
+DayCareMon2:
 	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]
@@ -911,30 +889,27 @@ DayCareMon2: ; 17440
 	call DayCareMonCompatibilityText
 	jp PrintText
 
-DayCareMonCursor: ; 1745f
+DayCareMonCursor:
 	jp WaitPressAorB_BlinkCursor
-; 17462
 
-DayCareMon2Text: ; 0x17462
+DayCareMon2Text:
 	; It's @ that was left with the DAY-CARE LADY.
 	text_jump UnknownText_0x1c0df3
 	db "@"
-; 0x17467
 
-DayCareMon1Text: ; 0x17467
+DayCareMon1Text:
 	; It's @ that was left with the DAY-CARE MAN.
 	text_jump UnknownText_0x1c0e24
 	db "@"
-; 0x1746c
 
-DayCareMonCompatibilityText: ; 1746c
+DayCareMonCompatibilityText:
 	push bc
 	ld de, wStringBuffer1
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	call CheckBreedmonCompatibility
 	pop bc
-	ld a, [wd265]
+	ld a, [wBreedingCompatibility]
 	ld hl, .AllAlone
 	cp -1
 	jr z, .done
@@ -951,39 +926,28 @@ DayCareMonCompatibilityText: ; 1746c
 
 .done
 	ret
-; 1749c
 
-.AllAlone: ; 0x1749c
+.AllAlone:
 	; It's brimming with energy.
 	text_jump UnknownText_0x1c0e54
 	db "@"
-; 0x174a1
 
-.Incompatible: ; 0x174a1
+.Incompatible:
 	; It has no interest in @ .
 	text_jump UnknownText_0x1c0e6f
 	db "@"
-; 0x174a6
 
-.HighCompatibility: ; 0x174a6
+.HighCompatibility:
 	; It appears to care for @ .
 	text_jump UnknownText_0x1c0e8d
 	db "@"
-; 0x174ab
 
-.ModerateCompatibility: ; 0x174ab
+.ModerateCompatibility:
 	; It's friendly with @ .
 	text_jump UnknownText_0x1c0eac
 	db "@"
-; 0x174b0
 
-.SlightCompatibility: ; 0x174b0
+.SlightCompatibility:
 	; It shows interest in @ .
 	text_jump UnknownText_0x1c0ec6
 	db "@"
-; 0x174b5
-
-.string ; 174b9
-	db "@"
-; 174ba
-

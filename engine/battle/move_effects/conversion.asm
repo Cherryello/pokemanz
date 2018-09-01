@@ -1,4 +1,4 @@
-BattleCommand_Conversion: ; 3707f
+BattleCommand_Conversion:
 ; conversion
 
 	ld hl, wBattleMonMoves
@@ -25,7 +25,7 @@ BattleCommand_Conversion: ; 3707f
 	dec a
 	ld hl, Moves + MOVE_TYPE
 	call GetMoveAttr
-	and MOVE_TYPE_MASK
+	and TYPE_MASK
 	ld [de], a
 	inc de
 	pop bc
@@ -95,5 +95,3 @@ BattleCommand_Conversion: ; 3707f
 	call AnimateCurrentMove
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
-
-; 3710e

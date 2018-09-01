@@ -97,10 +97,6 @@ OlivineLighthouseJasmine:
 	closetext
 	end
 
-OlivineLighthouseUnusedDummyScript:
-; unused
-	end
-
 OlivineLighthouseAmphy:
 	faceplayer
 	opentext

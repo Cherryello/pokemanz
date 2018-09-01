@@ -34,7 +34,7 @@ Script_BattleRoomLoop:
 	special FadeOutPalettes
 	reloadmap
 	ifnotequal $0, Script_FailedBattleTowerChallenge
-	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
+	copybytetovar wNrOfBeatenBattleTowerTrainers
 	ifequal BATTLETOWER_STREAK_LENGTH, Script_BeatenAllTrainers
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksOut
 	warpsound
@@ -81,8 +81,6 @@ Script_DontSaveAndEndTheSession:
 	iffalse Script_ContinueAndBattleNextOpponent
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
-	writebyte BATTLETOWERACTION_06
-	special BattleTowerAction
 	closetext
 	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
@@ -109,11 +107,6 @@ Script_BeatenAllTrainers2:
 	opentext
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	jump Script_GivePlayerHisPrize
-
-Text_ReturnedAfterSave_Mobile:
-	text "You'll be returned"
-	line "after you SAVE."
-	done
 
 BattleTowerBattleRoom_MapEvents:
 	db 0, 0 ; filler
