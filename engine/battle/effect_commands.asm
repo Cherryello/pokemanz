@@ -1876,15 +1876,20 @@ BattleCommand_EffectChance:
 	ld hl, wEnemyMoveStruct + MOVE_CHANCE
 .got_move_chance
 
+	ld a, [hl]
+	cp 100 percent
+	jr z, .ok
 	call BattleRandom
 	cp [hl]
-	pop hl
-	ret c
+	jr c, .ok
 
 .failed
 	ld a, 1
 	ld [wEffectFailed], a
 	and a
+	
+.ok
+	pop hl
 	ret
 
 BattleCommand_LowerSub:

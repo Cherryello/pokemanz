@@ -105,7 +105,7 @@ InitTradeSpeciesList:
 	ret
 
 .CANCEL:
-	db "CANCEL@"
+	db "Esci@"
 
 _LoadTradeScreenBorder:
 	call __LoadTradeScreenBorder

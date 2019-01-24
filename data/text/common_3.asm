@@ -83,21 +83,9 @@ UnknownText_0x1c454b::
 	line "tuoi progressi?"
 	done
 
-UnknownText_0x1c456d::
-	text "Salvataggio…"
-	line "Non spegnere."
-	done
-
 UnknownText_0x1c4590::
 	text "<PLAYER> ha"
 	line "salvato il gioco."
-	done
-
-UnknownText_0x1c45a3::
-	text "C'è già una"
-	line "partita salvata"
-	cont "in memoria."
-	cont "Vuoi sostituirla?"
 	done
 
 UnknownText_0x1c45d9::
