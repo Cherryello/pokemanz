@@ -1,5 +1,5 @@
 # pokemanz
-Repository di un progetto di un'hackROM di Pokémon Cristallo, basata sulla versione ottimizzata di [**pokecrystal**][1] di pfero, a cura di me, Cherryello, e di altri due membri.
+Repository di un progetto di un'hackROM di Pokémon Cristallo, basata sulla versione ottimizzata di [**pokecrystal**][1] di pfero, a cura di me, Cherryello.
 
 Thanks to [**pokecrystal tutorials**][2] for their guides, the Discord chat for their help, to the pret team and pfero who made the optimized project!
 
